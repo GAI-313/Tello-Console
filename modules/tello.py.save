@@ -1,0 +1,280 @@
+ # !/usr/bin/python.10.1
+'''
+上のコメント文はシバンという特殊文字列だよ。Python はこれをプログラムとしては見ないけど、Ubuntu はこのコメント文を見てこのディレクトリにある実行ファイルでこのプログラムを実行してねと指定させることができるよ。
+'''
+# -*- coding: utf-8 -*-
+'''
+上のコメントはこのスクリプト内で日本語が使えるようにするシバンだよ。これを書くことでコンパイル時の日本語不認識エラーを回避できるよ。
+'''
+
+'''
+クラスについて
+このプログラムは Tello ドローンとの UDP 通信を確立し、簡易的な関数を記述することでドローンを制御することができるモジュールとして機能するよ。
+このような振る舞いができるのは関数をさらに大きな関数で囲って汎用的に活用することができるクラスという機構を使っているからだよ。
+このクラスは以下のように構成されているよ
+クラス名: console
+    イニャライザ: クラスが呼び出されたら稼働するメソッド
+    メソッド: クラス内にあるクラス内でやり取りされる関数のことをいうよ
+    デストラクタ: クラスが破棄されたら実行されるメソッドだよ
+
+クラスは作っただけじゃ動くことはないよ。インスタンス化というクラスを活性化させる作業をしないといけない。インスタンス化させるにはクラスを任意の変数に定義させること。するとクラスを使用することができるようになるよ
+インスタンス化 > イニャライザ実行 > 任意のメソッドを実行できるようになる > インスタンスを破棄 > デストラクタ実行
+'''
+# 稼働させるのに必要なモジュールをインポート
+
+import threading    # 並列処理させるためのモジュール
+import socket       # Tello は UDP 通信で PC とデータやりとりするため、ソケット通信を管理するモジュール
+import time         # プログラムの一時停止などの時間関連を管理するモジュール
+import sys          # プログラムを強制終了することを目的とするモジュール
+import cv2          # ビデオデータ、画像処理をするモジュール
+import re           # 文字列から数字を取得するために使用するモジュール
+
+# メインクラス
+class console:
+
+# このクラスが呼び出されたら最初に実行される init 関数
+    def __init__(self,recv_output_frag=None):
+        '''
+        Tello PC 間はWi-Fiを経由して UDP 通信という方法でデータのやり取りを行う。そのため、このクラスが呼び出されたら最初にドローンと接続するように__init__関数内で接続シークエンスを行う。
+        第2引数の recv_output_frag はターミナルにドローンからの応答を表示するかどうかを判断するよ
+        False と入力すれば応答は表示されないよ
+        '''
+        # 必要な変数の初期値を設定
+        self.response = None # ドローンからの応答を格納する変数
+        self.MAX_WAIT_TIME = 15 # コマンドを送信してから応答があるまでのタイムアウトを定義
+        self.timeout_frag = False # ドローンからの応答がなかったらこのフラグが立つよ
+        self.recv_output_frag = recv_output_frag # ターミナルに出力結果を表示させるかどうかを苦伐するフラグ
+        self.flight_frag = False # ドローンが離陸したら立ち上がるフラグ
+        self.flight_timeout_frag = False # 飛行中コマンド送信なしの中13秒経過すると立ち上がるフラグ
+        self.vision_frag = False
+        self.cap = None # ドローンからのキャプチャデータを格納する変数
+        self.frame = None #キャプチャデータを読み込んだ際のデータを格納する変数
+        self.error_msg = None # メインプログラムにこのクラス内で発生したエラーを返すための変数
+        
+        # tello との接続を確立させる
+        self.local_ip = ''
+        self.local_port = 8889
+        self.local_video_port = 11111
+        self.socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        self.socket.bind((self.local_ip, self.local_port))
+
+        # _recv_thread の並列実行のためのセットアップ
+        self.recv_thread = threading.Thread(target=self._recv_thread)
+        self.recv_thread.daemon = True
+        self.recv_thread.start()
+
+        # tello の ipアドレスと接続ポートを確認
+        self.tello_ip = '192.168.10.1'
+        self.tello_port = 8889
+        self.tello_address = (self.tello_ip, self.tello_port)
+        self.tello_video_address = 'udp://@0.0.0.0:11111'
+
+        # コマンドログ
+        self.cmd_log = []
+
+        # 'command'というコマンドを送信してドローンをSDKモードにする
+        self.send_cmd('command', True)
+        # 'battery?'というコマンドを送信してドローンのバッテリー残量を取得
+        battery = self.send_cmd("battery?")
+        if battery != "None response":
+            battery = re.sub(r"\D", "", battery) 
+            if int(battery) <= 10:
+                print("LOW BATTERY PLEASE CHANGE BATTERY AND CHARGE IT.")
+                sys.exit()
+        # 'streamon'コマンドでビデオ通信用ポートを解放する
+        self.send_cmd('streamon')
+
+        # ビデオ受信メソッド _recv_video_thread を並列実行させる
+        self.recv_video_thread = threading.Thread(target=self._recv_video_thread)
+        self.recv_video_thread.daemon = True
+        self.recv_video_thread.start()
+
+        # タイムアウトスレッドを構築
+        self.timeout_thread = threading.Thread(target=self._timeout_thread)
+        self.timeout_thread.daemon = True
+        self.timeout_thread.start()
+
+
+    def __del__(self):
+        '''
+        このメソッドはデストラクタと言ってインスタンスが消されると実行されるよ
+        つまりこのクラスが終了されたら呼び出されるってこと。最後の断末魔だね
+        '''
+        print('done')
+
+    def send_cmd(self, cmd,start=None):
+        '''
+        このメソッドはドローンにコマンドを送信するこのクラスの中で最も重要なメソッドだよ。
+        第2引数 cmd に代入された文字列をドローンのコマンドとしてドローンに送信するよ。
+        送信されたコマンドは self.cmd_log リスト変数に格納するよ。
+        '''
+        self.cmd_log.append(cmd) # ここで再入されたコマンドをログに格納する
+        self.socket.sendto(cmd.encode('utf-8'), self.tello_address) # ここでs代入されたコマンドをドローンに送信する
+
+        # タイマーを動かすスレッドを回すよ。
+        timer = threading.Timer(self.MAX_WAIT_TIME, self.set_timeout_frag)
+        timer.start()
+
+        # 応答が来るまで待つ、しかし3秒経過したらタイムアウトする
+        while self.response is None:
+            if self.timeout_frag is True:
+                #print('timeout!')
+                break
+        timer.cancel() # タイマーを停止させる
+        
+        # 応答を確認する
+        if self.response is None:
+            response = "None response"
+        else:
+            response = self.response.decode('utf-8')
+            self.cmd_log.append(cmd)
+            # どんなエラーや問題が出たのかをここで処理する
+
+        if self.recv_output_frag is False:
+            pass
+        else:
+            print('send cmd >>> %s recv >>> %s' %(cmd,response)) # どんなコマンドを送信したかをターミナルに反映        
+            
+        self.response = None # 応答変数を初期化
+
+        if cmd == "command" and start is True:
+            if response == "None response":
+                print("ERROR CAN'T START CONSOLE! DRONE IS NOT FOUND.PLZ CONNECT THE DRONE!")
+                self.error_msg = "None_Defined_Drone"
+
+        if "unknown command" in response:
+            print("COMMAND ERROR! YOU SEND UNKNOWN COMMAND!")
+            sys.exit()
+
+        return response
+
+    def _recv_thread(self):
+        '''
+        このメソッドはドローンからの応答を常時監視するメソッドだよ。threading によって並列で稼働するよ。
+        '''
+        while True:
+            self.response, ip = self.socket.recvfrom(3000) # ここで応答を受け取る
+
+    def _recv_video_thread(self):
+        '''
+        ドローンからのビデオデータを受信するスレッドメソッド
+        '''
+        if self.cap is None:
+            self.cap = cv2.VideoCapture(self.tello_video_address)
+        if not self.cap.isOpened():
+            self.cap.open(self.tello_video_address)
+        while True:
+            ret, frame = self.cap.read()
+
+            if self.vision_frag == True:
+                frame = cv2.rotate(frame, cv2.ROTATE_90_CLOCKWISE)
+            else:
+                frame = frame
+
+            self.frame = frame
+
+    def _timeout_thread(self):
+        '''
+        ドローンが離陸してると15秒たつと自動で着陸してしまうが、これを回してそれを回避するようにする
+        '''
+        while True:
+            if self.response is True:
+                print('t')
+
+
+    def set_timeout_frag(self):
+        '''
+        このメソッドはドローンからの応答がなかった場合に発動するよ。
+        timeout_frag を立てて待機時間が過ぎたことを知らせてタイムアウトさせるよ
+        '''
+        self.timeout_frag = True
+
+    def set_flight_timeout_frag(self):
+        '''
+        飛行中コマンド送信がない状態が13秒続いたら実行されるメソッド
+        このフラグが立ち上がるとフライトタイムアウトが宣言される
+        '''
+        self.flight_timeout_frag = True
+
+    def takeoff(self):
+        '''
+        takeoff()
+        ドローンはその場で離陸するよ。15秒以内にコマンドが来ないとその場で自動着陸するよ
+        '''
+        self.flight_frag = True
+        return  self.send_cmd('takeoff')
+
+
+    def land(self):
+        '''
+        land()
+        ドローンを着陸させる
+        '''
+        self.flight_frag = False
+        return self.send_cmd('land')
+
+    def emergency(self):
+        '''
+        ドローンのモーターを強制的に停止させるよ
+        '''
+        return self.send_cmd('emergency')
+
+    def stop(self):
+        '''
+        ドローンの動作を停止させるよ
+        '''
+        self.send_cmd("rc 0 0 0 0")
+        return self.send_cmd('stop')
+
+    def rc(self, elron, elevator, srotol, lador):
+        '''
+        RCコントロール値をドローンhw出力
+        引数：
+        elron：左右移動の出力値 -で左
+        elevator：前進後進の出力値 -で後進
+        srotol：上昇下降の出力値 -で下降
+        lador：旋回の出力値 -で反時計回り
+        '''
+        return self.send_cmd('rc {} {} {} {}'.format(elron, elevator, srotol, lador))
+
+    def flip(self, dir):
+        '''
+        ドローンを宙返りさせるよ
+        '''
+        return self.send_cmd("flip {}".format(dir))
+
+    def motor_start(self):
+        '''
+        ドローンのモーターを起動、ステン第状態にさせるよ。rc コマンドによる手動離陸ができるようになるよ
+        '''
+        response = self.send_cmd('rc -100 -100 -100 100')
+        time.sleep(1)
+        return response
+
+    def downvision(self, angle):
+        '''
+        カメラデータの取得場所を変更するよ
+        引数は 0,1
+        １にすると下方カメラを取得するよ
+        ０にするとメインカメラ（前方）を取得するよ
+        デフォルトは0だよ。
+        dir が1の時、vision_frag を立ててカメラ映像を90°反転させるよ
+        '''
+        if angle == 1:
+            self.vision_frag = True
+        else:
+            self.vision_frag = False
+        
+        return self.send_cmd('downvision {}'.format(angle))
+
+    def get_tof(self):
+        '''
+        ToF センサー（機体下部にある高度計測用赤外線センサー）からの飛行光度を取得するよ
+        '''
+        return self.send_cmd('tof?')
+
+    def get_battery(self):
+        '''
+        ドローンからのバッテリー残量を取得するよ
+        '''
+        return self.send_cmd('battery?')
