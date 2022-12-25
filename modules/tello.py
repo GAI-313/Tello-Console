@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 # 稼働させるのに必要なモジュールをインポート
-# V6.1.0
+# V6.2.0
 
 import threading    # 並列処理させるためのモジュール
 import socket       # Tello は UDP 通信で PC とデータやりとりするため、ソケット通信を管理するモジュール
@@ -9,6 +9,22 @@ import time         # プログラムの一時停止などの時間関連を管�
 import sys          # プログラムを強制終了することを目的とするモジュール
 import cv2          # ビデオデータ、画像処理をするモジュール
 import re           # 文字列から数字を取得するために使用するモジュール
+
+# Windows ユーザーの方は以下のプログラム上下にある """ を削除してください
+"""
+import ctypes
+ 
+ENABLE_PROCESSED_OUTPUT = 0x0001
+ENABLE_WRAP_AT_EOL_OUTPUT = 0x0002
+ENABLE_VIRTUAL_TERMINAL_PROCESSING = 0x0004
+MODE = ENABLE_PROCESSED_OUTPUT + ENABLE_WRAP_AT_EOL_OUTPUT + ENABLE_VIRTUAL_TERMINAL_PROCESSING
+ 
+kernel32 = ctypes.windll.kernel32
+handle = kernel32.GetStdHandle(-11)
+kernel32.SetConsoleMode(handle, MODE)
+"""
+# Windows ユーザーの方はこのテキストの上のプログラム上下にある """ を削除してください
+
 
 # メインクラス
 class console:
@@ -23,7 +39,7 @@ class console:
         ビデオ通信の安定化。
         を行います。
         '''
-        print('\033[32m'+"WELCOME CONSOLE ! TELLO-CONSOLE V6.1.0"+'\033[0m') # このモジュールのバージョンを最初に表示します。
+        print('\x1b[32m'+"WELCOME CONSOLE ! TELLO-CONSOLE V6.2.0"+'\x1b[0m') # このモジュールのバージョンを最初に表示します。
 
         # 必要な変数の初期値を設定
         self.response = None # ドローンからの応答を格納する変数
@@ -88,9 +104,9 @@ class console:
         while True:
             if self.frame is not None:
                 if self.lang == "jp":
-                    print('\033[32m'+"セットアップ完了！"+'\033[0m')
+                    print('\x1b[32m'+"セットアップ完了！"+'\x1b[0m')
                 else:
-                    print('\033[32m'+"SET UP IS DONE"+'\033[0m')
+                    print('\x1b[32m'+"SET UP IS DONE"+'\x1b[0m')
                 time.sleep(1)
                 break
     
@@ -104,15 +120,15 @@ class console:
                 battery = re.sub(r"\D", "", battery)
                 if int(battery) <= 10:
                     if self.lang == "jp":
-                        print('\033[31m'+"バッテリー残量がわずかです！バッテリーを充電、交換してください！"+'\033[0m') # バッテリー残量が10％％以下の場合プログラムは停止する。
+                        print('\x1b[31m'+"バッテリー残量がわずかです！バッテリーを充電、交換してください！"+'\x1b[0m') # バッテリー残量が10％％以下の場合プログラムは停止する。
                     else:
-                        print('\033[31m'+"LOW BATTERY PLEASE CHANGE BATTERY AND CHARGE IT."+'\033[0m') # バッテリー残量が10％％以下の場合プログラムは停止する。
+                        print('\x1b[31m'+"LOW BATTERY PLEASE CHANGE BATTERY AND CHARGE IT."+'\x1b[0m') # バッテリー残量が10％％以下の場合プログラムは停止する。
                     sys.exit()
                 elif int(battery) < 50:
                     if self.lang == "jp":
-                        print('\033[33m'+"注意: バッテリー残量が 50% 以下です。flip コマンドは無効になります。"+'\033[0m') # flip コマンドが使えなくなることを警鐘
+                        print('\x1b[33m'+"注意: バッテリー残量が 50% 以下です。flip コマンドは無効になります。"+'\x1b[0m') # flip コマンドが使えなくなることを警鐘
                     else:
-                        print('\033[33m'+"WARNING: BATTERY LEVEL IS LESS 50%. CAN'T USE FLIP CMD!"+'\033[0m') # flip コマンドが使えなくなることを警鐘
+                        print('\x1b[33m'+"WARNING: BATTERY LEVEL IS LESS 50%. CAN'T USE FLIP CMD!"+'\x1b[0m') # flip コマンドが使えなくなることを警鐘
                 time.sleep(3)
                 break
             else:
@@ -129,11 +145,11 @@ class console:
             else:
                 if int(sdk) < 30:
                     if self.lang == "jp":
-                        print('\033[33m'+"警告!:downvision コマンドは使用できません。"+'\033[0m')
-                        print('\033[33m'+"ヒント:お使いのドローンのファームウェアを更新してください。"+'\033[0m')
+                        print('\x1b[33m'+"警告!:downvision コマンドは使用できません。"+'\x1b[0m')
+                        print('\x1b[33m'+"ヒント:お使いのドローンのファームウェアを更新してください。"+'\x1b[0m')
                     else:
-                        print('\033[33m'+"WARNING!: THIS VERSION IS CAN'T USE DOWNVISION CMD !"+'\033[0m')
-                        print('\033[33m'+"TIPS!: YOU SHOULD BE UPDATE THIS AIRCRAFT'S FW"+'\033[0m')
+                        print('\x1b[33m'+"WARNING!: THIS VERSION IS CAN'T USE DOWNVISION CMD !"+'\x1b[0m')
+                        print('\x1b[33m'+"TIPS!: YOU SHOULD BE UPDATE THIS AIRCRAFT'S FW"+'\x1b[0m')
                 break
 
     def __del__(self):
@@ -183,47 +199,47 @@ class console:
             if self.recv_output_frag is False:
                 pass
             else:
-                print('\033[37m'+'send cmd >>> %s recv >>> %s'%(cmd,response)+'\033[0m') # どんなコマンドを送信したかをターミナルに反映        
+                print('\x1b[37m'+'send cmd >>> %s recv >>> %s'%(cmd,response)+'\x1b[0m') # どんなコマンドを送信したかをターミナルに反映        
                 
             self.response = None # 応答変数を初期化
 
             if cmd == "command" and start is True: # ここでドローンと正常に接続されているかどうかを判定する
                 if response == "None response":
                     if self.lang == "jp":
-                        print('\033[31m'+"エラー！ドローンとの通信に失敗しました！"+'\033[0m')
-                        print('\033[33m'+"Tips:ドローンとPCとのWi-Fi接続を確認してください！"+'\033[0m')
+                        print('\x1b[31m'+"エラー！ドローンとの通信に失敗しました！"+'\x1b[0m')
+                        print('\x1b[33m'+"Tips:ドローンとPCとのWi-Fi接続を確認してください！"+'\x1b[0m')
                     else:
-                        print('\033[31m'+"ERROR CAN'T START CONSOLE! DRONE IS NOT FOUND.PLZ CONNECT THE DRONE!"+'\033[0m')
-                        print('\033[33m'+"TIPS: CHECK THE WI-FI CONNECTION TO DRONE"+'\033[0m')
+                        print('\x1b[31m'+"ERROR CAN'T START CONSOLE! DRONE IS NOT FOUND.PLZ CONNECT THE DRONE!"+'\x1b[0m')
+                        print('\x1b[33m'+"TIPS: CHECK THE WI-FI CONNECTION TO DRONE"+'\x1b[0m')
                     self.error_msg = "None_Defined_Drone"
                     sys.exit()
 
             # エラー判定
             if "unknown command" in response:
                 if self.lang == "jp":
-                    print('\033[31m'+"コマンドエラー！未知のコマンド" + cmd + " を取得しました。プログラムは強制停止します。"+'\033[0m') # 未知のコマンドが送信されたらプログラムは停止する
+                    print('\x1b[31m'+"コマンドエラー！未知のコマンド" + cmd + " を取得しました。プログラムは強制停止します。"+'\x1b[0m') # 未知のコマンドが送信されたらプログラムは停止する
                 else:
-                    print('\033[31m'+"COMMAND ERROR! YOU SEND UNKNOWN COMMAND >>> " + cmd +'\033[0m') # 未知のコマンドが送信されたらプログラムは停止する
+                    print('\x1b[31m'+"COMMAND ERROR! YOU SEND UNKNOWN COMMAND >>> " + cmd +'\x1b[0m') # 未知のコマンドが送信されたらプログラムは停止する
                 sys.exit()
             
             if response == "error Not joystick" or response == "error Run timeout": # コマンド送信時にタイムアウト、もしくは joystick エラーが発生した際に渡されたコマンドを再送信する。
                 if self.lang == "jp":
-                    print('\033[33m'+"飛行コマンドエラー！再試行します…")
+                    print('\x1b[33m'+"飛行コマンドエラー！再試行します…")
                 else:
-                    print('\033[33m'+"FLIGHT CMD ERROR RETRY SEND IT")
+                    print('\x1b[33m'+"FLIGHT CMD ERROR RETRY SEND IT")
                 self.send_cmd(cmd)
 
             elif response == "error Auto land":
                 if self.lang == "jp":
-                    print('\033[31m'+"重度なエラーが発生しました。自動着陸します。"+'\033[0m') # 何かしらの原因でmドローンが自動着陸した際に発生するエラー。代替はローバッテリー。
+                    print('\x1b[31m'+"重度なエラーが発生しました。自動着陸します。"+'\x1b[0m') # 何かしらの原因でmドローンが自動着陸した際に発生するエラー。代替はローバッテリー。
                 else:
-                    print('\033[31m'+"EMERGENCY ERROR OCCURED !"+'\033[0m') # 何かしらの原因でmドローンが自動着陸した際に発生するエラー。代替はローバッテリー。
+                    print('\x1b[31m'+"EMERGENCY ERROR OCCURED !"+'\x1b[0m') # 何かしらの原因でmドローンが自動着陸した際に発生するエラー。代替はローバッテリー。
             
             elif response == "error No valid imu":
                 if self.lang == "jp":
-                    print('\033[33m'+"IMU パンクエラー！姿勢維持のため機体をホバリングさせます。"+'\033[0m') # IMU に異常をきたしたまたはドローンの姿勢書くが期待値以上に傾いている場合に発生するエラー。この時ドローンをホバリングさせる。
+                    print('\x1b[33m'+"IMU パンクエラー！姿勢維持のため機体をホバリングさせます。"+'\x1b[0m') # IMU に異常をきたしたまたはドローンの姿勢書くが期待値以上に傾いている場合に発生するエラー。この時ドローンをホバリングさせる。
                 else:
-                    print('\033[33m'+"IMU VALID ERROR TOO MUCH DRONE ATTITUDE!"+'\033[0m') # IMU に異常をきたしたまたはドローンの姿勢書くが期待値以上に傾いている場合に発生するエラー。この時ドローンをホバリングさせる。
+                    print('\x1b[33m'+"IMU VALID ERROR TOO MUCH DRONE ATTITUDE!"+'\x1b[0m') # IMU に異常をきたしたまたはドローンの姿勢書くが期待値以上に傾いている場合に発生するエラー。この時ドローンをホバリングさせる。
                 self.stop()
             return response
         
@@ -231,19 +247,19 @@ class console:
             sys/exit()
         except OSError:
             if self.lang == "jp":
-                print('\033[33m'+"接続エラー。ドローンとの接続に問題が発生しました。"+'\033[0m') # IMU に異常をきたしたまたはドローンの姿勢書くが期待値以上に傾いている場合に発生するエラー。この時ドローンをホバリングさせる。
+                print('\x1b[33m'+"接続エラー。ドローンとの接続に問題が発生しました。"+'\x1b[0m') # IMU に異常をきたしたまたはドローンの姿勢書くが期待値以上に傾いている場合に発生するエラー。この時ドローンをホバリングさせる。
             else:
-                print('\033[33m'+"CONNECTION ERROR"+'\033[0m') # IMU に異常をきたしたまたはドローンの姿勢書くが期待値以上に傾いている場合に発生するエラー。この時ドローンをホバリングさせる。
+                print('\x1b[33m'+"CONNECTION ERROR"+'\x1b[0m') # IMU に異常をきたしたまたはドローンの姿勢書くが期待値以上に傾いている場合に発生するエラー。この時ドローンをホバリングさせる。
             sys/exit()
             
         except OSError:
             # ドローンとの接続中に 0SError が発生する原因は Wi-Fi接続中にプログラムを実行することである。そのためのアドバイス文を送りプログラムを停止させる。
             if self.lang == "jp":
-                print('\033[31m'+"接続エラー！ドローンのと接続に問題が発生しました。"+'\033[0m')
-                print('\033[33m'+"ドローンとのWi-Fiによる接続が完全に終了していない状態でプログラムは実行できません。\nドローンが他のデバイスに既に接続されている場合はプログラムを実行できません。"+'\033[0m')
+                print('\x1b[31m'+"接続エラー！ドローンのと接続に問題が発生しました。"+'\x1b[0m')
+                print('\x1b[33m'+"ドローンとのWi-Fiによる接続が完全に終了していない状態でプログラムは実行できません。\nドローンが他のデバイスに既に接続されている場合はプログラムを実行できません。"+'\x1b[0m')
             else:
-                print('\033[31m'+"CONNECTION ERROR THIS DRONE's SSID HAVE A ISSUES!"+'\033[0m')
-                print('\033[33m'+"MAYBE NOT READY TO CONNECT THE DRONE. PLZ WAIT AFTER RETRY"+'\033[0m')
+                print('\x1b[31m'+"CONNECTION ERROR THIS DRONE's SSID HAVE A ISSUES!"+'\x1b[0m')
+                print('\x1b[33m'+"MAYBE NOT READY TO CONNECT THE DRONE. PLZ WAIT AFTER RETRY"+'\x1b[0m')
             sys.exit()
 
         except Exception:
