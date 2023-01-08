@@ -208,10 +208,12 @@ class console:
                     if self.lang == "jp":
                         print('\x1b[31m'+"エラー！ドローンとの通信に失敗しました！"+'\x1b[0m')
                         print('\x1b[33m'+"Tips:ドローンとPCとのWi-Fi接続を確認してください！"+'\x1b[0m')
+                        error_msg = ["エラー！ドローンとの通信に失敗しました！", "Tips:ドローンとPCとのWi-Fi接続を確認してください！"]
                     else:
                         print('\x1b[31m'+"ERROR CAN'T START CONSOLE! DRONE IS NOT FOUND.PLZ CONNECT THE DRONE!"+'\x1b[0m')
                         print('\x1b[33m'+"TIPS: CHECK THE WI-FI CONNECTION TO DRONE"+'\x1b[0m')
                     self.error_msg = "None_Defined_Drone"
+                    self.result_deliver(error_msg)
                     sys.exit()
 
             # エラー判定
@@ -325,6 +327,9 @@ class console:
             except Exception:
                 import traceback
                 traceback.print_exc()
+    
+    def result_deliver(self, msg):
+        return msg
 
 # ドローン操作メソッド群    
     def set_timeout_frag(self):
@@ -900,3 +905,4 @@ class procon_control:
     def closer(self):
         cv2.destroyAllWindows()
         self.drone.cap.release()
+
