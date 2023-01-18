@@ -180,13 +180,16 @@ class console:
             timer.start()
 
             # 応答が来るまで待つ、しかし3秒経過したらタイムアウトする
-            while self.response is None:
-                if self.timeout_frag is True:
-                    if self.lang == "jp":
-                        print('タイムアウト!')
-                    else:
-                        print('timeout!')
-                    break
+            if 'rc' in cmd:
+                pass
+            else:
+                while self.response is None:
+                    if self.timeout_frag is True:
+                        if self.lang == "jp":
+                            print('タイムアウト!')
+                        else:
+                            print('timeout!')
+                        break
             timer.cancel() # タイマーを停止させる
 
             self.pre_time = self.current_time
@@ -252,28 +255,19 @@ class console:
                 self.stop()
             return response
         
-        except KeyboardInterrupt:
-            sys/exit()
         except OSError:
             if self.lang == "jp":
-                print('\x1b[33m'+"接続エラー。ドローンとの接続に問題が発生しました。"+'\x1b[0m') # IMU に異常をきたしたまたはドローンの姿勢書くが期待値以上に傾いている場合に発生するエラー。この時ドローンをホバリングさせる。
+                print('\x1b[33m'+"接続エラー。ドローンとの接続に問題が発生しました。"+'\x1b[0m') 
             else:
-                print('\x1b[33m'+"CONNECTION ERROR"+'\x1b[0m') # IMU に異常をきたしたまたはドローンの姿勢書くが期待値以上に傾いている場合に発生するエラー。この時ドローンをホバリングさせる。
-            sys/exit()
-            
-        except OSError:
-            # ドローンとの接続中に 0SError が発生する原因は Wi-Fi接続中にプログラムを実行することである。そのためのアドバイス文を送りプログラムを停止させる。
-            if self.lang == "jp":
-                print('\x1b[31m'+"接続エラー！ドローンのと接続に問題が発生しました。"+'\x1b[0m')
-                print('\x1b[33m'+"ドローンとのWi-Fiによる接続が完全に終了していない状態でプログラムは実行できません。\nドローンが他のデバイスに既に接続されている場合はプログラムを実行できません。"+'\x1b[0m')
-            else:
-                print('\x1b[31m'+"CONNECTION ERROR THIS DRONE's SSID HAVE A ISSUES!"+'\x1b[0m')
-                print('\x1b[33m'+"MAYBE NOT READY TO CONNECT THE DRONE. PLZ WAIT AFTER RETRY"+'\x1b[0m')
+                print('\x1b[33m'+"CONNECTION ERROR"+'\x1b[0m')
+            import traceback
+            traceback.print_exc()
             sys.exit()
 
         except Exception:
             import traceback
             traceback.print_exc()
+            sys.exit()
 
     def _recv_thread(self):
         '''
