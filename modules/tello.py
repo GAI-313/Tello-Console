@@ -28,7 +28,6 @@ kernel32.SetConsoleMode(handle, MODE)
 
 # メインクラス
 class console:
-
 # このクラスが呼び出されたら最初に実行される init 関数
     def __init__(self,recv_output_frag=None, langage="jp"):
         '''
@@ -39,7 +38,8 @@ class console:
         ビデオ通信の安定化。
         を行います。
         '''
-        print('\x1b[32m'+"WELCOME CONSOLE ! TELLO-CONSOLE V6.2.0"+'\x1b[0m') # このモジュールのバージョンを最初に表示します。
+        SYS_VER = '6.3.0'
+        print('\x1b[32m'+"WELCOME CONSOLE ! TELLO-CONSOLE V%s"%(SYS_VER)+'\x1b[0m') # このモジュールのバージョンを最初に表示します。
 
         # 必要な変数の初期値を設定
         self.response = None # ドローンからの応答を格納する変数
@@ -170,6 +170,10 @@ class console:
             '''
             self.cmd_log.append(cmd) # ここで再入されたコマンドをログに格納する
             self.socket.sendto(cmd.encode('utf-8'), self.tello_address) # ここでs代入されたコマンドをドローンに送信する
+            if self.lang == 'jp':
+                print('\x1b[37m'+'コマンド<%s>を送信しました…'%(cmd)+'\x1b[0m')
+            else:
+                print('send command <%s>...'%(cmd))
 
             # タイマーを動かすスレッドを回す。
             timer = threading.Timer(self.MAX_WAIT_TIME, self.set_timeout_frag)
@@ -199,7 +203,10 @@ class console:
             if self.recv_output_frag is False:
                 pass
             else:
-                print('\x1b[37m'+'send cmd >>> %s recv >>> %s'%(cmd,response)+'\x1b[0m') # どんなコマンドを送信したかをターミナルに反映        
+                if self.lang == 'jp':
+                    print('\x1b[37m'+'ドローンから応答<%s>を受信しました…'%(response)+'\x1b[0m')# どんなコマンドを送信したかをターミナルに反映        
+                else:
+                    print('\x1b[37m'+'recv <%s> by drone ...'%(response)+'\x1b[0m')# どんなコマンドを送信したかをターミナルに反映        
                 
             self.response = None # 応答変数を初期化
 
@@ -855,54 +862,3 @@ class console:
             import traceback
             traceback.print_exc()
             sys.exit()
-
-class procon_control:
-    def __init__(self):
-        from modules.rc import procon
-        
-        self.rc_res = procon()
-        self.button_response = None
-
-        if self.drone.error_msg is True:
-            pass
-
-    def read(self):
-        button, stick = self.rc_res.read()
-
-        self.drone.rc(stick[2], stick[3], stick[1], stick[0])
-
-        self.button_response = button
-        b_res = self.button_response
-
-        if "quit" in b_res:
-            print("Done")
-            sys.exit()
-
-        if "home" in b_res:
-            self.drone.land()
-
-        if "func_right_stick" and  "func_left_stick" in b_res:
-            time.sleep(1)
-            self.drone.motor_start()
-
-        return b_res
-
-    def takeoff_land(self, tof):
-        int_tof = re.sub(r"\D", "", tof)
-
-        if int(int_tof) <= 100:
-            time.sleep(1)
-            while True:
-                t = self.drone.takeoff()
-                if t == "None response":
-                    continue
-                else:
-                    break
-
-        else:
-            self.drone.land()
-
-    def closer(self):
-        cv2.destroyAllWindows()
-        self.drone.cap.release()
-
