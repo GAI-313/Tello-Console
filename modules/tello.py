@@ -428,6 +428,23 @@ class console:
             laddor = 機体左右旋回　負の値だと機体は左回転します。
             '''
 
+            if elron > 100:
+                elron = 100
+            elif elron < -100:
+                elron = -100
+            if elevator > 100:
+                elevator = 100
+            elif elevator < -100:
+                elevator = -100
+            if srotol > 100:
+                srotol = 100
+            elif srotol < -100:
+                srotol = -100
+            if lador > 100:
+                lador = 100
+            elif lador < -100:
+                lador = -100
+
             return self.send_cmd('rc {} {} {} {}'.format(elron, elevator, srotol, lador))
         
         except:
