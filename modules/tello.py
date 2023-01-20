@@ -29,16 +29,21 @@ kernel32.SetConsoleMode(handle, MODE)
 # メインクラス
 class console:
 # このクラスが呼び出されたら最初に実行される init 関数
-    def __init__(self,recv_output_frag=None, langage="jp"):
-        '''
-        ドローンと PC との接続を確認、確立させたのち、以下の確認を行います。
-        SDK バージョンの確認。
-        バッテリー残量の確認。
-        これらの確認が取れたら、
-        ビデオ通信の安定化。
-        を行います。
-        '''
-        SYS_VER = '6.3.0'
+    def __init__(self,recv_output_frag=True, langage="jp"):
+        """Tello をコマンドで操作できるようにする Tello-Console のコアとなります。
+
+        info:
+            console システムを使用するには、このクラスを任意の変数に代入してください。
+            drone = console()
+
+        Args:
+            recv_output_frag (bool, optional): ドローンとの通信状況を表示するか否かを設定できます、デフォルトは True。
+            False にすると、ドローンからの応答が表示されなくなります。他のデータを表示させたいときに便利です。 
+            langage (str, optional): エラー、警告、ヒントの言語設定を設定します。デフォルトは"jp"。
+            jp: 日本語
+            us: 英語
+        """
+        SYS_VER = '7.0.0'
         print('\x1b[32m'+"WELCOME CONSOLE ! TELLO-CONSOLE V%s"%(SYS_VER)+'\x1b[0m') # このモジュールのバージョンを最初に表示します。
 
         # 必要な変数の初期値を設定
@@ -111,8 +116,11 @@ class console:
                 break
     
     def battery_check(self):
-        """
-        ドローンのバッテリー残量を確認し、正常にプログラムを実行できるかどうかを診断します。
+        """システムチェック：ドローンのバッテリーチェックを行います。
+
+        警告:
+            このプログラムはドローンを診断する専用のメソッドです。通常のメソッドとして使用することは前提とされていません。
+
         """
         battery = self.send_cmd("battery?")
         while True:
@@ -135,8 +143,11 @@ class console:
                  battery = self.send_cmd("battery?")
     
     def sdk_check(self):
-        """
-        ドローンのファームウェアバージョンを確認し、正常にプログラムを実行できるかどうかを診断します。
+        """システムチェック：ドローンのバファームウェアバージョンの確認を行います。
+
+        警告:
+            このプログラムはドローンを診断する専用のメソッドです。通常のメソッドとして使用することは前提とされていません。
+
         """
         sdk = self.send_cmd("sdk?")
         while True:
@@ -160,20 +171,29 @@ class console:
         print('done')
 
     def send_cmd(self, cmd,start=None):
+        """ドローンにコマンドを送信します。
+
+        info:
+            このプログラムは Tello-Console の中核となります。全てのドローンへ送信するコマンドはここで処理されます。
+            このメソッドを使って直接ドローンにコマンドを送信することも可能です。
+
+        Args:
+            cmd (str): ドローンに送信するコマンドを入力します
+            start (_type_, optional): ドローン診断用引数です。使用しないでください.
+
+        Returns:
+            str: ドローンからの応答
+        """
         try:
-            '''
-            ドローンにコマンドを送信するメソッドです。
-            このメソッドがこのクラスにおいて最も重要なところで、ほぼ全てのメソッドはこのメソッドによって機能しています。
-            このメソッドには以下の引数を必要とします。
-            cmd = str : ドローンに送信するコマンド文を格納します。
-            start = None or True : 通常時はこの引数を必要としません。この引数はイニャライザでのみ使われます。
-            '''
             self.cmd_log.append(cmd) # ここで再入されたコマンドをログに格納する
             self.socket.sendto(cmd.encode('utf-8'), self.tello_address) # ここでs代入されたコマンドをドローンに送信する
-            if self.lang == 'jp':
-                print('\x1b[37m'+'コマンド<%s>を送信しました…'%(cmd)+'\x1b[0m')
+            if self.recv_output_frag is False:
+                pass
             else:
-                print('send command <%s>...'%(cmd))
+                if self.lang == 'jp':
+                    print('\x1b[37m'+'コマンド<%s>を送信しました…'%(cmd)+'\x1b[0m')
+                else:
+                    print('send command <%s>...'%(cmd))
 
             # タイマーを動かすスレッドを回す。
             timer = threading.Timer(self.MAX_WAIT_TIME, self.set_timeout_frag)
@@ -270,10 +290,11 @@ class console:
             sys.exit()
 
     def _recv_thread(self):
-        '''
-        ドローンからの応答を監視するメソッドです。
-        threading によって稼働します。通常のメソッドとして使用することは前提としていません。
-        '''
+        """ドローンからの応答を監視するメソッドです。
+        
+        警告:
+            threading によって稼働します。通常のメソッドとして使用することは前提としていません。
+        """
         while True:
             try:
                 self.response, ip = self.socket.recvfrom(3000) # ここで応答を受け取る
@@ -282,10 +303,11 @@ class console:
                 break
 
     def _recv_video_thread(self):
-        '''
-        ドローンからのビデオデータを取得し、エンコードするメソッドです。エンコードされたビデオデータは self.frame に格納されます。
-        threading によって稼働します。通常のメソッドとして使用することは前提としていません。
-        '''
+        """ドローンからのビデオ通信を監視するメソッドです。
+        
+        警告:
+            threading によって稼働します。通常のメソッドとして使用することは前提としていません。
+        """
         if self.cap is None: # cap に何もない場合はドローンからのカメラデータを格納させる
             self.cap = cv2.VideoCapture(self.tello_video_address)
         if not self.cap.isOpened(): # cap データが解放されていない場合は解放する
@@ -309,10 +331,11 @@ class console:
                 traceback.print_exc()
 
     def _timeout_thread(self):
-        '''
-        ドローンのタイムアウト（コマンド未送信状態が15秒経過するとドローンが着陸してしまう）する問題を回避、監視するメソッドです。
-        threading によって稼働します。通常のメソッドとして使用することは前提としていません。
-        '''
+        """通信がタイムアウトするかどうかを監視するメソッドです。
+        
+        警告:
+            threading によって稼働します。通常のメソッドとして使用することは前提としていません。
+        """
         while True:
             try:
                 self.current_time = time.time()
@@ -331,43 +354,29 @@ class console:
     
     def result_deliver(self, msg):
         return msg
-
-# ドローン操作メソッド群    
+    
     def set_timeout_frag(self):
+        """ドローンからの通信が10秒以上なかった場合 frag を立てます。
+
+        警告:
+            このプログラムはドローンを診断する専用のメソッドです。通常のメソッドとして使用することは前提とされていません。
+
+        """
         try:
-            """
-            このメソッドはコマンドを送信して任意の時間が経過してもドローンからの応答がなかった際に実行されるフラグメソッドです。このメソッドが実行されると timeout エラーが発生します。
-            """
             self.timeout_frag = True
         except:
             import traceback
             traceback.print_exc()
             sys.exit()
-    
-    def wait(self, sec):
-        try:
-            """
-            waiit : ドローンを引数分待機させる。飛行中は引数分ホバリングします。
-            引数: sec = int or float = ドローンの待機時間(sec/秒)
-            ドローンを time.sleep で待機させます。そのため本クラスを使用するスクリプトに time モジュールは必要ありません。
-            このメソッドはドローンからのレスポンスは受け付けないため、直接結果を反映します。
-            """
-            res = "Drone is wait: %d sec"%(sec)
-            time.sleep(sec)
-            print(res)
-            return res
-        
-        except:
-            import traceback
-            traceback.print_exc()
-            sys.exit()
 
+# ドローン操作メソッド群
     def takeoff(self):
+        """ドローンを離陸させます。
+
+        Returns:
+            str: 実行結果
+        """
         try:
-            '''
-            takeoff: ドローンを自動離陸させる。
-            引数は取りません。
-            '''
             return  self.send_cmd('takeoff')
         except:
             import traceback
@@ -376,12 +385,65 @@ class console:
 
 
     def land(self):
+        """ドローンを着陸させます。
+
+        Returns:
+            str: 実行結果
+        """
         try:
-            '''
-            land: ドローンを自動着陸させる、
-            引数は取りません。
-            '''
             return self.send_cmd('land')
+        
+        except:
+            import traceback
+            traceback.print_exc()
+            sys.exit()
+    
+    def throwfly(self):
+        """throwfly モードを有効にします。
+
+        throwfly モードとは:
+            throwfly モードは、ドローンを軽く投げて飛行させるモードです。使用する際は回転するプロペラに気をつけてください。
+
+        Returns:
+            str: 実行結果
+        """
+        try:        
+            response = self.send_cmd('throwfly')
+            time.sleep(1)
+            return response
+        
+        except:
+            import traceback
+            traceback.print_exc()
+            sys.exit()
+        
+
+    def motor_start(self):
+        """ドローンのモーターを起動します。
+
+        Returns:
+            str: 実行結果
+        """
+        try:        
+            response = self.send_cmd('motoron')
+            time.sleep(1)
+            return response
+        
+        except:
+            import traceback
+            traceback.print_exc()
+            sys.exit()
+    
+    def motor_stop(self):
+        """ドローンのモーターを停止します。
+
+        Returns:
+            str: 実行結果
+        """
+        try:        
+            response = self.send_cmd('motoroff')
+            time.sleep(1)
+            return response
         
         except:
             import traceback
@@ -389,13 +451,30 @@ class console:
             sys.exit()
 
     def emergency(self):
+        """ドローンを緊急停止させ、プログラムを停止します。
+
+        警告:
+            このプログラムを実行するとドローンはモーターとプログラムは停止します。飛行中の場合機体が破損する恐れがあります。
+            
+        Returns:
+            str: 実行結果
+        """
         try:
-            '''
-            emergency: ドローンのモーターを停止させます。
-            飛行中に実行されるとドローンは揚力を失いその場で墜落します。
-            引数は取りません。
-            '''
             return self.send_cmd('emergency')
+        
+        except:
+            import traceback
+            traceback.print_exc()
+            sys.exit()
+    
+    def reboot(self):
+        """ドローンを再起動します
+
+        Returns:
+            str: 実行結果
+        """
+        try:
+            return self.send_cmd('reboot')
         
         except:
             import traceback
@@ -403,11 +482,15 @@ class console:
             sys.exit()
 
     def stop(self):
+        """ドローンを停止させます。あらゆる移動シークエンスを停止させます。
+
+        info:
+            ドローンが飛行中または移動中にこのプログラムを実行すると、ドローンをその場でホバリングさせます。
+
+        Returns:
+            str: 実行結果
+        """
         try:
-            '''
-            stop: ドローンを停止させます。飛行中でもこのコマンドが実行されると移動を停止しその場でホバリングさせます。
-            引数は取りません。
-            '''
             self.send_cmd("rc 0 0 0 0")
             return self.send_cmd('stop')
         
@@ -417,17 +500,18 @@ class console:
             sys.exit()
 
     def rc(self, elron, elevator, srotol, lador):
-        try:
-            '''
-            rc: ドローンにRCコントローラー出力を送信します。
-            引数: elron, elevator, srotol, laddor = int (-100 < all args < 100)
-            ドローンの 2ch コントローラー同様の出力値を4つの引数で送信します。
-            elron = 期待左右移動　負の値だと左移動になります。
-            elevator = 機体前進後進移動　負の値だと後進します。
-            srotol = 機体上昇下降移動　負の値だと下降します。
-            laddor = 機体左右旋回　負の値だと機体は左回転します。
-            '''
+        """ドローンにプロポスティック操作を入力します。各スティックの出力値をドローンへと送信し、精密なオペレートを可能にします。
 
+        Args:
+            elron (int): 左右移動：（正の値：右移動、負の値：左移動）範囲：-100 ~ 100
+            elevator (int): 前後移動：（正の値：前移動、負の値：後移動）範囲：-100 ~ 100
+            srotol (int): 上下移動：（正の値：上昇、負の値：下降）範囲：-100 ~ 100
+            lador (int): 旋回移動：（正の値：時計回り、負の値：反時計回り）範囲：-100 ~ 100
+
+        Returns:
+            str: 実行結果
+        """
+        try:
             if elron > 100:
                 elron = 100
             elif elron < -100:
@@ -452,33 +536,21 @@ class console:
             traceback.print_exc()
             sys.exit()
     
-    def speed(self,cm):
-        try:
-            '''
-            speed: ドローンの飛行スピードを設定します。
-            引数 cm = int (ドローンを毎秒何 cm/s で飛行させるか定義します。 10 < cm < 100)
-            '''
-            if cm < 10:
-                cm = 10
-            if cm > 100:
-                cm = 100
-            return self.send_cmd("speed {}".format(cm))
-        
-        except:
-            import traceback
-            traceback.print_exc()
-            sys.exit()
-    
     def forward(self,cm):
+        """ドローンを任意の距離（cm）前進させます。
+
+        Args:
+            cm (int): 前進させる距離 範囲：20 ~ 500
+            入力値が 20 以下、または 500 以上である場合、自動的に補完されます。
+
+        Returns:
+            str: 実行結果
+        """
         try:
-            '''
-            forward : ドローンを前進させます。
-            引数 cm = int (ドローンを何 cm 前進させるか定義します。 20 < cm < 500)
-            '''
             if cm < 20:
                 cm = 20
-            if cm > 250:
-                cm = 250
+            if cm > 500:
+                cm = 500
             return self.send_cmd("forward {}".format(cm))
         
         except:
@@ -487,15 +559,20 @@ class console:
             sys.exit()
     
     def back(self,cm):
+        """ドローンを任意の距離（cm）後進させます。
+
+        Args:
+            cm (int): 後進させる距離 範囲：20 ~ 500
+            入力値が 20 以下、または 500 以上である場合、自動的に補完されます。
+
+        Returns:
+            str: 実行結果
+        """
         try:
-            '''
-            back : ドローンを後進させます。
-            引数 cm = int (ドローンを何 cm 後進させるか定義します。 20 < cm < 500)
-            '''
             if cm < 20:
                 cm = 20
-            if cm > 250:
-                cm = 250
+            if cm > 500:
+                cm = 500
             return self.send_cmd("back {}".format(cm))
         
         except:
@@ -504,15 +581,20 @@ class console:
             sys.exit()
     
     def right(self,cm):
+        """ドローンを任意の距離（cm）右進させます。
+
+        Args:
+            cm (int): 右進させる距離 範囲：20 ~ 500
+            入力値が 20 以下、または 500 以上である場合、自動的に補完されます。
+
+        Returns:
+            str: 実行結果
+        """
         try:
-            '''
-            right : ドローンを右移動させます。
-            引数 cm = int (ドローンを何 cm 右移動させるか定義します。 20 < cm < 500)
-            '''
             if cm < 20:
                 cm = 20
-            if cm > 250:
-                cm = 250
+            if cm > 500:
+                cm = 500
             return self.send_cmd("right {}".format(cm))
         
         except:
@@ -521,15 +603,20 @@ class console:
             sys.exit()
     
     def left(self,cm):
+        """ドローンを任意の距離（cm）左進させます。
+
+        Args:
+            cm (int): 左進させる距離 範囲：20 ~ 500
+            入力値が 20 以下、または 500 以上である場合、自動的に補完されます。
+
+        Returns:
+            str: 実行結果
+        """
         try:
-            '''
-            left : ドローンを左移動させます。
-            引数 cm = int (ドローンを何 cm 左移動させるか定義します。 20 < cm < 500)
-            '''
             if cm < 20:
                 cm = 20
-            if cm > 250:
-                cm = 250
+            if cm > 500:
+                cm = 500
             return self.send_cmd("left {}".format(cm))
         
         except:
@@ -538,15 +625,21 @@ class console:
             sys.exit()
     
     def up(self,cm):
+        """ドローンを任意の距離（cm）上昇させます。
+
+        Args:
+            cm (int): 上昇させる距離 範囲：20 ~ 500
+            入力値が 20 以下、または 500 以上である場合、自動的に補完されます。
+
+        Returns:
+            str: 実行結果
+        """
         try:
-            '''
-            up : ドローンを上昇させます。
-            引数 cm = int (ドローンを何 cm 上昇させるか定義します。 20 < cm < 500)
-            '''
+        
             if cm < 20:
                 cm = 20
-            if cm > 250:
-                cm = 250
+            if cm > 500:
+                cm = 500
             return self.send_cmd("up {}".format(cm))
         
         except:
@@ -555,15 +648,20 @@ class console:
             sys.exit()
     
     def down(self,cm):
+        """ドローンを任意の距離（cm）下降させます。
+
+        Args:
+            cm (int): 下降させる距離 範囲：20 ~ 500
+            入力値が 20 以下、または 500 以上である場合、自動的に補完されます。
+
+        Returns:
+            str: 実行結果
+        """
         try:
-            '''
-            down : ドローンを下降させます。
-            引数 cm = int (ドローンを何 cm 下降させるか定義します。 20 < cm < 500)
-            '''
             if cm < 20:
                 cm = 20
-            if cm > 250:
-                cm = 250
+            if cm > 500:
+                cm = 500
             return self.send_cmd("down {}".format(cm))
         
         except:
@@ -572,11 +670,16 @@ class console:
             sys.exit()
     
     def cw(self,dig):
+        """ドローンを任意の角度（度）時計回り（右旋回）させます。
+
+        Args:
+            dig (int): 旋回させる距離 範囲：1 ~ 360
+            入力値が 1 以下、または 360 以上である場合、自動的に補完されます。
+
+        Returns:
+            str: 実行結果
+        """
         try:
-            '''
-            cw : ドローンを右旋回（時計回り）させます。
-            引数 dig = int (ドローンを何度右旋回させるか定義します。 1 < cm )
-            '''
             if dig < 1:
                 dig = 1
             if dig > 360:
@@ -589,11 +692,16 @@ class console:
             sys.exit()
     
     def ccw(self,dig):
+        """ドローンを任意の角度（度）反時計回り（左旋回）させます。
+
+        Args:
+            dig (int): 旋回させる距離 範囲：1 ~ 360
+            入力値が 1 以下、または 360 以上である場合、自動的に補完されます。
+
+        Returns:
+            str: 実行結果
+        """
         try:
-            '''
-            ccw : ドローンを右旋回（反時計回り）させます。
-            引数 dig = int (ドローンを何度左旋回させるか定義します。 1 < cm )
-            '''
             if dig < 1:
                 dig = 1
             if dig > 360:
@@ -606,15 +714,18 @@ class console:
             sys.exit()
 
     def flip(self, dir):
+        """ドローンを任意の4方向にフリップ（宙返り）させます。
+
+        caution:
+            このコマンドはドローンのバッテリー残量が 50% 以上の場合のみ使用できます。
+
+        Args:
+            dir (str): f = 前方へフリップ/ b = 後方へフリップ/ r = 右方向へフリップ/ l = 左方向へフリップ
+
+        Returns:
+            str: 実行結果
+        """
         try:
-            '''
-            flip : ドローンを任意の方向にフリップ（宙返り）させます。バッテリー残量が50%以下だと利用できません。
-            引数 dir = str (f, b, l, r の指定された文字列を使用。)
-            f = 前方にフリップ
-            b = 後方にフリップ
-            l = 左方向にフリップ
-            r = 右方向にフリップ
-            '''
             return self.send_cmd("flip {}".format(dir))
         
         except:
@@ -622,16 +733,19 @@ class console:
             traceback.print_exc()
             sys.exit()
     
-    def go(self, x,y,z,s):
-        try:
-            """
-            go : ドローンを任意の方向へ飛行させます。
-            引数 x, y, z, s = int (それぞれ設定範囲あり。)
-            x = ドローンの水平横移動。正の値の場合は全身、負の値の場合は後進 -500 < x < -20, 20 < x < 500
-            y = ドローンの水平横移動。正の値の場合は右移動、負の値の場合は左移動 -500 < x < -20, 20 < x < 500
-            z = ドローンの上昇横移動。正の値の場合は上昇、負の値の場合は下降 -500 < x < -20, 20 < x < 500
-            s = ドローンの飛行スピードを設定(cm/s) 10 < x < 100
-            """
+    def go(self, x,y,z,speed):
+        """ドローンを任意の方向へ任意の速度で移動させます。旋回はできません。
+
+        Args:
+            x (int): 前後移動する距離（cm）を設定します。負の値を入力すると後方へ移動します。範囲：-500 ~ 500（-20 ~ 20 の範囲は入力できません）
+            y (int): 上下移動する距離（cm）を設定します。負の値を入力すると下降します。範囲：-500 ~ 500（-20 ~ 20 の範囲は入力できません）
+            z (int): 左右移動する距離（cm）を設定します。負の値を入力すると右移動します。範囲：-500 ~ 500（-20 ~ 20 の範囲は入力できません）
+            s (int): このコマンドによって移動する機体の速度（cm/s）を設定します。範囲：0 ~ 100
+
+        Returns:
+            str: 実行結果
+        """
+        try:        
             if x > 500:
                 x = 500
             elif x < -500:
@@ -664,37 +778,168 @@ class console:
             if s > 100:
                 s = 100
             
-            response = self.send_cmd("go %d %d %d %d"%(x,y,z,s))
+            response = self.send_cmd("go %d %d %d %d"%(x,y,z,speed))
             return response
         except:
             import traceback
             traceback.print_exc()
             sys.exit()
+    
+    def curve(self, x1, y1, z1, x2, y2, z2, speed):
+        """始点から終点までの位置を基に機体がカーブを描きます。
 
-    def motor_start(self):
+        Args:
+            x1 (int): _description_
+            y1 (int): _description_
+            z1 (int): _description_
+            s2 (int): _description_
+            y2 (int): _description_
+            z2 (int): _description_
+            speed (int): _description_
+        """
         try:
-            '''
-            motor_start : rc コマンドを使用してモーターを自動起動させます。
-            ドローンは離陸しません。飛行中にこのコマンドを使用しないでください。
-            '''
-            response = self.send_cmd('rc -100 -100 -100 100')
-            time.sleep(1)
+            response = self.send_cmd("curve %d %d %d %d %d %d %d"%(x1,y1,z1,x2,y2,z2,speed))
             return response
-        
         except:
             import traceback
             traceback.print_exc()
             sys.exit()
 
 # ドローンの設定を変更するメソッド群
-    def downvision(self, angle):
+    def wait(self, sec):
+        """任意の時間（秒）ドローンを待機させます。飛行中の場合任意の時間（秒）ホバリングします。
+
+        Args:
+            sec (int/float): 待機時間（秒）
+
+        Returns:
+            なし
+        """
         try:
-            '''
-            downvision : 下方カメラ、前方カメラを切り替えます。
-            引数 angle = int (0 ,1 以外の数字は使用できません。)
-            angle = 1 : 下方カメラに切り替わります。
-            angle = 0 : 前方カメラに切り替わります。
-            '''
+            res = "Drone is wait: %d sec"%(sec)
+            time.sleep(sec)
+            print(res)
+        
+        except:
+            import traceback
+            traceback.print_exc()
+            sys.exit()
+    
+    def speed(self,cm):
+        """ドローンの飛行速度を設定します。移動コマンド実行前にこのプログラムを記述することでドローンの飛行速度を変更できます。
+
+        Args:
+            cm (int): ドローンの飛行速度（cm/s）を設定します。
+
+        Returns:
+            str: 実行結果
+        """
+        try:
+            if cm < 10:
+                cm = 10
+            if cm > 100:
+                cm = 100
+            return self.send_cmd("speed {}".format(cm))
+        
+        except:
+            import traceback
+            traceback.print_exc()
+            sys.exit()
+    
+    def missionpad_detection(self, switch):
+        try:
+            if switch == 1:
+                cmd = "mon"
+            elif switch == 0:
+                cmd = "moff"
+            return self.send_cmd(cmd)
+        except:
+            import traceback
+            traceback.print_exc()
+            sys.exit()
+    
+    def set_fps(self, fps):
+        """ドローンからのカメラビューの fps を設定します。
+
+        tips:
+            処理を軽減したい場合は、low に設定するといいでしょう。
+
+        Args:
+            fps (str): low、middle、high の3つのみ取得します。
+            low: 5fps、middle: 15fps、high:30fps
+
+        Returns:
+            str: 実行結果
+        """
+        try:
+            if fps == "high" or fps == "middle" or fps == "low":
+                return self.send_cmd("setfps "+fps)
+            else:
+                pass
+        except:
+            import traceback
+            traceback.print_exc()
+            sys.exit()
+    
+    def set_bitrate(self, bitratelevel):
+        """ドローンからのカメラビューのビットレートを設定します。
+
+        Args:
+            bitratelevel (int): 0 から 5 までの値を取ります。それ以外の範囲の値は入力しないでください。
+            0: 自動
+            1: 1Mbps
+            2: 2Mbps
+            ...
+
+        Returns:
+            str: 実行結果
+        """
+        try:
+            if bitratelevel == 0:
+                bitratelevel = "auto"
+            else:
+                bitratelevel = str(bitratelevel) + "Mbps"
+            return self.send_cmd("setfps "+bitratelevel)
+        except:
+            import traceback
+            traceback.print_exc()
+            sys.exit()
+    
+    def set_resolution(self, resolusion):
+        """カメラビューの 画質 を取得します。
+
+        tips:
+            処理を軽減したい場合は、low に設定するといいでしょう。
+
+        Args:
+            fps (str): low、middle、high の3つのみ取得します。
+            low: 480p、high:720p
+
+        Returns:
+            str: 実行結果
+        """
+        try:
+            if resolusion == "high" or resolusion == "low":
+                return self.send_cmd("setresolution "+resolusion)
+            else:
+                pass
+        except:
+            import traceback
+            traceback.print_exc()
+            sys.exit()
+
+    def downvision(self, angle):
+        """カメラを切り替えます。（下方カメラへのアクセスを有効にします）
+
+        Args:
+            angle (int): 0 と 1 のみ受け付けます。
+            0: ドローンの前方時カメラに切り替えます。
+            1: ドローンの下方カメラに切り替えます。
+
+        Returns:
+            str: 実行結果
+        """
+        try:
             if angle == 1:
                 self.vision_frag = True
             else:
@@ -708,13 +953,20 @@ class console:
             sys.exit()
     
     def stream(self, video=1):
+        """ドローンからのカメラデータ取得の有効、向こうの設定を行います。
+        
+        info:
+            このコマンドを使用しなくても、デフォルトでドローンからカメラビューにアクセスできます。
+
+        Args:
+            video (int, optional): 0 と 1 のみを取ります。デフォルトの値 =  1.
+            0: ドローンからのカメラビュー取得を無効にします。
+            1: ドローンからのカメラビュー取得を有効にします。
+
+        Returns:
+            str: 実行結果
+        """
         try:
-            """
-            stream : ドローンのビデオデータ通信を有効、無効に設定します。
-            引数 video = int (0, 1 以外の数字は使用できません。)
-            video = 1 : ドローンのビデオデータ通信を有効にします。
-            video = 0 : ドローンのビデオデータ通信を無効にします。
-            """
             if video == 1:
                 response = self.send_cmd('streamon')
             elif video == 0:
@@ -729,10 +981,15 @@ class console:
 
 # ドローンステータス取得メソッド群
     def get_flighttime(self):
+        """ドローンの総飛行時間を取得します。
+
+        Returns:
+            str: 実行結果
+        """
         try:
             response = self.send_cmd('time?')
             if response != "None response":
-                if "s" in response:
+                if "s" in response and not "None" in response:
                     response = re.sub(r"\D", "", response)
                     return int(response) 
             else:
@@ -740,8 +997,7 @@ class console:
                     print("応答に問題がありました。再度試行します。")
                 else:
                     print("RESPONSE ERROR SEND AGAIN")
-                self.get_tof()
-            return response
+                self.get_flighttime()
 
         except:
             import traceback
@@ -749,11 +1005,12 @@ class console:
             sys.exit()
  
     def get_tof(self):
+        """ドローン下部に搭載された ToF センサーから、対地高度（mm）を取得します。
+
+        Returns:
+            int: ドローンから地表間との高度（mm）、最低値：100
+        """
         try:
-            '''
-            get_tof : ドローン下部に搭載された ToF センサーから対地高度を取得します。
-            返り値: ToF からの対地高度 (int / mm)
-            '''
             response = self.send_cmd('tof?')
 
             if "mm" in response:
@@ -779,13 +1036,16 @@ class console:
             sys.exit()
     
     def get_height(self):
+        """IMU からドローンが離陸した地点からの相対高度（cm）を取得します。
+
+        get_tof コマンドとの違い:
+                get_tof コマンド：地表からドローンの高度を mm で取得
+                get_height（このコマンド）: 離陸地点を基準にしてドローンの高度を cm で取得
+
+        Returns:
+            int: 相対高度 cm
+        """
         try:
-            '''
-            get_height : IMU センサーをもとに現在の飛行高度を取得します。
-            返り値: IMU データからの飛行高度 (int / cm)
-            注意: ToF とは違う高度を返す場合がありますが、get_height から得る高度は相対高度。get_tofから得る高度は絶対高度です。
-            正確な高度を求める場合は get_tof をお勧めします。
-            '''
             response = self.send_cmd('height?')
 
             if "dm" in response:
@@ -797,7 +1057,7 @@ class console:
                     print("応答に問題がありました。再度試行します。")
                 else:
                     print("RESPONSE ERROR SEND AGAIN")
-                self.get_tof()
+                self.get_height()
         
         except:
             import traceback
@@ -805,14 +1065,19 @@ class console:
             sys.exit()
 
     def get_battery(self):
+        """ドローンのバッテリー残量を取得します。
+
+        Returns:
+            int: バッテリー残量（%）
+        """
         try:
-            '''
-            get_battery : ドローンからのバッテリー残量を取得します。
-            返り値:ドローンのバッテリー残量 (int / % 0 ~ 100)
-            '''
             response = self.send_cmd('battery?')
             if response == "None response" or response == "ok":
-                pass
+                if self.lang == "jp":
+                    print("応答に問題がありました。再度試行します。")
+                else:
+                    print("RESPONSE ERROR SEND AGAIN")
+                self.get_battery()
             else:
                 return int(response)
         
@@ -822,11 +1087,12 @@ class console:
             sys.exit()
     
     def get_speed(self):
+        """speed コマンドによって設定された値を返します。
+
+        Returns:
+            int: 設定された速度 10 ~ 100
+        """
         try:
-            '''
-            get_speed : ドローンの現在の飛行スピードを取得します
-            返り値: ドローンに設定された飛行スピード (float / cm/s)
-            '''
             response = self.send_cmd('speed?')
             return float(response)
 
@@ -836,11 +1102,12 @@ class console:
             sys.exit()
     
     def get_imu(self):
+        """ドローンの姿勢角を IMU から取得します。
+
+        Returns:
+            list: [pitch, roll, yaw]
+        """
         try:
-            '''
-            get_imu : ドローンの現在の飛行スピードを取得します
-            返り値: ドローンに設定された飛行スピード (float / cm/s)
-            '''
             res = self.send_cmd('attitude?')
 
             if 'pitch' in res:
@@ -863,11 +1130,11 @@ class console:
     
     # その他の設定メソッド群
     def ask_cmd(self, cmd):
+        """
+        ask_cmd : コマンドタイムアウト時に一定感覚で送信するコマンドの設定を変更します。
+        引数 cmd = 定期的に送信するコマンド (str) 小窓ではない文字列を記述するとエラーになります。
+        """
         try:
-            """
-            ask_cmd : コマンドタイムアウト時に一定感覚で送信するコマンドの設定を変更します。
-            引数 cmd = 定期的に送信するコマンド (str) 小窓ではない文字列を記述するとエラーになります。
-            """
             self.request = cmd
         except:
             import traceback
