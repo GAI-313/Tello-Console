@@ -6,14 +6,14 @@
 
  - **[紹介](#intro)**<br>　Tello-Console に関する簡単な説明
  - **[tello-Console をインストールする方法](#install)**<br>　Tello-Console をインストールする方法を解説します。
-   - **[Tello-Console を実行してみる](#testdo)**<br>　Tello-Console を実行する方法を解説します、これを読む前に**Tello-Console をインストールしている必要があります**
+   - **[Tello-Console を実行してみる](#taskdo)**<br>　Tello-Console を実行する方法を解説します、これを読む前に**Tello-Console をインストールしている必要があります**
    - **[Tello-Console がどのディレクトリでも実行できるようにする](#directory_setting)**<br>　Tello-Console をどのディレクトリからでも実行できるようにします
- - **[アップデート](#update)**<br>　
- - **[エデュケーション](#educatoin)**<br>　
-  - **[Tello-Console を使う方法（経験者向けの内容です）](#howto)**<br>　
-  - **[スタディサポート](#study_support)**<br>　
-- **[メソッド（Tello-Console コマンド一覧）](#commandlist)**<br>　
-- **[リリースノート](#releasenote)**<br>　
+ - **[アップデート](#update)**<br>　Tello-Console をアップデートする方法を解説します
+ - **[エデュケーション](#educatoin)**<br>　Python、Tello-COnsole を使った勉強向けの記事や telo-Console の簡易的な使用方法をまとめています
+  - **[Tello-Console を使う方法（経験者向けの内容です）](#howto)**<br>　Tello-Console を今すぐ扱いたい方はこちらを参考にしてください。
+  - **[スタディサポート](#study_support)**<br>　Tello-Console を使って Python を1から勉強してみたい方はこちらを参照してください。
+- **[メソッド（Tello-Console コマンド一覧）](#commandlist)**<br>　Tello-Console に用意されているメソッド（コマンド）の一覧です。
+- **[リリースノート](#releasenote)**<br>　tello-COnsole のアップデート情報をまとめています。こちらかたアップデートされた tello-Console の追加機能、変更内容などの更新状況を確認できます。
 
 <a id="intro"></a>
 # 紹介
@@ -37,6 +37,13 @@
 > **インストール作業に当たる前に**<br>
 > 作業方法をよく読み作業に当たってください。作業を飛ばしてしまうと正常にインストールできない場合があります。
 
+　以下のも記事から各 OS ごとのインストールガイドまでジャンプできます。
+
+- **[Windows に Tello-Console を導入する方法](#install_windows)
+- **[macOS に Tello-Console を導入する方法](#install_mac)
+- **[Ubuntu（Linux） に Tello-Console を導入する方法](#install_ubuntu)**
+
+<a id="install_windows"></a>
 ## Windows に Tello-Console を導入する方法
 
 　Windows に Tello-Console をインストールする方法を解説します。紹介する導入方法は Windows 10 で検証した方法となります。Windows 11、や、Widnows 10 以前のバージョンのものでは若干操作方法が異なる場合があります。
@@ -44,6 +51,7 @@
 ---
 現在作成中…
 
+<a id="install_mac"></a>
 ## macOS に Tello-Console を導入する方法
 
 　macOS に Tello-Console をインストールする方法を解説します。紹介する導入方法は、**macOS Monterey（12.6）** で検証した導入方法となります。それ以前、以降の macOS では、若干操作方法が異なる場合があります。
@@ -95,6 +103,7 @@
 
 　これで **macOS に Tello-Console** の導入は完了です。
 
+<a id="install_ubuntu"></a>
 ## Ubuntu（Linux） に Tello-Console を導入する方法
 　Ubuntu に Tello-Console をインストールする方法を解説します。紹介する導入方法は、**Ubuntu 20.04 LTS** で検証した導入方法となります。それ以前、以降の Ubuntu では、若干操作方法が異なる場合があります。
 
@@ -148,11 +157,18 @@ Tips:ドローンとPCとのWi-Fi接続を確認してください！
 >**警告：**<br>
 >　**この作業は難易度が少々高いです。以下の解説が理解できない場合はお勧めしません。作業に失敗すると少々面倒な>ことになります。**
 
+以下のも記事から各 OS ごとのガイドまでジャンプできます。
+
+- **[WIndows でTello-Console がどのディレクトリでも実行できるようにする](#path_windows)
+- **[### macOS、Ubuntu でTello-Console がどのディレクトリでも実行できるようにする](#path_)
+
+<a id="path_windows"></a>
 ### WIndows でTello-Console がどのディレクトリでも実行できるようにする
 
 ---
 現在作成中
 
+<a id="path_"></a>
 ### macOS、Ubuntu でTello-Console がどのディレクトリでも実行できるようにする
 　macOS と、Ubuntu では、この操作は同じです。
 
