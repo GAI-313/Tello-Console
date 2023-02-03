@@ -39,8 +39,8 @@
 
 　以下のも記事から各 OS ごとのインストールガイドまでジャンプできます。
 
-- **[Windows に Tello-Console を導入する方法](#install_windows)
-- **[macOS に Tello-Console を導入する方法](#install_mac)
+- **[Windows に Tello-Console を導入する方法](#install_windows)**
+- **[macOS に Tello-Console を導入する方法](#install_mac)**
 - **[Ubuntu（Linux） に Tello-Console を導入する方法](#install_ubuntu)**
 
 <a id="install_windows"></a>
@@ -159,8 +159,8 @@ Tips:ドローンとPCとのWi-Fi接続を確認してください！
 
 以下のも記事から各 OS ごとのガイドまでジャンプできます。
 
-- **[WIndows でTello-Console がどのディレクトリでも実行できるようにする](#path_windows)
-- **[### macOS、Ubuntu でTello-Console がどのディレクトリでも実行できるようにする](#path_)
+- **[WIndows でTello-Console がどのディレクトリでも実行できるようにする](#path_windows)**
+- **[### macOS、Ubuntu でTello-Console がどのディレクトリでも実行できるようにする](#path_)**
 
 <a id="path_windows"></a>
 ### WIndows でTello-Console がどのディレクトリでも実行できるようにする
