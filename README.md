@@ -243,6 +243,10 @@ drone.takeoff() # takeoff メソッドを実行し、ドローンを離陸させ
 
 drone.land() # land メソッドを実行し、ドローンを着陸させる
 ```
+　Tello-Concolse コマンド（メソッド）については、
+**[メソッド（Tello-Console コマンド一覧）](#commandlist)**
+を参照してください。
+
 <a id="study_support"></a>
 ## スタディサポート
 　Tello-Console は、ドローンを使ってプログラミングの楽しさ、面白さを知ってもらうことを目的に作られました。以下の記事一覧を散走することで、**Python、CUI コマンド、Tello-Console の使用方法、画像処理**に関する知識を習得できます。
