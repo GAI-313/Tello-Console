@@ -160,7 +160,7 @@ Tips:ドローンとPCとのWi-Fi接続を確認してください！
 以下のも記事から各 OS ごとのガイドまでジャンプできます。
 
 - **[WIndows でTello-Console がどのディレクトリでも実行できるようにする](#path_windows)**
-- **[### macOS、Ubuntu でTello-Console がどのディレクトリでも実行できるようにする](#path_)**
+- **[macOS、Ubuntu でTello-Console がどのディレクトリでも実行できるようにする](#path_)**
 
 <a id="path_windows"></a>
 ### WIndows でTello-Console がどのディレクトリでも実行できるようにする
