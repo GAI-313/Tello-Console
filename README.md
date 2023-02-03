@@ -223,7 +223,7 @@ echo $PYTHONPATH
 <a id="howto"></a>
 ## Tello-Console を使う方法（経験者向けの内容です）
 　Tello-Console の本体は、```Tello-Console/modukes``` ディレクトリにある **tello.py の中にある console クラス** です。これを呼び出すことで使用することができます。<br>
-　**[PYTHONPATH に modules ディレクトリを登録した場合]()**、新規 python ファイルに、以下のような import 文を記述することで、tello.py の中にある **console** を使用できます。
+　**[PYTHONPATH に modules ディレクトリを登録した場合](#directory_setting)**、新規 python ファイルに、以下のような import 文を記述することで、tello.py の中にある **console** を使用できます。
 ```python3
 from modules.tello import console
 ```
