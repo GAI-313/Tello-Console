@@ -4,8 +4,16 @@
 
 # 目次
 
- - **[紹介](#intro)**
- - **[tello-Console をインストールする方法](#install)**
+ - **[紹介](#intro)**<br>　Tello-Console に関する簡単な説明
+ - **[tello-Console をインストールする方法](#install)**<br>　Tello-Console をインストールする方法を解説します。
+   - **[Tello-Console を実行してみる](#testdo)**<br>　Tello-Console を実行する方法を解説します、これを読む前に**Tello-Console をインストールしている必要があります**
+   - **[Tello-Console がどのディレクトリでも実行できるようにする](#directory_setting)**<br>　Tello-Console をどのディレクトリからでも実行できるようにします
+ - **[アップデート](#update)**<br>　
+ - **[エデュケーション](#educatoin)**<br>　
+  - **[Tello-Console を使う方法（経験者向けの内容です）](#howto)**<br>　
+  - **[スタディサポート](#study_support)**<br>　
+- **[メソッド（Tello-Console コマンド一覧）](#commandlist)**<br>　
+- **[リリースノート](#releasenote)**<br>　
 
 <a id="intro"></a>
 # 紹介
@@ -103,6 +111,7 @@
 
 　これで **Ubuntu に Tello-Console** の導入は完了です。
 
+<a id="taskdo"></a>
 ## Tello-Console を実行してみる
 　インストール作業が無事終了すると、**モームディレクトリ（ユーザーネームの名前のフォルダ）** に Tello-COnsole **ディレクトリ（フォルダのこと）** がダウンロードされています。**Tello-Console ディレクトリに移動して、sample=boot.py サンプルプログラムを実行して正常に Tello-Console が実行されるか試してみましょう**。
 <br>
@@ -126,7 +135,7 @@ WELCOME CONSOLE ! TELLO-CONSOLE V7.0.0
 エラー！ドローンとの通信に失敗しました！
 Tips:ドローンとPCとのWi-Fi接続を確認してください！
 ```
-
+<a id="directory_setting"></a>
 ## Tello-Console がどのディレクトリでも実行できるようにする
 　Tello-Cnsole は、
 **Tello-Console ディレクトリにある modules ディレクトリ内にある tello.py**
@@ -185,13 +194,16 @@ echo $PYTHONPATH
 ```
 　応答に、**Tello-COnsole** が含まれていたら成功です。
 
+<a id="update"></a>
 # アップデート
 ---
 現在作成中
 
+<a id="education"></a>
 # エデュケーション
 　ここでは、Tello-Console の使用方法や、プログラミングをするのにあたり必要なスキルを学べるカリキュラムを用意しています。（現在作成中）
 
+<a id="howto"></a>
 ## Tello-Console を使う方法（経験者向けの内容です）
 　Tello-Console の本体は、```Tello-Console/modukes``` ディレクトリにある **tello.py の中にある console クラス** です。これを呼び出すことで使用することができます。<br>
 　**[PYTHONPATH に modules ディレクトリを登録した場合]()**、新規 python ファイルに、以下のような import 文を記述することで、tello.py の中にある **console** を使用できます。
@@ -214,17 +226,19 @@ drone.takeoff() # takeoff メソッドを実行し、ドローンを離陸させ
 
 drone.land() # land メソッドを実行し、ドローンを着陸させる
 ```
-
+<a id="study_support"></a>
 ## スタディサポート
 　Tello-Console は、ドローンを使ってプログラミングの楽しさ、面白さを知ってもらうことを目的に作られました。以下の記事一覧を散走することで、**Python、CUI コマンド、Tello-Console の使用方法、画像処理**に関する知識を習得できます。
 
 ---
 現在作成中
 
+<a id="commandlist"></a>
 # メソッド（Tello-Console コマンド一覧）
 ---
 現在作成中
 
+<a id="releasenote"></a>
 # リリースノート
 ## Tello-Console Ver.7.0.0
 　TelloSDK 3.0 に対応した各コマンドを追加しました。特徴的な真コマンドは以下の通りです。
