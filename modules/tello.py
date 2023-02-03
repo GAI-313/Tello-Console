@@ -29,7 +29,7 @@ kernel32.SetConsoleMode(handle, MODE)
 # メインクラス
 class console:
 # このクラスが呼び出されたら最初に実行される init 関数
-    def __init__(self,recv_output_frag=True, langage="jp"):
+    def __init__(self,recv_output_frag=True, langage="jp", TaskKill=True):
         """Tello をコマンドで操作できるようにする Tello-Console のコアとなります。
 
         info:
@@ -42,6 +42,9 @@ class console:
             langage (str, optional): エラー、警告、ヒントの言語設定を設定します。デフォルトは"jp"。
             jp: 日本語
             us: 英語
+            TaskKill (bool, optional): エラーによりプログラムを終了させるか、終了させずにレスポンスのみを返すようにするかを指定します。
+            True: （デフォルト）エラーを検知したときにプログラムを終了します。
+            False: エラーを検知したときプログラムからのレスポンスを渡します。
         """
         SYS_VER = '7.0.0'
         print('\x1b[32m'+"WELCOME CONSOLE ! TELLO-CONSOLE V%s"%(SYS_VER)+'\x1b[0m') # このモジュールのバージョンを最初に表示します。
@@ -54,28 +57,35 @@ class console:
         self.flight_frag = False # ドローンが離陸したら立ち上がるフラグ
         self.flight_timeout_frag = False # 飛行中コマンド送信なしの中13秒経過すると立ち上がるフラグ
         self.vision_frag = False
+        self.killer_frag = False
         self.cap = None # ドローンからのキャプチャデータを格納する変数
         self.frame = None #キャプチャデータを読み込んだ際のデータを格納する変数
         self.error_msg = None # メインプログラムにこのクラス内で発生したエラーを返すための変数
+        self.MAIN_MSG ='None'
+        self.drone_state = 'None'
         self.current_time = time.time() # 現在の経過時刻を取得
         self.current_time_fun = self.current_time
         self.pre_time = self.current_time # 現在時刻を補完する変数
-        self.request = "command" # timeout_thread に送信するデフォルトのコマンド
         self.lang = langage # レスポンス時の使用言語
+        self.battery_level = 0 # バッテリー情報を記録する変数
+        self.taskkill = TaskKill
         
         # tello との接続を確立させる
         self.local_ip = ''
         self.local_port = 8889
         self.local_video_port = 11111
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        self.MAIN_MSG = '接続を開始'
         self.socket.bind((self.local_ip, self.local_port)) # ここでドローンとの接続を行う
 
         # _recv_thread の並列実行のためのセットアップ
+        self.MAIN_MSG = 'recv thread を起動'
         self.recv_thread = threading.Thread(target=self._recv_thread)
         self.recv_thread.daemon = True
         self.recv_thread.start()
 
         # tello の ipアドレスと接続ポートを確認
+        self.MAIN_MSG = 'バインドを開始します…'
         self.tello_ip = '192.168.10.1'
         self.tello_port = 8889
         self.tello_address = (self.tello_ip, self.tello_port)
@@ -85,6 +95,7 @@ class console:
         self.cmd_log = []
 
         # 'command'というコマンドを送信してドローンをSDKモードにする
+        self.MAIN_MSG = '接続コマンドを送信します'
         self.send_cmd('command', True)
 
         # バッテリー残量チェック
@@ -110,6 +121,7 @@ class console:
             if self.frame is not None:
                 if self.lang == "jp":
                     print('\x1b[32m'+"セットアップ完了！"+'\x1b[0m')
+                    self.MAIN_MSG = '準備完了'
                 else:
                     print('\x1b[32m'+"SET UP IS DONE"+'\x1b[0m')
                 time.sleep(1)
@@ -126,18 +138,31 @@ class console:
         while True:
             if battery != "None response":
                 battery = re.sub(r"\D", "", battery)
-                if int(battery) <= 10:
+                battery = int(battery)
+                if battery <= 10:
                     if self.lang == "jp":
                         print('\x1b[31m'+"バッテリー残量がわずかです！バッテリーを充電、交換してください！"+'\x1b[0m') # バッテリー残量が10％％以下の場合プログラムは停止する。
                     else:
                         print('\x1b[31m'+"LOW BATTERY PLEASE CHANGE BATTERY AND CHARGE IT."+'\x1b[0m') # バッテリー残量が10％％以下の場合プログラムは停止する。
-                    sys.exit()
-                elif int(battery) < 50:
+
+                    if self.taskkinll is True:
+                        sys.exit()
+                    else:
+                        self.error_msg = 'Low Battery Warning'
+                        self.thread_closer()
+                        
+                elif battery < 50:
                     if self.lang == "jp":
                         print('\x1b[33m'+"注意: バッテリー残量が 50% 以下です。flip コマンドは無効になります。"+'\x1b[0m') # flip コマンドが使えなくなることを警鐘
                     else:
                         print('\x1b[33m'+"WARNING: BATTERY LEVEL IS LESS 50%. CAN'T USE FLIP CMD!"+'\x1b[0m') # flip コマンドが使えなくなることを警鐘
+                
+                if self.lang == "jp":
+                    print('\x1b[37m'+'現在のバッテリー残量：%d'%(battery)+'\x1b[0m')
+                else:
+                    print('\x1b[37m'+'Current battery : %d'%(battery)+'\x1b[0m')
                 time.sleep(3)
+                self.battery_level = battery
                 break
             else:
                  battery = self.send_cmd("battery?")
@@ -196,8 +221,11 @@ class console:
                     print('send command <%s>...'%(cmd))
 
             # タイマーを動かすスレッドを回す。
-            timer = threading.Timer(self.MAX_WAIT_TIME, self.set_timeout_frag)
-            timer.start()
+            if self.killer_frag == False:
+                timer = threading.Timer(self.MAX_WAIT_TIME, self.set_timeout_frag)
+                timer.start()
+            else:
+                print('done')
 
             # 応答が来るまで待つ、しかし3秒経過したらタイムアウトする
             if 'rc' in cmd:
@@ -212,7 +240,8 @@ class console:
                         break
             timer.cancel() # タイマーを停止させる
 
-            self.pre_time = self.current_time
+            # ここコメントアウトすべきかも
+            #self.pre_time = self.current_time
             self.timeout_frag = False
             
             # 応答を確認する
@@ -239,12 +268,23 @@ class console:
                         print('\x1b[31m'+"エラー！ドローンとの通信に失敗しました！"+'\x1b[0m')
                         print('\x1b[33m'+"Tips:ドローンとPCとのWi-Fi接続を確認してください！"+'\x1b[0m')
                         error_msg = ["エラー！ドローンとの通信に失敗しました！", "Tips:ドローンとPCとのWi-Fi接続を確認してください！"]
+                        self.MAIN_MSG = 'ドローンとの通信に失敗しました！'
                     else:
                         print('\x1b[31m'+"ERROR CAN'T START CONSOLE! DRONE IS NOT FOUND.PLZ CONNECT THE DRONE!"+'\x1b[0m')
                         print('\x1b[33m'+"TIPS: CHECK THE WI-FI CONNECTION TO DRONE"+'\x1b[0m')
                     self.error_msg = "None_Defined_Drone"
                     self.result_deliver(error_msg)
-                    sys.exit()
+                    if self.taskkill is True:
+                        sys.exit()
+                    else:
+                        self.error_msg = 'Connection Erorr'
+                        self.thread_closer()
+            
+            # status 判定
+            if cmd == 'takeoff' and response != 'error':
+                self.drone_state = 'flight'
+            elif cmd == 'land' and response != 'error':
+                self.drone_state = 'land'
 
             # エラー判定
             if "unknown command" in response:
@@ -252,7 +292,11 @@ class console:
                     print('\x1b[31m'+"コマンドエラー！未知のコマンド" + cmd + " を取得しました。プログラムは強制停止します。"+'\x1b[0m') # 未知のコマンドが送信されたらプログラムは停止する
                 else:
                     print('\x1b[31m'+"COMMAND ERROR! YOU SEND UNKNOWN COMMAND >>> " + cmd +'\x1b[0m') # 未知のコマンドが送信されたらプログラムは停止する
-                sys.exit()
+                if self.taskkill is True:
+                    sys.exit()
+                else:
+                    self.error_msg = 'Unknown Command Erorr'
+                    self.thread_closer()
             
             if response == "error Not joystick" or response == "error Run timeout": # コマンド送信時にタイムアウト、もしくは joystick エラーが発生した際に渡されたコマンドを再送信する。
                 if self.lang == "jp":
@@ -262,10 +306,22 @@ class console:
                 self.send_cmd(cmd)
 
             elif response == "error Auto land":
-                if self.lang == "jp":
-                    print('\x1b[31m'+"重度なエラーが発生しました。自動着陸します。"+'\x1b[0m') # 何かしらの原因でmドローンが自動着陸した際に発生するエラー。代替はローバッテリー。
+                self.battery_level = self.get_battery()
+                if self.battery_level < 12:
+                    if self.lang == "jp":
+                        print('\x1b[31m'+"バッテリー残量が残りわずかです！自動着陸します。"+'\x1b[0m') # バッテリー残量が 10 % 以下になったら自動着陸してしまう。（仕様）
+                    else:
+                        print('\x1b[31m'+"CURITICAL LOW BATTERY ! LANDIG! LANDING!"+'\x1b[0m')
+                    if self.taskkill is True:
+                        sys.exit()
+                    else:
+                        self.error_msg = 'Critical Low Battery'
+                        self.thread_closer()
                 else:
-                    print('\x1b[31m'+"EMERGENCY ERROR OCCURED !"+'\x1b[0m') # 何かしらの原因でmドローンが自動着陸した際に発生するエラー。代替はローバッテリー。
+                    if self.lang == "jp":
+                        print('\x1b[31m'+"重度なエラーが発生しました。自動着陸します。"+'\x1b[0m') # 何かしらの原因でmドローンが自動着陸した際に発生するエラー。代替はローバッテリー。
+                    else:
+                        print('\x1b[31m'+"EMERGENCY ERROR OCCURED !"+'\x1b[0m') # 何かしらの原因でmドローンが自動着陸した際に発生するエラー。代替はローバッテリー。
             
             elif response == "error No valid imu":
                 if self.lang == "jp":
@@ -282,7 +338,11 @@ class console:
                 print('\x1b[33m'+"CONNECTION ERROR"+'\x1b[0m')
             import traceback
             traceback.print_exc()
-            sys.exit()
+            if self.taskkill is True:
+                sys.exit()
+            else:
+                self.error_msg = 'Connection Failed Erorr'
+                self.thread_closer()
 
         except Exception:
             import traceback
@@ -297,6 +357,8 @@ class console:
         """
         while True:
             try:
+                if self.killer_frag is True:
+                    break
                 self.response, ip = self.socket.recvfrom(3000) # ここで応答を受け取る
             
             except (KeyboardInterrupt, Exception):
@@ -314,7 +376,10 @@ class console:
             self.cap.open(self.tello_video_address)
         
         time.sleep(0.5)
-        while True:
+        while True :
+            if self.killer_frag is True:
+                print('Break')
+                break
             try:
                 ret, frame = self.cap.read() # cap から取り込まれたデータを frame に格納する
 
@@ -337,13 +402,23 @@ class console:
             threading によって稼働します。通常のメソッドとして使用することは前提としていません。
         """
         while True:
+            if self.killer_frag is True:
+                print('Break')
+                break
             try:
                 self.current_time = time.time()
                 #print(int(self.current_time-self.pre_time),self.response)
 
                 if self.current_time - self.pre_time > 10:
 
-                    self.send_cmd(self.request)
+                    self.battery_level = self.get_battery()
+                    if self.battery_level is None:
+                        pass
+                    else:
+                        if self.lang == "jp":
+                            print('\x1b[37m'+'現在のバッテリー残量：%d'%(self.battery_level)+'\x1b[0m')
+                        else:
+                            print('\x1b[37m'+'Current battery : %d'%(self.battery_level)+'\x1b[0m')
                     self.pre_time = self.current_time
             except KeyboardInterrupt:
                 break
@@ -367,7 +442,22 @@ class console:
         except:
             import traceback
             traceback.print_exc()
-            sys.exit()
+            
+            if self.taskkill is True:
+                sys.exit()
+            else:
+                self.error_msg = 'Task Erorr'
+                self.thread_closer()
+
+    def thread_closer(self):
+        """各スレッドを終了させるメソッド
+        """
+        print('タスクの終了を試みます')
+        self.killer_frag = True
+        #self.recv_thread.join()
+        #self.recv_video_thread.join()
+        #self.timeout_thread.join()
+        print('停止')
 
 # ドローン操作メソッド群
     def takeoff(self):
@@ -381,7 +471,12 @@ class console:
         except:
             import traceback
             traceback.print_exc()
-            sys.exit()
+            
+            if self.taskkill is True:
+                sys.exit()
+            else:
+                self.error_msg = 'Task Erorr'
+                self.thread_closer()
 
 
     def land(self):
@@ -396,7 +491,11 @@ class console:
         except:
             import traceback
             traceback.print_exc()
-            sys.exit()
+            if self.taskkill is True:
+                sys.exit()
+            else:
+                self.error_msg = 'Task Erorr'
+                self.thread_closer()
     
     def throwfly(self):
         """throwfly モードを有効にします。
@@ -415,7 +514,11 @@ class console:
         except:
             import traceback
             traceback.print_exc()
-            sys.exit()
+            if self.taskkill is True:
+                sys.exit()
+            else:
+                self.error_msg = 'Task Erorr'
+                self.thread_closer()
         
 
     def motor_start(self):
@@ -432,7 +535,11 @@ class console:
         except:
             import traceback
             traceback.print_exc()
-            sys.exit()
+            if self.taskkill is True:
+                sys.exit()
+            else:
+                self.error_msg = 'Task Erorr'
+                self.thread_closer()
     
     def motor_stop(self):
         """ドローンのモーターを停止します。
@@ -448,7 +555,11 @@ class console:
         except:
             import traceback
             traceback.print_exc()
-            sys.exit()
+            if self.taskkill is True:
+                sys.exit()
+            else:
+                self.error_msg = 'Task Erorr'
+                self.thread_closer()
 
     def emergency(self):
         """ドローンを緊急停止させ、プログラムを停止します。
@@ -465,7 +576,11 @@ class console:
         except:
             import traceback
             traceback.print_exc()
-            sys.exit()
+            if self.taskkill is True:
+                sys.exit()
+            else:
+                self.error_msg = 'Task Erorr'
+                self.thread_closer()
     
     def reboot(self):
         """ドローンを再起動します
@@ -479,7 +594,11 @@ class console:
         except:
             import traceback
             traceback.print_exc()
-            sys.exit()
+            if self.taskkill is True:
+                sys.exit()
+            else:
+                self.error_msg = 'Task Erorr'
+                self.thread_closer()
 
     def stop(self):
         """ドローンを停止させます。あらゆる移動シークエンスを停止させます。
@@ -497,7 +616,11 @@ class console:
         except:
             import traceback
             traceback.print_exc()
-            sys.exit()
+            if self.taskkill is True:
+                sys.exit()
+            else:
+                self.error_msg = 'Task Erorr'
+                self.thread_closer()
 
     def rc(self, elron, elevator, srotol, lador):
         """ドローンにプロポスティック操作を入力します。各スティックの出力値をドローンへと送信し、精密なオペレートを可能にします。
@@ -534,7 +657,11 @@ class console:
         except:
             import traceback
             traceback.print_exc()
-            sys.exit()
+            if self.taskkill is True:
+                sys.exit()
+            else:
+                self.error_msg = 'Task Erorr'
+                self.thread_closer()
     
     def forward(self,cm):
         """ドローンを任意の距離（cm）前進させます。
@@ -556,7 +683,11 @@ class console:
         except:
             import traceback
             traceback.print_exc()
-            sys.exit()
+            if self.taskkill is True:
+                sys.exit()
+            else:
+                self.error_msg = 'Task Erorr'
+                self.thread_closer()
     
     def back(self,cm):
         """ドローンを任意の距離（cm）後進させます。
@@ -578,7 +709,11 @@ class console:
         except:
             import traceback
             traceback.print_exc()
-            sys.exit()
+            if self.taskkill is True:
+                sys.exit()
+            else:
+                self.error_msg = 'Task Erorr'
+                self.thread_closer()
     
     def right(self,cm):
         """ドローンを任意の距離（cm）右進させます。
@@ -600,7 +735,11 @@ class console:
         except:
             import traceback
             traceback.print_exc()
-            sys.exit()
+            if self.taskkill is True:
+                sys.exit()
+            else:
+                self.error_msg = 'Task Erorr'
+                self.thread_closer()
     
     def left(self,cm):
         """ドローンを任意の距離（cm）左進させます。
@@ -622,7 +761,11 @@ class console:
         except:
             import traceback
             traceback.print_exc()
-            sys.exit()
+            if self.taskkill is True:
+                sys.exit()
+            else:
+                self.error_msg = 'Task Erorr'
+                self.thread_closer()
     
     def up(self,cm):
         """ドローンを任意の距離（cm）上昇させます。
@@ -645,7 +788,11 @@ class console:
         except:
             import traceback
             traceback.print_exc()
-            sys.exit()
+            if self.taskkill is True:
+                sys.exit()
+            else:
+                self.error_msg = 'Task Erorr'
+                self.thread_closer()
     
     def down(self,cm):
         """ドローンを任意の距離（cm）下降させます。
@@ -667,7 +814,11 @@ class console:
         except:
             import traceback
             traceback.print_exc()
-            sys.exit()
+            if self.taskkill is True:
+                sys.exit()
+            else:
+                self.error_msg = 'Task Erorr'
+                self.thread_closer()
     
     def cw(self,dig):
         """ドローンを任意の角度（度）時計回り（右旋回）させます。
@@ -689,7 +840,11 @@ class console:
         except:
             import traceback
             traceback.print_exc()
-            sys.exit()
+            if self.taskkill is True:
+                sys.exit()
+            else:
+                self.error_msg = 'Task Erorr'
+                self.thread_closer()
     
     def ccw(self,dig):
         """ドローンを任意の角度（度）反時計回り（左旋回）させます。
@@ -711,7 +866,11 @@ class console:
         except:
             import traceback
             traceback.print_exc()
-            sys.exit()
+            if self.taskkill is True:
+                sys.exit()
+            else:
+                self.error_msg = 'Task Erorr'
+                self.thread_closer()
 
     def flip(self, dir):
         """ドローンを任意の4方向にフリップ（宙返り）させます。
@@ -731,7 +890,11 @@ class console:
         except:
             import traceback
             traceback.print_exc()
-            sys.exit()
+            if self.taskkill is True:
+                sys.exit()
+            else:
+                self.error_msg = 'Task Erorr'
+                self.thread_closer()
     
     def go(self, x,y,z,speed):
         """ドローンを任意の方向へ任意の速度で移動させます。旋回はできません。
@@ -783,7 +946,11 @@ class console:
         except:
             import traceback
             traceback.print_exc()
-            sys.exit()
+            if self.taskkill is True:
+                sys.exit()
+            else:
+                self.error_msg = 'Task Erorr'
+                self.thread_closer()
     
     def curve(self, x1, y1, z1, x2, y2, z2, speed):
         """始点から終点までの位置を基に機体がカーブを描きます。
@@ -803,7 +970,11 @@ class console:
         except:
             import traceback
             traceback.print_exc()
-            sys.exit()
+            if self.taskkill is True:
+                sys.exit()
+            else:
+                self.error_msg = 'Task Erorr'
+                self.thread_closer()
 
 # ドローンの設定を変更するメソッド群
     def wait(self, sec):
@@ -823,7 +994,11 @@ class console:
         except:
             import traceback
             traceback.print_exc()
-            sys.exit()
+            if self.taskkill is True:
+                sys.exit()
+            else:
+                self.error_msg = 'Task Erorr'
+                self.thread_closer()
     
     def speed(self,cm):
         """ドローンの飛行速度を設定します。移動コマンド実行前にこのプログラムを記述することでドローンの飛行速度を変更できます。
@@ -844,7 +1019,11 @@ class console:
         except:
             import traceback
             traceback.print_exc()
-            sys.exit()
+            if self.taskkill is True:
+                sys.exit()
+            else:
+                self.error_msg = 'Task Erorr'
+                self.thread_closer()
     
     def missionpad_detection(self, switch):
         try:
@@ -856,7 +1035,11 @@ class console:
         except:
             import traceback
             traceback.print_exc()
-            sys.exit()
+            if self.taskkill is True:
+                sys.exit()
+            else:
+                self.error_msg = 'Task Erorr'
+                self.thread_closer()
     
     def set_fps(self, fps):
         """ドローンからのカメラビューの fps を設定します。
@@ -879,7 +1062,11 @@ class console:
         except:
             import traceback
             traceback.print_exc()
-            sys.exit()
+            if self.taskkill is True:
+                sys.exit()
+            else:
+                self.error_msg = 'Task Erorr'
+                self.thread_closer()
     
     def set_bitrate(self, bitratelevel):
         """ドローンからのカメラビューのビットレートを設定します。
@@ -903,7 +1090,11 @@ class console:
         except:
             import traceback
             traceback.print_exc()
-            sys.exit()
+            if self.taskkill is True:
+                sys.exit()
+            else:
+                self.error_msg = 'Task Erorr'
+                self.thread_closer()
     
     def set_resolution(self, resolusion):
         """カメラビューの 画質 を取得します。
@@ -926,7 +1117,11 @@ class console:
         except:
             import traceback
             traceback.print_exc()
-            sys.exit()
+            if self.taskkill is True:
+                sys.exit()
+            else:
+                self.error_msg = 'Task Erorr'
+                self.thread_closer()
 
     def downvision(self, angle):
         """カメラを切り替えます。（下方カメラへのアクセスを有効にします）
@@ -950,7 +1145,11 @@ class console:
         except:
             import traceback
             traceback.print_exc()
-            sys.exit()
+            if self.taskkill is True:
+                sys.exit()
+            else:
+                self.error_msg = 'Task Erorr'
+                self.thread_closer()
     
     def stream(self, video=1):
         """ドローンからのカメラデータ取得の有効、向こうの設定を行います。
@@ -977,7 +1176,11 @@ class console:
         except:
             import traceback
             traceback.print_exc()
-            sys.exit()
+            if self.taskkill is True:
+                sys.exit()
+            else:
+                self.error_msg = 'Task Erorr'
+                self.thread_closer()
 
 # ドローンステータス取得メソッド群
     def get_flighttime(self):
@@ -1002,7 +1205,11 @@ class console:
         except:
             import traceback
             traceback.print_exc()
-            sys.exit()
+            if self.taskkill is True:
+                sys.exit()
+            else:
+                self.error_msg = 'Task Erorr'
+                self.thread_closer()
  
     def get_tof(self):
         """ドローン下部に搭載された ToF センサーから、対地高度（mm）を取得します。
@@ -1033,7 +1240,11 @@ class console:
         except:
             import traceback
             traceback.print_exc()
-            sys.exit()
+            if self.taskkill is True:
+                sys.exit()
+            else:
+                self.error_msg = 'Task Erorr'
+                self.thread_closer()
     
     def get_height(self):
         """IMU からドローンが離陸した地点からの相対高度（cm）を取得します。
@@ -1062,7 +1273,11 @@ class console:
         except:
             import traceback
             traceback.print_exc()
-            sys.exit()
+            if self.taskkill is True:
+                sys.exit()
+            else:
+                self.error_msg = 'Task Erorr'
+                self.thread_closer()
 
     def get_battery(self):
         """ドローンのバッテリー残量を取得します。
@@ -1072,7 +1287,7 @@ class console:
         """
         try:
             response = self.send_cmd('battery?')
-            if response == "None response" or response == "ok":
+            if response == "None response" or response == "ok" or 'mm' in response:
                 if self.lang == "jp":
                     print("応答に問題がありました。再度試行します。")
                 else:
@@ -1084,7 +1299,11 @@ class console:
         except:
             import traceback
             traceback.print_exc()
-            sys.exit()
+            if self.taskkill is True:
+                sys.exit()
+            else:
+                self.error_msg = 'Task Erorr'
+                self.thread_closer()
     
     def get_speed(self):
         """speed コマンドによって設定された値を返します。
@@ -1099,7 +1318,11 @@ class console:
         except:
             import traceback
             traceback.print_exc()
-            sys.exit()
+            if self.taskkill is True:
+                sys.exit()
+            else:
+                self.error_msg = 'Task Erorr'
+                self.thread_closer()
     
     def get_imu(self):
         """ドローンの姿勢角を IMU から取得します。
@@ -1126,7 +1349,11 @@ class console:
         except:
             import traceback
             traceback.print_exc()
-            sys.exit()
+            if self.taskkill is True:
+                sys.exit()
+            else:
+                self.error_msg = 'Task Erorr'
+                self.thread_closer()
     
     # その他の設定メソッド群
     def ask_cmd(self, cmd):
@@ -1139,4 +1366,8 @@ class console:
         except:
             import traceback
             traceback.print_exc()
-            sys.exit()
+            if self.taskkill is True:
+                sys.exit()
+            else:
+                self.error_msg = 'Task Erorr'
+                self.thread_closer()
