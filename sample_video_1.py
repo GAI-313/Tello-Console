@@ -1,4 +1,8 @@
-# -*- coding: utf-8 -*-
+""" sample_video_1.py
+　このサンプルプログラムは、Tello ドローンに搭載されたカメラからデータを取得し、それをウィンドウに表示するプログラムです。
+つまり ドローンからリアルタイム映像を取得するプログラムです。
+画像処理の基礎として、以下のプログラムを使用することで、Tello からカメラ映像を取得できます。
+"""
 
 from modules.tello import console # modules ディレクトリ内の tello.py にある console クラスをインポートする
 import cv2 # 画像を扱うので open cv をインポートする
