@@ -10,16 +10,16 @@
    - **[Tello-Console を実行してみる](#taskdo)**<br>　Tello-Console を実行する方法を解説します、これを読む前に**Tello-Console をインストールしている必要があります**
    - **[Tello-Console がどのディレクトリでも実行できるようにする](#directory_setting)**<br>　Tello-Console をどのディレクトリからでも実行できるようにします
  - **[アップデート](#update)**<br>　Tello-Console をアップデートする方法を解説します
- - **[エデュケーション](#educatoin)**<br>　Python、Tello-COnsole を使った勉強向けの記事や telo-Console の簡易的な使用方法をまとめています
+ - **[エデュケーション](#educatoin)**<br>　Python、Tello-Console を使った勉強向けの記事や telo-Console の簡易的な使用方法をまとめています
   - **[Tello-Console を使う方法（経験者向けの内容です）](#howto)**<br>　Tello-Console を今すぐ扱いたい方はこちらを参考にしてください。
   - **[スタディサポート](#study_support)**<br>　Tello-Console を使って Python を1から勉強してみたい方はこちらを参照してください。
 - **[メソッド（Tello-Console コマンド一覧）](#commandlist)**<br>　Tello-Console に用意されているメソッド（コマンド）の一覧です。
-- **[リリースノート](#releasenote)**<br>　tello-COnsole のアップデート情報をまとめています。こちらかたアップデートされた tello-Console の追加機能、変更内容などの更新状況を確認できます。
+- **[リリースノート](#releasenote)**<br>　tello-COnsole のアップデート情報をまとめています。こちらからアップデートされた Tello-Console の追加機能、変更内容などの更新状況を確認できます。
 
 <a id="intro"></a>
 # 紹介
 
-　Tello-Console は DJI Ryze Tech Tello-EDU 向けの Python プログラムツールです。この対ブラリを実装することで、ドローン操作メソッドをコマンド感覚で使用でき、Python をこれから始める人でもすぐにドローンを使ったプログラムの実装が可能になります。ベースとした SDK は TelloSDK で、これらに追加機能を多く搭載し最適化したのがこの Tello-Console です。
+　Tello-Console は DJI Ryze Tech Tello-EDU 向けの Python プログラムツールです。このライブラリを実装することで、ドローン操作メソッドをコマンド感覚で使用でき、Python をこれから始める人でもすぐにドローンを使ったプログラムの実装が可能になります。ベースとした SDK は TelloSDK で、これらに追加機能を多く搭載し最適化したのがこの Tello-Console です。
 <br>
 **主な特徴**
 
@@ -55,7 +55,7 @@
 <a id="install_mac"></a>
 ## macOS に Tello-Console を導入する方法
 
-　macOS に Tello-Console をインストールする方法を解説します。紹介する導入方法は、**macOS Monterey（12.6）** で検証した導入方法となります。それ以前、以降の macOS では、若干操作方法が異なる場合があります。
+　macOS に Tello-Console をインストールする方法を解説します。紹介する導入方法は、**macOS Monterey（12.0）** で検証した導入方法となります。それ以前、以降の macOS では、若干操作方法が異なる場合があります。
 
 1. Command キーとSpace キーを押して SpotLight 検索を開きます。
 2. Spotlight 検索欄内に **"ターミナル"** と入力します。
@@ -66,7 +66,7 @@
   ```
   　すると、**Mac に標準インストールされている Python のバージョンが返されます**。
   <br>
-  　この時、Python のバージョンが 3.x.x であれば 手順8 までスキップしてください。（手順5, 手順6 も実行しても構いません。）
+  　この時、Python のバージョンが 3.x.x であれば 手順 8 までスキップしてください。（手順5, 手順6 も実行しても構いません。）
   <br>
   　Python のバージョンが **2.x.x** の場合、以下の **手順7** を行ってください。<br>
 
