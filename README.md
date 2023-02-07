@@ -61,7 +61,7 @@
 2. Spotlight 検索欄内に **"ターミナル"** と入力します。
 3. 候補として出てきた **"ターミナル.app"** を起動します。
 
-> **ターミナルの外観設定をしていない方へ**<br>　**[ターミナルの外観を最適化する](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/for_mac/terminal_setting_tutorial.md)** を参照し、ターミナルの外観を設定してください。Tello-Console の実行に支障が出ます。
+> **ターミナルの外観設定をしていない方へ**<br>　**[ターミナルの外観を最適化する](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/for_mac/terminal_setting_tutorial.md#ターミナルの外観を最適化する)** を参照し、ターミナルの外観を設定してください。Tello-Console の実行に支障が出ます。
 
 4. 以下のコマンドを**コピペ**してコマンドを実行してください。コマンドの実行は **エンターキー**を押すだけです。
   ```bash
