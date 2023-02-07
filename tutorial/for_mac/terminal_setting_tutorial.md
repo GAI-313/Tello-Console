@@ -1,4 +1,10 @@
 # macOS ターミナルヘルプガイド
+## 目次
+
+- **[ターミナルの外観を最適化する](#terminalsetting1)**
+- **[ターミナルの外観をさらに最適化する](#terminalsetting2)**
+
+<a id='terminalsetting1'></a>
 # ターミナルの外観を最適化する
 　**注意！！：このチュートリアルガイドは macOS 向けです！**
 <br>
@@ -26,6 +32,8 @@
 
  - Command キー + コンマ（ , ）キーで **ターミナルの環境設定** を開きます。
  - **プロファイル** タブをクリックします。
+ - **Pro** をデフォルトに設定します。
+  <br><img src='https://i.imgur.com/eEdK5dX.png' width=400><br>
  - **Pro** をダブルクリックします。
   <br><img src='https://i.imgur.com/xBT4IO3.png' width=400><br>
  - 新たに、**Pro** プロファイルが適応された新たなターミナルウィンドウが表示されます。
@@ -34,3 +42,8 @@
 これで **ターミナルの最適化** は完了です！
 
 - **[macOS に Tello-Console を導入する方法 にもどる](https://github.com/GAI-313/Tello-Console/tree/readme#macos-に-tello-console-を導入する方法)**
+
+<a id='terminalsetting2'></a>
+# ターミナルの外観をさらに最適化する
+---
+現在作成中
