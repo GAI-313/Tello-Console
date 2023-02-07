@@ -60,6 +60,9 @@
 1. Command キーとSpace キーを押して SpotLight 検索を開きます。
 2. Spotlight 検索欄内に **"ターミナル"** と入力します。
 3. 候補として出てきた **"ターミナル.app"** を起動します。
+
+> **ターミナルの外観設定をしていない方へ**<br>　**[ターミナルの外観を最適化する]()** を参照し、ターミナルの外観を設定してください。Tello-Console の実行に支障が出ます。
+
 4. 以下のコマンドを**コピペ**してコマンドを実行してください。コマンドの実行は **エンターキー**を押すだけです。
   ```bash
   python -V
@@ -76,10 +79,35 @@
   ```
   　そしたら、**"コマンドライン・デペロッッパツール のインストールを実行するか"** を要求されるので、**インストールをクリックしてインストールを実行してください。**
 
+  <center>
+  <img src='https://i.imgur.com/91TaW55.png' height=300>
+
+  **インストールをクリック**
+
+  <img src='https://i.imgur.com/Nxt6LLN.png' height=300>
+
+  **同意をクリック**
+
+  <img src='https://i.imgur.com/IadpJgt.png' height=300>
+
+  **お使いの Mac が電源と接続されていない場合、このような警告が出ます。環境によって時間がかかるため電源に接続した状態で実行することをおすすめします。**
+  </center>
+
   6.  **この作業は Python のバージョンが 3.x.x の方でも実行して構いません**<br>　以下のコマンドを**コピペして実行**してください。
   ```bash
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
   ```
+
+  <center>
+  <img src='https://i.imgur.com/aUccos8.png' height=300>
+  </center>
+
+  **途中パスワードの入力が求められます。パソコンにログインする際のパスワードを入力してください**<br>
+
+  <center>
+  <img src='https://i.imgur.com/LGgZf84.png' height=500>
+  </center>
+
   　コマンドが実行されると、途中ターミナルに **Press RETURN to continue or any other key to abort** という表示が出てきます。そしたら **エンターキーを押してください**。
 
   7. **この作業は Python のバージョンが 3.x.x の方は実行しないでください**<br>　以下のコマンドを**コピペして実行**してください。すると **Python 3.8.x がインストールされます。**
@@ -102,7 +130,8 @@
   cd ~ && git clone https://github.com/GAI-313/Tello-Console.git
   ```
 
-　これで **macOS に Tello-Console** の導入は完了です。
+　これで **macOS に Tello-Console** の導入は完了です。<br>
+**[Tello-Console を実行してみる](#taskdo)**
 
 <a id="install_ubuntu"></a>
 ## Ubuntu（Linux） に Tello-Console を導入する方法
@@ -137,6 +166,12 @@ cd Tello-Console
 python sample_boot.py
 ```
 　すると、以下のようなテキストが表示されたら **無事 Tello-Console が実行されたことを表しています。**
+
+>**SyntaxError が出た場合**<br>　Python3 をインストールした方は、実行コマンド ```python``` を、```python3``` で実行してください。
+> ```bash
+python3 sample_boot.py
+>
+
 ```bash
 WELCOME CONSOLE ! TELLO-CONSOLE V7.0.0
 コマンド<command>を送信しました…
@@ -209,6 +244,10 @@ Tips:ドローンとPCとのWi-Fi接続を確認してください！
 ```bash
 echo $PYTHONPATH
 ```
+<center>
+<img src='https://i.imgur.com/khmsXng.png' height=200>
+</center>
+
 　応答に、**Tello-COnsole** が含まれていたら成功です。
 
 <a id="update"></a>
