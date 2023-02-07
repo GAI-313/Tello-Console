@@ -161,7 +161,7 @@
 cd Tello-Console
 ```
 
-2. **sample=boot.py を実行する**<br>　以下のコマンドをコピペして、sample_boot.py というサンプルプログラムを python で実行します。
+2. **sample_boot.py を実行する**<br>　以下のコマンドをコピペして、sample_boot.py というサンプルプログラムを python で実行します。
 ```bash
 python sample_boot.py
 ```
