@@ -52,15 +52,22 @@
 1. 拡張機能タブをクリックします。
   <br>
   <img src='https://i.imgur.com/kYKpWf6.png'>
+  <br>
+
 2. 拡張機能の検索欄をクリックします
   <br>
   <img src='https://i.imgur.com/6FYVfeU.png'>
+  <br>
+
 3. 検索欄に **"python"** と検索します
   <br>
   <img src='https://i.imgur.com/wyzwftl.png'>
+  <br>
+  
 4. **Python** の **"インストール"** をクリックします
   <br>
   <img src='https://i.imgur.com/KBwoTPj.png'>
+  <br>
 
 インストールボタンが消えたら、Python 拡張機能のインストールは完了です！
 <br>
