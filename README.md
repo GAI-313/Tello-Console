@@ -290,7 +290,7 @@ drone.land() # land メソッドを実行し、ドローンを着陸させる
 ## スタディサポート
 　Tello-Console は、ドローンを使ってプログラミングの楽しさ、面白さを知ってもらうことを目的に作られました。以下の記事一覧を散走することで、**Python、CUI コマンド、Tello-Console の使用方法、画像処理**に関する知識を習得できます。
 
-- **[Python チュートリアルその1]()**
+- **[Python チュートリアルその1](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/python_tutorial_1.md#python-チュートリアルその1)**
 
 ---
 現在作成中
