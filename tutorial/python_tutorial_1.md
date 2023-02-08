@@ -181,3 +181,17 @@ Traceback (most recent call last):
 ZeroDivisionError: division by zero
 >>>
 ```
+
+## Python モードを終了する
+　POython モードを終了し、元の CUI プロンプトに戻るには、```quit()``` を実行します。
+```bash
+>>> quit()
+// 元に戻る
+```
+
+# VScode を使って Python 実行ファイルを作ろう
+　このチュートリアルでは **VScode** というテキストエディターソフトを使って Python のプログラミングを学んでいきます。
+<br>
+　VScode のインストール方法は、以下の記事を参考にしてください。
+
+- **(VScode インストールガイド)[https://github.com/GAI-313/Tello-Console/blob/master/tutorial/visual_studio_tutorial/install_and_setup_guide.md#visual-studio-をインストールする]**
