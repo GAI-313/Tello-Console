@@ -42,6 +42,7 @@
 これで **ターミナルの最適化** は完了です！
 
 - **[macOS に Tello-Console を導入する方法 にもどる](https://github.com/GAI-313/Tello-Console/tree/readme#macos-に-tello-console-を導入する方法)**
+- **[ターミナルコマンドガイド: ターミナルとは？ に戻る]()**
 
 <a id='terminalsetting2'></a>
 # ターミナルの外観をさらに最適化する
