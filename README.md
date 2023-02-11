@@ -175,7 +175,7 @@
 2. Spotlight 検索欄内に **"ターミナル"** と入力します。
 3. 候補として出てきた **"ターミナル.app"** を起動します。
 
-> **ターミナルの外観設定をしていない方へ**<br>　**[ターミナルの外観を最適化する]()** を参照し、ターミナルの外観を設定してください。Tello-Console の実行に支障が出ます。
+> **ターミナルの外観設定をしていない方へ**<br>　**[ターミナルの外観を最適化する](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/for_mac/terminal_setting_tutorial.md#ターミナルの外観を最適化する)** を参照し、ターミナルの外観を設定してください。Tello-Console の実行に支障が出ます。
 
 4. 以下のコマンドを**コピペ**してコマンドを実行してください。コマンドの実行は **エンターキー**を押すだけです。
   ```bash
@@ -404,7 +404,7 @@ drone.land() # land メソッドを実行し、ドローンを着陸させる
 ## スタディサポート
 　Tello-Console は、ドローンを使ってプログラミングの楽しさ、面白さを知ってもらうことを目的に作られました。以下の記事一覧を散走することで、**Python、CUI コマンド、Tello-Console の使用方法、画像処理**に関する知識を習得できます。
 
-- **[Python チュートリアルその1]()**
+- **[Python チュートリアルその1](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/python_tutorial_1.md#python-チュートリアルその1)**
 
 ---
 現在作成中
