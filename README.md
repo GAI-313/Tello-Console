@@ -49,8 +49,122 @@
 
 　Windows に Tello-Console をインストールする方法を解説します。紹介する導入方法は Windows 10 で検証した方法となります。Windows 11、や、Widnows 10 以前のバージョンのものでは若干操作方法が異なる場合があります。
 
----
-現在作成中…
+1. **コマンドプロンプトを開く**
+  <br>
+
+  　検索バーに **cmd** と入力して、**コマンドプロンプト** を開きます。
+
+  > コマンドプロンプトについて詳しく知りたい場合は、**[コマンドプロンプト　コマンドガイド]()** を参照してください。
+
+  <center>
+  <img src='https://i.imgur.com/s8JJNEA.png' height=400>
+  </center>
+
+2. **python コマンドを入力する**
+  <br>
+
+  　黒いウィンドウが表示されたら、そこに **python** と入力してください。
+  <center>
+  <img src='https://i.imgur.com/naM8CLc.jpg' height=400>
+  </center>
+
+  　入力したら、エンターキーを押して入力されたコマンドを実行します。
+  <center>
+  <img src='https://i.imgur.com/NieH4D8.jpg' height=200>
+  </center>
+  <br>
+
+  実行して、**MicroSoft Store** が開いたら、**[手順3]()** から順番に作業を進めてください。立ち上がらなかった場合は、**[手順]()** から作業を進めてください。
+
+3. **python をインストールする**
+  <br>
+  　**MicroSoft Store** が開いたら、**インストール** をクリックして、表示されている **python** をインストールします。
+  <center>
+  <img src='https://i.imgur.com/NF2hJqH.jpg' height=400>
+  </center>
+  <br>
+
+  **インストールボタン** が、**スタートピンに固定** に表示が変わったらインストールは完了です。コマンドプロンプトに戻り、もう一度 **python** コマンドを実行してください。
+
+4. **確認**
+  <br>
+
+  　python を実行すると、以下のように表示が切り替わります。このように末尾が ```>``` から ```>>>``` に変わったら **無事 Python のインストールは成功です！**
+
+  <center>
+  <img src='https://i.imgur.com/bXEUUGR.jpg'>
+  </center>
+  <br>
+
+  ```quit()``` を実行して Python 実行モードを終了します。
+
+  <center>
+  <img src='https://i.imgur.com/mDn1daw.jpg'>
+  </center>
+  <br>
+
+5. **必要なパッケージをインストールする**
+  <br>
+
+  　以下のコマンドを **1行づつコピペして** 実行します。
+  ```bash
+  pip3 install opencv-python
+  pip3 install pytk
+  ```
+
+6. Tello-Console をインストールするには、**git**  をインストールする必要があります。
+  <br>
+
+  　以下のリンクから、**Git for Windows** をダウンロードします。以下のサイトにある **Download** をクリックします。
+
+  - https://gitforwindows.org
+
+  <br>
+  <center>
+  <img src='https://i.imgur.com/NEutaG8.jpg' height=400>
+  </center>
+  <br>
+
+  　ダウンロードフォルダにダウンロードされたインストーラがあります。これを実行します。
+
+  <br>
+  <center>
+  <img src='https://i.imgur.com/vBbu7VT.jpg' height=400>
+  </center>
+  <br>
+
+  　インストールウィザードの **"Next"** を、インストール進捗バーが表示されるまでひたすらクリックしてください。
+
+  <br>
+  <center>
+  <img src='https://i.imgur.com/qWd7LG6.jpg' height=400>
+  </center>
+  <br>
+
+  　インストール進捗バーが表示されて、これが消えたら、下のようなウィンドウが表示されます。このウィンドウにある **"Launch Git Bash"** にチェックを入れてください。
+
+  <br>
+  <center>
+  <img src='https://i.imgur.com/MKm5S1q.jpg' height=400>
+  </center>
+  <br>
+
+  もう一つ黒い **コマンドプロンプトみたいなウィンドウ** が表示されたら完了です。
+
+7. **Tello-COnsole をダウンロードする**
+  <br>
+
+  　コマンドプロンプトに戻り、以下のコマンドを **1行づつコピペして** 実行します。
+  ```Bash
+  cd %homepath%
+  git clone https://github.com/GAI-313/Tello-Console.git
+  ```
+
+これで **WindowsにTello-Consoke のインストールする作業は完了です！！**
+
+ <br>
+
+**[Tello-Console を実行してみる](#taskdo)**
 
 <a id="install_mac"></a>
 ## macOS に Tello-Console を導入する方法
