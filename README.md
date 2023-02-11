@@ -264,6 +264,10 @@
 
 　これで **Ubuntu に Tello-Console** の導入は完了です。
 
+**これで Tello-Console** のインストールは完了です。本クラスを簡単に使用できるよう、使用するエディタは **VScode** を推奨しております。
+**[こちら](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/visual_studio_tutorial/install_and_setup_guide.md#visual-studio-インストールガイド)** 
+のセクションで VScode のダウンロードガイドを案内しております。
+
 <a id="taskdo"></a>
 ## Tello-Console を実行してみる
 　インストール作業が無事終了すると、**モームディレクトリ（ユーザーネームの名前のフォルダ）** に Tello-COnsole **ディレクトリ（フォルダのこと）** がダウンロードされています。**Tello-Console ディレクトリに移動して、sample=boot.py サンプルプログラムを実行して正常に Tello-Console が実行されるか試してみましょう**。
