@@ -87,13 +87,14 @@
   するとこのようなポップアップが表示されます。
   <br>
   <img src='https://i.imgur.com/hJZVuLv.png'>
-2. **"Command: Install 'code' command in PATH command"** をシェル内に入力する
+2. **"Command: Install 'code' command in PATH"** をシェル内に入力する
   <br>
   <img src='https://i.imgur.com/I3XGmzh.png'>
   <br>
+
   **シェルコマンド：PATH ~~~** という選択欄が出るので、これをクリックします。
 
-すると、以下のようなポップアップがでます。これが表示されたら成功です。
+すると、パスワード入力が要求された後に以下のようなポップアップがでます。これが表示されたら成功です。
 
 > 画像は macOS ですが、Widnows、Ubuntu でも同じようなポップアップが出ます。
 
