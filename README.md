@@ -339,7 +339,7 @@ Tips:ドローンとPCとのWi-Fi接続を確認してください！
 この問題を解決するには、
 <br>
 
-**[コマンドプロンプトで Tello-Console のシンタックスハイライトを有効にする]()**
+**[コマンドプロンプトで Tello-Console のシンタックスハイライトを有効にする](https://github.com/GAI-313/Tello-Console/blob/windows/tutorial/windows/cmd_tutorial.md#%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%83%97%E3%83%AD%E3%83%B3%E3%83%97%E3%83%88%E3%81%A7-tello-console-%E3%81%AE%E3%82%B7%E3%83%B3%E3%82%BF%E3%83%83%E3%82%AF%E3%82%B9%E3%83%8F%E3%82%A4%E3%83%A9%E3%82%A4%E3%83%88%E3%82%92%E6%9C%89%E5%8A%B9%E3%81%AB%E3%81%99%E3%82%8B)**
 <br>
 
 を参照してください。
