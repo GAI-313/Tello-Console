@@ -160,6 +160,29 @@
   git clone https://github.com/GAI-313/Tello-Console.git
   ```
 
+  > **コマンドプロンプトで git コマンドが認識されない場合**<br>  
+    　上記の git コマンドを実行したとき、以下のようなエラーが表示された場合、**以下の手順** に沿って Tello-Console をインストールしてください
+    <center>
+    <img src='https://i.imgur.com/PEJ8Xjh.jpg'>
+    </center>
+    <br>
+    1. **Git for Bash を開く**<br>
+      git for bash とは、先ほど説明した **コマンドプロンプトみたいなウィンドウ** のことです。
+      <center>
+      <img src='https://i.imgur.com/IobUWSP.jpg' height=300>
+      </center>
+      <br>
+      　もし、上記のウィンドウが表示されていない場合は、**検索バー** で **"git"** と入力して候補に出てきた **"Git Bash"** を実行してください。<br>  
+    2. **コマンドを実行**<br>
+      　以下のコマンドを **１行ずつコピペ実行してください。** Git Bash は、**ショートカットキー Control + V** が利用できません。右クリックして **Paste** をクリックしてください。
+      <center>
+      <img src='https://i.imgur.com/UgwW41M.jpg' height=300>
+      </center>
+      <br>
+      ```
+      cd ~ && git clone https://github.com/GAI-313/Tello-Console.git
+      ```
+
 これで **WindowsにTello-Consoke のインストールする作業は完了です！！**
 
  <br>
