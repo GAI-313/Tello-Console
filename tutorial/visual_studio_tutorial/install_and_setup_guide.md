@@ -79,7 +79,9 @@
 　CUI のコマンドで、```code``` コマンドを有効にすることで、指定したパス、ファイルを VScode で開くことができるようになります。
 
 1. **VScode のシェルを開く**
-  - **Windows、Ubuntu をお使いの場合、以下のショートカットキーを実行してください。**<br>
+  - **Windows をお使いの場合**<br>
+    Windows を使用している方は、**このセクションをスキップしてください。**
+  - **Ubuntu をお使いの場合**<br>
     Control キー + Shift キー + P
   - **macOS をお使いの場合、以下のショートカットキーを実行してください。**<br>
     command キー + Shift キー + P
@@ -87,13 +89,14 @@
   するとこのようなポップアップが表示されます。
   <br>
   <img src='https://i.imgur.com/hJZVuLv.png'>
-2. **"Command: Install 'code' command in PATH command"** をシェル内に入力する
+2. **"Command: Install 'code' command in PATH"** をシェル内に入力する
   <br>
   <img src='https://i.imgur.com/I3XGmzh.png'>
   <br>
+
   **シェルコマンド：PATH ~~~** という選択欄が出るので、これをクリックします。
 
-すると、以下のようなポップアップがでます。これが表示されたら成功です。
+すると、パスワード入力が要求された後に以下のようなポップアップがでます。これが表示されたら成功です。
 
 > 画像は macOS ですが、Widnows、Ubuntu でも同じようなポップアップが出ます。
 
@@ -102,9 +105,6 @@
 
 ### code コマンドの確認
 　code コマンドの設定が完了したら、確認として実際に code コマンドを実行してみましょう。
-#### Widnwos の場合
----
-現在作成中
 
 #### macOS の場合
 Tello-Console を code コマンドで VScode から開いてみましょう。以下のコマンドで、Tello-Console ディレクトリに移動します。
