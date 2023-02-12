@@ -330,7 +330,11 @@ Tips:ドローンとPCとのWi-Fi接続を確認してください！
   <br>
   　上記のサンプルコードを実行すると、macOS、Ubuntu などでは、以下のように **テキストカラーが反映された状態** で表示されます。
   <br>
-  　Windowsでは、以下のように、色で強調表示されず、文字列末尾に謎のテキストが添付された状態で生じされてしまいます。この問題を解決するには、
+  　Windowsでは、以下のように、色で強調表示されず、文字列末尾に謎のテキストが添付された状態で生じされてしまいます。
+  <br>
+  <img src='https://i.imgur.com/xnWk96M.jpg'>
+  <br>
+  この問題を解決するには、
   <br>
   **[コマンドプロンプトで Tello-Console のシンタックスハイライトを有効にする]()**
   <br>
@@ -362,22 +366,31 @@ Tips:ドローンとPCとのWi-Fi接続を確認してください！
 3. **"環境変数(N)"** をクリックします
   <br>
   <img src='https://i.imgur.com/s2XZogN.jpg'>
+  <br>
+
 4. **"ユーザー環境変数(U)"** の **新規(N)** をクリックします。
   <br>
   <img src='https://i.imgur.com/DSPpN9i.jpg'>
+  <br>
+
 5. 新しいユーザー変数で、**変数名を "PYTHONPATH"** にします。
   <br>
   <img src='https://i.imgur.com/FkYLIrS.jpg'>
+  <br>
+
 6. **ディレクトリの参照** をクリックします。
 7. **ユーザー名** フォルダをクリックして、その中にある **Tello-Console** から、**modules** ディレクトリを指定します。フォルダー(F)が、**"modules"** になっていることを確認してください。確認したら **"OK"** をクリックします。
 <br>
 <img src='https://i.imgur.com/YHCgMTl.jpg'>
 <img src='https://i.imgur.com/GUbEWac.jpg'>
 <br>
+
 8. 以下のようになっていることを確認して 
 **"OK"** をクリックします。
   <br>
   <img src='https://i.imgur.com/4Q45Fpt.jpg'>
+  <br>
+
   > モザイクの部分はあなたのユーザー名です。
 9. システムのプロパティに戻ったら **"OK"** をクリックします。
 
