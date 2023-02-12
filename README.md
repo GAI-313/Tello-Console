@@ -393,8 +393,29 @@ echo $PYTHONPATH
 
 <a id="update"></a>
 # アップデート
----
-現在作成中
+　Tello-Console は不定期にアップデートを行います。[Tello-Console リリースノート](#releasenote) を定期的に参照して、バージョンが変更されていることを確認してください。
+
+## WIndows の場合
+1. **git for bash を開く**
+2. 以下のコマンドを順番に実行してください。
+  ```bash
+  cd ~/Tello-Console
+  git pull
+  ```
+## macOS の場合
+1. **ターミナルを開く**
+2. 以下のコマンドを順番に実行してください。
+  ```bash
+  cd ~/Tello-Console
+  git pull
+  ```
+## Ubuntu（Linux） の場合
+1. **端末（ターミナル）を開く**
+2. 以下のコマンドを順番に実行してください。
+  ```bash
+  cd ~/Tello-Console
+  git pull
+  ```
 
 <a id="education"></a>
 # エデュケーション
@@ -403,6 +424,7 @@ echo $PYTHONPATH
 <a id="howto"></a>
 ## Tello-Console を使う方法（経験者向けの内容です）
 　Tello-Console の本体は、```Tello-Console/modukes``` ディレクトリにある **tello.py の中にある console クラス** です。これを呼び出すことで使用することができます。<br>
+
 　**[PYTHONPATH に modules ディレクトリを登録した場合](#directory_setting)**、新規 python ファイルに、以下のような import 文を記述することで、tello.py の中にある **console** を使用できます。
 ```python3
 from modules.tello import console
