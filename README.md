@@ -185,6 +185,10 @@
 
 これで **WindowsにTello-Consoke のインストールする作業は完了です！！**
 
+> **ヒント**
+  <br>
+  　Tello-Console ディレクトリをエクスプローラ上でクイックアクセスに登録しておくことで、素早くアクセスすることができるようになります。
+
  <br>
 
 **[Tello-Console を実行してみる](#taskdo)**
@@ -309,9 +313,9 @@ python sample_boot.py
 　すると、以下のようなテキストが表示されたら **無事 Tello-Console が実行されたことを表しています。**
 
 >**SyntaxError が出た場合**<br>　Python3 をインストールした方は、実行コマンド ```python``` を、```python3``` で実行してください。
-> ```bash
-python3 sample_boot.py
->
+  ```bash
+  python3 sample_boot.py
+  ```
 
 ```bash
 WELCOME CONSOLE ! TELLO-CONSOLE V7.0.0
@@ -321,6 +325,17 @@ WELCOME CONSOLE ! TELLO-CONSOLE V7.0.0
 エラー！ドローンとの通信に失敗しました！
 Tips:ドローンとPCとのWi-Fi接続を確認してください！
 ```
+
+> **Windows：コマンドプロンプトでテキストがカラー表示されない問題**
+  <br>
+  　上記のサンプルコードを実行すると、macOS、Ubuntu などでは、以下のように **テキストカラーが反映された状態** で表示されます。
+  <br>
+  　Windowsでは、以下のように、色で強調表示されず、文字列末尾に謎のテキストが添付された状態で生じされてしまいます。この問題を解決するには、
+  <br>
+  **[コマンドプロンプトで Tello-Console のシンタックスハイライトを有効にする]()**
+  <br>
+  を参照してください。
+  
 <a id="directory_setting"></a>
 ## Tello-Console がどのディレクトリでも実行できるようにする
 　Tello-Cnsole は、
@@ -341,6 +356,36 @@ Tips:ドローンとPCとのWi-Fi接続を確認してください！
 
 <a id="path_windows"></a>
 ### WIndows でTello-Console がどのディレクトリでも実行できるようにする
+
+1. 検索バーに **"環境変数"** と入力します。　
+2. 検索結果脳候補に **"コントロールパネルのシステム環境変数を編集"** が表示されます。これを実行します。
+3. **"環境変数(N)"** をクリックします
+  <br>
+  <img src='https://i.imgur.com/s2XZogN.jpg'>
+4. **"ユーザー環境変数(U)"** の **新規(N)** をクリックします。
+  <br>
+  <img src='https://i.imgur.com/DSPpN9i.jpg'>
+5. 新しいユーザー変数で、**変数名を "PYTHONPATH"** にします。
+  <br>
+  <img src='https://i.imgur.com/FkYLIrS.jpg'>
+6. **ディレクトリの参照** をクリックします。
+7. **ユーザー名** フォルダをクリックして、その中にある **Tello-Console** から、**modules** ディレクトリを指定します。フォルダー(F)が、**"modules"** になっていることを確認してください。確認したら **"OK"** をクリックします。
+<br>
+<img src='https://i.imgur.com/YHCgMTl.jpg'>
+<img src='https://i.imgur.com/GUbEWac.jpg'>
+<br>
+8. 以下のようになっていることを確認して 
+**"OK"** をクリックします。
+  <br>
+  <img src='https://i.imgur.com/4Q45Fpt.jpg'>
+  > モザイクの部分はあなたのユーザー名です。
+9. システムのプロパティに戻ったら **"OK"** をクリックします。
+
+これで設定は完了です。
+
+> **注意！**
+  <br>
+  　お使いの環境によって、以上の設定をしても **PYTHONPATH が反映されない問題が生じています。** 現在調査中です。
 
 ---
 現在作成中
