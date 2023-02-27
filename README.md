@@ -21,6 +21,7 @@
 
 　Tello-Console は DJI Ryze Tech Tello-EDU 向けの Python プログラムツールです。このライブラリを実装することで、ドローン操作メソッドをコマンド感覚で使用でき、Python をこれから始める人でもすぐにドローンを使ったプログラムの実装が可能になります。ベースとした SDK は TelloSDK で、これらに追加機能を多く搭載し最適化したのがこの Tello-Console です。
 <br>
+
 **主な特徴**
 
 - **わかりやすいステータス表示**<br>　ドローンに対してどんなコマンドを送信したか、ドローンからどのような応答が来たのか、どのようなエラーが発生したのか、そのエラーの解決方法はあるのか、、などの状況を表示してくれるので、自己解決が容易にできます。また、Tello-Console と Tello 間の通信状況の表示を無効にすることもできます。
@@ -78,6 +79,7 @@
 
 3. **python をインストールする**
   <br>
+
   　**MicroSoft Store** が開いたら、**インストール** をクリックして、表示されている **python** をインストールします。
   <center>
   <img src='https://i.imgur.com/NF2hJqH.jpg' height=400>
@@ -161,19 +163,25 @@
   ```
 
   > **コマンドプロンプトで git コマンドが認識されない場合**<br>  
+  
     　上記の git コマンドを実行したとき、以下のようなエラーが表示された場合、**以下の手順** に沿って Tello-Console をインストールしてください
     <center>
     <img src='https://i.imgur.com/PEJ8Xjh.jpg'>
     </center>
     <br>
+
     1. **Git for Bash を開く**<br>
+
       git for bash とは、先ほど説明した **コマンドプロンプトみたいなウィンドウ** のことです。
       <center>
       <img src='https://i.imgur.com/IobUWSP.jpg' height=300>
       </center>
       <br>
+
       　もし、上記のウィンドウが表示されていない場合は、**検索バー** で **"git"** と入力して候補に出てきた **"Git Bash"** を実行してください。<br>  
+      　
     2. **コマンドを実行**<br>
+
       　以下のコマンドを **１行ずつコピペ実行してください。** Git Bash は、**ショートカットキー Control + V** が利用できません。右クリックして **Paste** をクリックしてください。
       <center>
       <img src='https://i.imgur.com/UgwW41M.jpg' height=300>
@@ -185,7 +193,7 @@
 
 これで **WindowsにTello-Consoke のインストールする作業は完了です！！**
 
- <br>
+<br>
 
 **[Tello-Console を実行してみる](#taskdo)**
 
@@ -198,7 +206,9 @@
 2. Spotlight 検索欄内に **"ターミナル"** と入力します。
 3. 候補として出てきた **"ターミナル.app"** を起動します。
 
-> **ターミナルの外観設定をしていない方へ**<br>　**[ターミナルの外観を最適化する](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/for_mac/terminal_setting_tutorial.md#ターミナルの外観を最適化する)** を参照し、ターミナルの外観を設定してください。Tello-Console の実行に支障が出ます。
+> **ターミナルの外観設定をしていない方へ**<br>
+
+　**[ターミナルの外観を最適化する](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/for_mac/terminal_setting_tutorial.md#ターミナルの外観を最適化する)** を参照し、ターミナルの外観を設定してください。Tello-Console の実行に支障が出ます。
 
 4. 以下のコマンドを**コピペ**してコマンドを実行してください。コマンドの実行は **エンターキー**を押すだけです。
   ```bash
@@ -206,8 +216,10 @@
   ```
   　すると、**Mac に標準インストールされている Python のバージョンが返されます**。
   <br>
+
   　この時、Python のバージョンが 3.x.x であれば 手順 8 までスキップしてください。（手順5, 手順6 も実行しても構いません。）
   <br>
+
   　Python のバージョンが **2.x.x** の場合、以下の **手順7** を行ってください。<br>
 
   5. **この作業は Python のバージョンが 3.x.x の方でも実行して構いません**<br>　ターミナル上に、以下のコマンドを実行してください。
@@ -268,6 +280,7 @@
   ```
 
 　これで **macOS に Tello-Console** の導入は完了です。<br>
+
 **[Tello-Console を実行してみる](#taskdo)**
 
 <a id="install_ubuntu"></a>
@@ -295,6 +308,7 @@
 ## Tello-Console を実行してみる
 　インストール作業が無事終了すると、**モームディレクトリ（ユーザーネームの名前のフォルダ）** に Tello-COnsole **ディレクトリ（フォルダのこと）** がダウンロードされています。**Tello-Console ディレクトリに移動して、sample=boot.py サンプルプログラムを実行して正常に Tello-Console が実行されるか試してみましょう**。
 <br>
+
 　以下の操作は **Windows、macOS、Ubuntu 共に同じだ行です。**
 
 1. **Tello-COnsole ディレクトリに移動する**<br>　以下のコマンドをコピペして、Tello-Console ディレクトリに移動します。
@@ -327,10 +341,12 @@ Tips:ドローンとPCとのWi-Fi接続を確認してください！
 **Tello-Console ディレクトリにある modules ディレクトリ内にある tello.py**
 が本体です。このプログラムを呼び出すことで Tello-Console を利用できるようになるのですが、今のままだと **Tello-Console ディレクトリ内にある python 実行ファイル（拡張子が .py のやつ）しか tello.py を読み込むことができません。**
 <br>
+
 　好きなディレクトリから Tello-Console を実行できるように、一手間加えてみましょう。この操作は
 **Windows と macOS、Ubuntu で操作方法が異なります。**
 <br>
 <br>
+
 >**警告：**<br>
 >　**この作業は難易度が少々高いです。以下の解説が理解できない場合はお勧めしません。作業に失敗すると少々面倒な>ことになります。**
 
@@ -474,6 +490,7 @@ drone.land() # land メソッドを実行し、ドローンを着陸させる
 
 そのほかにも数多くのコマンドを新たに追加しました。TelloSDK 3.0 は、Tello EDU のみ対応しています。一部コマンドは、通常の Tello、Tello アイアンマンエディションでは使用できません。
 <br>
+
 **そのほかの変更内容、追加機能**
 
 - **全体のリファクタリング**<br>　tello.py、サンプルコードをみやすくしました。
