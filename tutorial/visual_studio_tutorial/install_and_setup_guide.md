@@ -1,32 +1,34 @@
-# Visual Studio インストールガイド
-　ここでは、**Visual Studio** インストールする方法と、設定方法を紹介します。
+# Visual Studio Code インストールガイド
+　ここでは、**Visual Studio Code** インストールする方法と、設定方法を紹介します。
 
 <a id='install'></a>
-# Visual Studio をインストールする
-　以下のサイトから Visual Studio のインストールを行います。使用している　OS によってインストールするファイルが異なります。サイト内で OS ごとにインストールガイドが書かれているので、それに沿ってダウンロードします。
+# Visual Studio Code をインストールする
+　以下のサイトから Visual Studio Code のインストールを行います。使用している　OS によってインストールするファイルが異なります。サイト内で OS ごとにインストールガイドが書かれているので、それに沿ってダウンロードします。
 
 - https://code.visualstudio.com/download
 
 <a id='win'></a>
 ## Windows に VScode をインストールする方法
-**[Visual Studio の環境設定を行う に進む](#setting)**
+**[Visual Studio Code の環境設定を行う に進む](#setting)**
 
 <a id='mac'></a>
 ## mac に VScode をインストールする方法
+- **[Visual Studio Code をインストールする](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/visual_studio_tutorial/install_and_setup_guide.md#mac-に-vscode-をインストールする方法)**
+ から VisualStudio Code をダウンロードします。
 - Finder のダウンロードフォルダに、VScode がダウンロードされています。これを **"アプリケーションフォルダ"** に移動します。
 - Launchpad から、VScode を開きます。または Spotlight 検索で **"code"** と検索します。
 
 これで mac に VScode のインストールは完了し、VScode が立ち上がります。
 <br>
-**[Visual Studio の環境設定を行う に進む](#setting)**
+**[Visual Studio Code の環境設定を行う に進む](#setting)**
 
 <a id='ubu'></a>
 ## Ubuntu（Linux） に VScode をインストールする方法
-**[Visual Studio の環境設定を行う に進む](#setting)**
+**[Visual Studio Code の環境設定を行う に進む](#setting)**
 
 <a id='setting'></a>
-# Visual Studio の環境設定を行う
-　VScode をインストールし、VScode が起動すると、このような画面が表示されます。
+# Visual Studio Code の環境設定を行う
+　VScode （Visual Studio Code）をインストールし、VScode が起動すると、このような画面が表示されます。
 
 > 画像は　macOS ですが、他の OS も同じように表示されます。
 

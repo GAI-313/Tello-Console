@@ -173,41 +173,41 @@
 
   > **コマンドプロンプトで git コマンドが認識されない場合**<br>
 
-    　上記の git コマンドを実行したとき、以下のようなエラーが表示された場合、**以下の手順** に沿って Tello-Console をインストールしてください。
+   上記の git コマンドを実行したとき、以下のようなエラーが表示された場合、**以下の手順** に沿って Tello-Console をインストールしてください。
     　
-    <center>
-    <img src='https://i.imgur.com/PEJ8Xjh.jpg'>
-    </center>
-    <br>
+   <center>
+   <img src='https://i.imgur.com/PEJ8Xjh.jpg'>
+   </center>
+   <br>
 
-    1. **Git for Bash を開く**<br>
+   1. **Git for Bash を開く**<br>
 
-      git for bash とは、先ほど説明した **コマンドプロンプトみたいなウィンドウ** のことです。
-      <center>
-      <img src='https://i.imgur.com/IobUWSP.jpg' height=300>
-      </center>
-      <br>
+     git for bash とは、先ほど説明した **コマンドプロンプトみたいなウィンドウ** のことです。
+     <center>
+     <img src='https://i.imgur.com/IobUWSP.jpg' height=300>     
+     </center>
+     <br>
 
-      　もし、上記のウィンドウが表示されていない場合は、**検索バー** で **"git"** と入力して候補に出てきた **"Git Bash"** を実行してください。<br>  
+ 　もし、上記のウィンドウが表示されていない場合は、**検索バー** で **"git"** と入力して候補に出てきた **"Git Bash"** を実行してください。<br>  
       　
-    2. **コマンドを実行**<br>
+   2. **コマンドを実行**<br>
 
-      　以下のコマンドを **１行ずつコピペ実行してください。** Git Bash は、**ショートカットキー Control + V** が利用できません。右クリックして **Paste** をクリックしてください。
-      <center>
-      <img src='https://i.imgur.com/UgwW41M.jpg' height=300>
-      </center>
-      <br>
-      ```
-      cd ~ && git clone https://github.com/GAI-313/Tello-Console.git
-      ```
+   以下のコマンドを **１行ずつコピペ実行してください。** Git Bash は、**ショートカットキー Control + V** が利用できません。右クリックして **Paste** をクリックしてください。
+   <center>
+   <img src='https://i.imgur.com/UgwW41M.jpg' height=300>
+   </center>
+   <br>
+   ```
+   cd ~ && git clone https://github.com/GAI-313/Tello-Console.git
+   ```
 
-これで **WindowsにTello-Consoke のインストールする作業は完了です！！**
+これで **WindowsにTello-Console のインストールする作業は完了です！！**
 
 > **ヒント**
   <br>
   　Tello-Console ディレクトリをエクスプローラ上でクイックアクセスに登録しておくことで、素早くアクセスすることができるようになります。
 
- <br>
+  <br>
 
 **[Tello-Console を実行してみる](#taskdo)**
 
@@ -231,12 +231,15 @@
   　すると、**Mac に標準インストールされている Python のバージョンが返されます**。
   <br>
 
-  　この時、Python のバージョンが 3.x.x であれば 手順 8 までスキップしてください。（手順5, 手順6 も実行しても構いません。）
+  　この時、Python のバージョンが 3.x.x であれば 
+  　**[手順 8](#mac=8)
+  　 までスキップしてください。** （手順5, 手順6 も実行しても構いません。）
   <br>
 
-  　Python のバージョンが **2.x.x** の場合、以下の **手順7** を行ってください。<br>
+  　Python のバージョンが **2.x.x** の場合、以下の **[手順5](#mac_5)** から順番に行ってください。<br>
 
-  5. **この作業は Python のバージョンが 3.x.x の方でも実行して構いません**<br>　ターミナル上に、以下のコマンドを実行してください。
+<a id="mac_5"></a>
+5. **この作業は Python のバージョンが 3.x.x の方でも実行して構いません**<br>　ターミナル上に、以下のコマンドを実行してください。
   ```bash
   gcc
   ```
@@ -256,7 +259,7 @@
   **お使いの Mac が電源と接続されていない場合、このような警告が出ます。環境によって時間がかかるため電源に接続した状態で実行することをおすすめします。**
   </center>
 
-  6.  **この作業は Python のバージョンが 3.x.x の方でも実行して構いません**<br>　以下のコマンドを**コピペして実行**してください。
+6.  **この作業は Python のバージョンが 3.x.x の方でも実行して構いません**<br>　以下のコマンドを**コピペして実行**してください。
   ```bash
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
   ```
@@ -273,7 +276,7 @@
 
   　コマンドが実行されると、途中ターミナルに **Press RETURN to continue or any other key to abort** という表示が出てきます。そしたら **エンターキーを押してください**。
 
-  7. **この作業は Python のバージョンが 3.x.x の方は実行しないでください**<br>　以下のコマンドを**コピペして実行**してください。すると **Python 3.8.x がインストールされます。**
+7. **この作業は Python のバージョンが 3.x.x の方は実行しないでください**<br>　以下のコマンドを**コピペして実行**してください。すると **Python 3.8.x がインストールされます。**
   ```bash
   brew install python@3.8
   ```
@@ -283,7 +286,7 @@
   ```
   これで **Python 3.x.x のインストールは完了** です。
 
-
+<a id="mac_8"></a>
 8. ターミナルに、以下のコマンドを **1行づつコピペして** コマンドを実行します。
   ```bash
   curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
@@ -295,7 +298,11 @@
 
 　これで **macOS に Tello-Console** の導入は完了です。<br>
 
-**[Tello-Console を実行してみる](#taskdo)**
+　Tello-Console を使用してプログラムを作成するには、VScode がお勧めです。こちらで VScode のインストール方法を案内しています。
+
+　- [macOS に VScode をインストールする方法](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/visual_studio_tutorial/install_and_setup_guide.md#mac-に-vscode-をインストールする方法)
+
+**[Tello-Console を実行してみる](#taskdo)** に移動する。
 
 <a id="install_ubuntu"></a>
 ## Ubuntu（Linux） に Tello-Console を導入する方法
@@ -320,12 +327,12 @@
 
 <a id="taskdo"></a>
 ## Tello-Console を実行してみる
-　インストール作業が無事終了すると、**モームディレクトリ（ユーザーネームの名前のフォルダ）** に Tello-COnsole **ディレクトリ（フォルダのこと）** がダウンロードされています。**Tello-Console ディレクトリに移動して、sample=boot.py サンプルプログラムを実行して正常に Tello-Console が実行されるか試してみましょう**。
+　インストール作業が無事終了すると、**モームディレクトリ（ユーザーネームの名前のフォルダ）** に Tello-COnsole **ディレクトリ（フォルダのこと）** がダウンロードされています。**Tello-Console ディレクトリに移動して、sample_boot.py サンプルプログラムを実行して正常に Tello-Console が実行されるか試してみましょう**。
 <br>
 
 　以下の操作は **Windows、macOS、Ubuntu 共に同じだ行です。**
 
-1. **Tello-COnsole ディレクトリに移動する**<br>　以下のコマンドをコピペして、Tello-Console ディレクトリに移動します。
+1. **Tello-Console ディレクトリに移動する**<br>　以下のコマンドをコピペして、Tello-Console ディレクトリに移動します。
 ```bash
 cd Tello-Console
 ```
