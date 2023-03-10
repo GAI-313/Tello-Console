@@ -593,9 +593,9 @@ drone.land() # land メソッドを実行し、ドローンを着陸させる
 - **[flip コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/flip.md)**
 
 ### 高度操作コマンド
-- **[rc コマンド]()**
-- **[go コマンド]()**
-- **[curve コマンド]()**
+- **[rc コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/rc.md)**
+- **[go コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/go.md)**
+- **[curve コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/curveo.md)**
 
 <a id='cmd_b'></a>
 ## 設定コマンド
