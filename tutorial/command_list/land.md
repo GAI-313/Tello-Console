@@ -18,7 +18,7 @@ drone = console()
 drone.land()
 ```
 
-## takeoff コマンドの関連コマンド
+## land コマンドの関連コマンド
 
 - [takeoff コマンド]()
 - [emergency コマンド]()
