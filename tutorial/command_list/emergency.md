@@ -10,6 +10,7 @@
 from modules.tello import console
 
 drone = console()
+drone.takeoff() # ドローンを離陸させる
 
 try:
     # ドローンが 100cm 上昇下降を繰り返す
