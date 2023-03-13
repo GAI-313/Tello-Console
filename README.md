@@ -10,12 +10,13 @@
 
  - **[紹介](#intro)**<br>　Tello-Console に関する簡単な説明と紹介をまとめています。
  - **[Tello-Console をインストールする方法](#install)**<br>　Tello-Console をインストールする方法を解説します。
-   - **[Tello-Console を実行してみる](#taskdo)**<br>　Tello-Console を実行する方法を解説します、これを読む前に**Tello-Console をインストールしている必要があります。**
-   - **[Tello-Console がどのディレクトリでも実行できるようにする](#directory_setting)**<br>　Tello-Console をどのディレクトリからでも実行できるようにします。
+    - **[Tello-Console を実行してみる](#taskdo)**<br>　Tello-Console を実行する方法を解説します、これを読む前に**Tello-Console をインストールしている必要があります。**
+    - **[Tello-Console がどのディレクトリでも実行できるようにする](#directory_setting)**<br>　Tello-Console をどのディレクトリからでも実行できるようにします。
  - **[アップデート](#update)**<br>　Tello-Console をアップデートする方法を解説します
  - **[エデュケーション](#educatoin)**<br>　Pythonの でプログラミングをする方法や、Tello-Console の簡易的な使用方法をまとめています。
-   - **[Tello-Console を使う方法（経験者向けの内容です）](#howto)**<br>　Tello-Console を今すぐ扱いたい方はこちらを参考にしてください。
-   - **[スタディサポート](#study_support)**<br>　Tello-Console を使うまえに１から Python を勉強してみたい方はこちらを参照してください。Tello-Console をつかってドローンをプログラミングするまでの道のりを記述しています。
+    - **[Tello-Console を使う方法（経験者向けの内容です）](#howto)**<br>　Tello-Console を今すぐ扱いたい方はこちらを参考にしてください。
+    - **[スタディサポート](#study_support)**<br>　Tello-Console を使うまえに１から Python を勉強してみたい方はこちらを参照してください。Tello-Console をつかってドローンをプログラミングするまでの道のりを記述しています。
+    - **[サンプルコードチュートリアル](#samplecode_tutorial)**
 - **[メソッド（Tello-Console コマンド一覧）](#commandlist)**<br>　Tello-Console に用意されているメソッド（コマンド）の一覧です。
 - **[リリースノート](#releasenote)**<br>　tello-Console のアップデート情報をまとめています。こちらからアップデートされた Tello-Console の追加機能、変更内容などの更新状況を確認できます。
 
@@ -550,6 +551,14 @@ drone.land() # land メソッドを実行し、ドローンを着陸させる
 　Tello-Console は、ドローンを使ってプログラミングの楽しさ、面白さを知ってもらうことを目的に作られました。以下の記事一覧を散走することで、**Python、CUI コマンド、Tello-Console の使用方法、画像処理**に関する知識を習得できます。
 
 - **[Python チュートリアルその1](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/python_tutorial_1.md#python-チュートリアルその1)**
+
+<a id="samplecode_tutorial"></a>
+## サンプルコードチュートリアル
+　Tello-Console にデフォルトでダウンロードされているサンプルコードについて解説します。各サンプルコードの内容から、Tello-Console コマンドの使用方法を学ことができます。
+
+- **[sample_boot.py]()**
+- **[sample_flight1.py]()**
+- **[sample_flight2.py]()**
 
 ---
 現在作成中

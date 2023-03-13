@@ -46,12 +46,12 @@ class console:
             True: （デフォルト）エラーを検知したときにプログラムを終了します。
             False: エラーを検知したときプログラムからのレスポンスを渡します。
         """
-        SYS_VER = '7.0.0'
+        SYS_VER = '7.0.1'
         print('\x1b[32m'+"WELCOME CONSOLE ! TELLO-CONSOLE V%s"%(SYS_VER)+'\x1b[0m') # このモジュールのバージョンを最初に表示します。
 
         # 必要な変数の初期値を設定
         self.response = None # ドローンからの応答を格納する変数
-        self.MAX_WAIT_TIME = 3 # コマンドを送信してから応答があるまでのタイムアウトを定義
+        self.MAX_WAIT_TIME = 5 # コマンドを送信してから応答があるまでのタイムアウトを定義
         self.timeout_frag = False # ドローンからの応答がなかったらこのフラグが立つ
         self.recv_output_frag = recv_output_frag # ターミナルに出力結果を表示させるかどうかを苦伐するフラグ
         self.flight_frag = False # ドローンが離陸したら立ち上がるフラグ
@@ -61,6 +61,7 @@ class console:
         self.cap = None # ドローンからのキャプチャデータを格納する変数
         self.frame = None #キャプチャデータを読み込んだ際のデータを格納する変数
         self.error_msg = None # メインプログラムにこのクラス内で発生したエラーを返すための変数
+        self.result_deliver = None
         self.MAIN_MSG ='None'
         self.drone_state = 'None'
         self.current_time = time.time() # 現在の経過時刻を取得
@@ -69,6 +70,7 @@ class console:
         self.lang = langage # レスポンス時の使用言語
         self.battery_level = 0 # バッテリー情報を記録する変数
         self.taskkill = TaskKill
+        self.test_count = 0
         
         # tello との接続を確立させる
         self.local_ip = ''
@@ -145,7 +147,7 @@ class console:
                     else:
                         print('\x1b[31m'+"LOW BATTERY PLEASE CHANGE BATTERY AND CHARGE IT."+'\x1b[0m') # バッテリー残量が10％％以下の場合プログラムは停止する。
 
-                    if self.taskkinll is True:
+                    if self.taskkill is True:
                         sys.exit()
                     else:
                         self.error_msg = 'Low Battery Warning'
@@ -227,7 +229,7 @@ class console:
             else:
                 print('done')
 
-            # 応答が来るまで待つ、しかし3秒経過したらタイムアウトする
+            # 応答が来るまで待つ、しかし5秒経過したらタイムアウトする
             if 'rc' in cmd:
                 pass
             else:
@@ -273,7 +275,7 @@ class console:
                         print('\x1b[31m'+"ERROR CAN'T START CONSOLE! DRONE IS NOT FOUND.PLZ CONNECT THE DRONE!"+'\x1b[0m')
                         print('\x1b[33m'+"TIPS: CHECK THE WI-FI CONNECTION TO DRONE"+'\x1b[0m')
                     self.error_msg = "None_Defined_Drone"
-                    self.result_deliver(error_msg)
+                    self.result_deliver(self.error_msg)
                     if self.taskkill is True:
                         sys.exit()
                     else:
@@ -302,7 +304,10 @@ class console:
                 if self.lang == "jp":
                     print('\x1b[33m'+"飛行コマンドエラー！再試行します…")
                 else:
-                    print('\x1b[33m'+"FLIGHT CMD ERROR RETRY SEND IT")
+                    print('\x1b[33m'+"FLIGHT CMD ERROR RETRY SEND IT. WAIT 1 sec")
+                
+                self.test_count += 1
+                time.sleep(1)
                 self.send_cmd(cmd)
 
             elif response == "error Auto land":
@@ -508,9 +513,7 @@ class console:
         """
         try:        
             response = self.send_cmd('throwfly')
-            time.sleep(1)
             return response
-        
         except:
             import traceback
             traceback.print_exc()
@@ -529,7 +532,6 @@ class console:
         """
         try:        
             response = self.send_cmd('motoron')
-            time.sleep(1)
             return response
         
         except:
@@ -549,7 +551,6 @@ class console:
         """
         try:        
             response = self.send_cmd('motoroff')
-            time.sleep(1)
             return response
         
         except:
@@ -589,8 +590,8 @@ class console:
             str: 実行結果
         """
         try:
-            return self.send_cmd('reboot')
-        
+            self.send_cmd('reboot')
+            print('\x1b[31m'+"再起動します"+'\x1b[0m')
         except:
             import traceback
             traceback.print_exc()
@@ -1287,7 +1288,7 @@ class console:
         """
         try:
             response = self.send_cmd('battery?')
-            if response == "None response" or response == "ok" or 'mm' in response:
+            if response == "None response" or response == "ok" or 'mm' in response or "erorr" in response:
                 if self.lang == "jp":
                     print("応答に問題がありました。再度試行します。")
                 else:
@@ -1359,7 +1360,7 @@ class console:
     def ask_cmd(self, cmd):
         """
         ask_cmd : コマンドタイムアウト時に一定感覚で送信するコマンドの設定を変更します。
-        引数 cmd = 定期的に送信するコマンド (str) 小窓ではない文字列を記述するとエラーになります。
+        引数 cmd = 定期的に送信するコマンド (str) 小窓コマンドではない文字列を記述するとエラーになります。
         """
         try:
             self.request = cmd
