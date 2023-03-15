@@ -1,91 +1,87 @@
 # Tello-Console 7.0.2
-# 現在工事中！！！
-不定期に更新します。ご了承ください。<br>
+# Currently under construction
+We will update this page periodically. Please note that we will update this page periodically.<br>
 
-　このライブラリは 
-[TelloSDK](https://dl.djicdn.com/downloads/RoboMaster+TT/Tello_SDK_3.0_User_Guide_en.pdf) 
-をもとに初心者でもわかりやすく Tello ドローンを使ったプログラムを作成、実行できるラッパークラス **tello.py** を提供します。
+This library provides a wrapper class, **tello.py**, based on the [TelloSDK](https://dl.djicdn.com/downloads/RoboMaster+TT/Tello_SDK_3.0_User_Guide_en.pdf) , that allows even beginners to create and run programs using the Tello drone in an easy-to-understand manner.
 
-# 目次
+# ToC
 
- - **[紹介](#intro)**<br>　Tello-Console に関する簡単な説明と紹介をまとめています。
- - **[Tello-Console をインストールする方法](#install)**<br>　Tello-Console をインストールする方法を解説します。
-    - **[Tello-Console を実行してみる](#taskdo)**<br>　Tello-Console を実行する方法を解説します、これを読む前に**Tello-Console をインストールしている必要があります。**
+ - **[Introduction](#intro)**<br>　A brief description and introduction to Tello-Console is summarized here.
+ - **[How to install Tello-Console](#install)**<br>　This section explains how to install Tello-Console.
+    - **[Execute Tello-Console](#taskdo)**<br>　This section explains how to run Tello-Console, **you must have Tello-Console installed before reading this.**
     - **[Tello-Console がどのディレクトリでも実行できるようにする](#directory_setting)**<br>　Tello-Console をどのディレクトリからでも実行できるようにします。
- - **[アップデート](#update)**<br>　Tello-Console をアップデートする方法を解説します
- - **[エデュケーション](#educatoin)**<br>　Pythonの でプログラミングをする方法や、Tello-Console の簡易的な使用方法をまとめています。
-    - **[Tello-Console を使う方法（経験者向けの内容です）](#howto)**<br>　Tello-Console を今すぐ扱いたい方はこちらを参考にしてください。
-    - **[スタディサポート](#study_support)**<br>　Tello-Console を使うまえに１から Python を勉強してみたい方はこちらを参照してください。Tello-Console をつかってドローンをプログラミングするまでの道のりを記述しています。
-    - **[サンプルコードチュートリアル](#samplecode_tutorial)**
-- **[メソッド（Tello-Console コマンド一覧）](#commandlist)**<br>　Tello-Console に用意されているメソッド（コマンド）の一覧です。
-- **[リリースノート](#releasenote)**<br>　tello-Console のアップデート情報をまとめています。こちらからアップデートされた Tello-Console の追加機能、変更内容などの更新状況を確認できます。
+ - **[Update](#update)**<br>　Explains how to update Tello-ConsoleExplains how to update Tello-ConsoleExplains how to update Tello-Console
+ - **[Education](#educatoin)**<br>　This section provides information on how to program in Python and how to use the Tello-Console in a simplified manner.
+    - **[How to use Tello-Console (for experienced users)](#howto)**<br>　If you want to handle Tello-Console now, please refer to this page.
+    - **[Study Support](#study_support)**<br>　If you would like to learn Python from scratch before using Tello-Console, please refer to this page, which describes how to program a drone using Tello-Console.
+    - **[Sample code tutorial](#samplecode_tutorial)**
+- **[Methods （Tello-Console commands list](#commandlist)**<br>　The following is a list of methods (commands) provided in Tello-Console.
+- **[Release Notes](#releasenote)**<br>　This page summarizes updates to tello-Console. You can check the updated Tello-Console for additional features, changes, and other updates here.
 
 <a id="intro"></a>
-# 紹介
+# Introduction
 
-　Tello-Console は DJI Ryze Tech Tello-EDU 向けの Python プログラムツールです。このライブラリを実装することで、ドローン操作メソッド（ドローンを操作するためのプログラム関数）をコマンド感覚で使用でき、Python をこれから始める人でもすぐにドローンを使ったプログラムの実装が可能になります。ベースとした SDK は 
-[TelloSDK](https://dl.djicdn.com/downloads/RoboMaster+TT/Tello_SDK_3.0_User_Guide_en.pdf)
- で、これらに追加機能を多く搭載し最適化したのがこの Tello-Console です。
+ Tello-Console is a Python programming tool for DJI Ryze Tech Tello-EDU. By implementing this library, drone operation methods (program functions for drone operation) can be used as if they were commands, enabling even those who are just starting out with Python to quickly implement drone-based programs. The base SDK is TelloSDK, and Tello-Console is an optimized version of [TelloSDK](https://dl.djicdn.com/downloads/RoboMaster+TT/Tello_SDK_3.0_User_Guide_en.pdf) with many additional functions.
 <br>
 
-**主な特徴**
+**Main Features**
 
-- **わかりやすいステータス表示**<br>　ドローンに対してどんなコマンドを送信したか、ドローンからどのような応答が来たのか、どのようなエラーが発生したのか、そのエラーの解決方法はあるのか、、などの状況を表示してくれるので、自己解決が容易にできます。また、Tello-Console と Tello 間の通信状況の表示を無効にすることもできます。
-- **自動着陸問題を回避できる**<br>　Tello は SDK モード（プログラムによってドローンを操作できるモード）の時、15秒間何もコマンドが送信されないと自動で着陸します。この問題は本ライブラリではデフォルトで無効になっているため、ドローンを継続して飛行させることができることで柔軟なプログラムを構築できます。
-- **カメラへのアクセスが容易**<br>　Tello のカメラへアクセスするには、OpenCV を使用して、frame 変数を取得するだけで使用できます。また、
+- **Easy-to-understand status display**<br>　It displays what commands were sent to the drone, what kind of response was received from the drone, what kind of error occurred, and how to resolve the error, making it easy to resolve the issue yourself. You can also disable the display of communication status between Tello-Console and Tello.
+- **Avoids auto-landing problems.**<br>　When Tello is in SDK mode (a mode that allows the drone to be controlled by the program), it will automatically land if no commands are sent for 15 seconds. This problem is disabled by default in this library, allowing for flexible programming by allowing the drone to fly continuously.
+- **Easy access to the camera**<br>　To access Tello's camera, simply use OpenCV to get the frame variable. You can also use
 [TelloSDK 3.0](https://dl.djicdn.com/downloads/RoboMaster+TT/Tello_SDK_3.0_User_Guide_en.pdf) 
-によって Tello の前方カメラのみでなく、機体下部のビジョンカメラへのアクセスも可能です。
-- **豊富なコマンド**<br>　TelloSDK3.0 をサポートしているため、豊富なコマンドをサポートしているため、柔軟なタスクを組むことができます。
-- **アップデートして新機能を使う**<br>　Tello-Console は不規則ながら日々アップデートを重ねます。アップデートをするたびに新たなチュートリアル、機能、修正を施します。アップデートされたライブラリは細かい変更設定をしなくてもそのまま使用することができます。
-- **チュートリアルによるコーディングサポート**<br>　Tello-Console をすぐに、楽しく使用できるために、チュートリアルを日々作成中です。初心者でもわかりやすい記事を目指しで現在製作中なので、乞うご期待。
+allows access not only to Tello's forward-facing camera, but also to the vision camera on the bottom of the fuselage.
+- **Extensive commands**<br>　TelloSDK3.0 support allows for flexible task organization with its rich command support.
+- **Update and use new features**<br>　Tello-Console is updated on a daily basis, albeit irregularly. Each update brings new tutorials, features, and fixes. Updated libraries can be used as-is with no need to make minor changes.
+- **Coding support through tutorials**<br>　We are currently working on a series of tutorials to help you get up and running with Tello-Console quickly and enjoyably. We are currently working on articles that are easy to understand even for beginners, so please stay tuned.
 
 <a id="install"></a>
-# インストール
+# Install
 
-　Tello-Console を導入するには、いくつか手順が必要です。Tello-Console の導入方法は OS によって異なります。OS ごとにインストール方法を紹介します。
+　There are a few steps required to install Tello-Console.
 
-> **インストール作業を行う前に（初心者の方は必ずお読みください）**<br>
-> 作業方法をよく読み作業に当たってください。作業を飛ばしてしまうと正常にインストールできない場合があります。
+> **Before performing the installation process (beginners are advised to read this section)**<br>
+> Please read the work instructions carefully before proceeding. If you skip some of the steps, you may not be able to install the software properly.
 
-　以下の記事から各 OS ごとのインストールガイドまでジャンプできます。
+　You can jump to the installation guide for each OS from the following articles.
 
-- **[Windows に Tello-Console を導入する方法](#install_windows)**
-- **[macOS に Tello-Console を導入する方法](#install_mac)**
-- **[Ubuntu（Linux） に Tello-Console を導入する方法](#install_ubuntu)**
+- **[How to install Tello-Console on Windows](#install_windows)**
+- **[How to install Tello-Console on macOS](#install_mac)**
+- **[How to install Tello-Console on Ubuntu(Linux)](#install_ubuntu)**
 
 <a id="install_windows"></a>
-## Windows に Tello-Console を導入する方法
+## How to install Tello-Console on Windows
 
-　ここでは、**Windows に Tello-Console をインストールする方法** を解説します。紹介する導入方法は Windows 10 で検証した方法となります。Windows 11、や、Widnows 10 以前のバージョンのものでは若干操作方法が異なる場合があります。
+　This section explains **How to Install Tello-Console on Windows**. The method of installation described here has been tested on Windows 10, and may differ slightly from the method used on Windows 11 or Windows 10 or earlier versions.
 
-> 現在 WIndows では Tello からのカメラビューアクセスに遅延が発生する問題を抱えています。現在調査中ですが、可能であれば Linux での運用を強くお勧めします。
+> We are currently having problems with delays in accessing camera views from Tello on WIndows. We are currently investigating, but strongly recommend running on Linux if possible.
 
-1. **コマンドプロンプトを開く**
+1. **Open a command prompt**
   <br>
 
-  　検索バーに **cmd** と入力して、**コマンドプロンプト** を開きます。
+  　Type **cmd** in the search bar to open the **command prompt**.
 
-  > コマンドプロンプトについて詳しく知りたい場合は、**[コマンドプロンプト　コマンドガイド]()** を参照してください。
+  > To learn more about the command prompt, see **[Command Prompt Command Guide]()**.
 
   <center>
   <img src='https://i.imgur.com/s8JJNEA.png' height=400>
   </center>
 
-2. **python コマンドを入力する**
+2. **Enter the python command**
   <br>
 
-  　黒いウィンドウが表示されたら、そこに **python** と入力してください。
+  　When a black window appears, type **python** in it.
   <center>
   <img src='https://i.imgur.com/naM8CLc.jpg' height=400>
   </center>
 
-  　入力したら、エンターキーを押して入力されたコマンドを実行します。
+  　Once entered, press enter to execute the command entered.
   <center>
   <img src='https://i.imgur.com/NieH4D8.jpg' height=200>
   </center>
   <br>
 
-  実行して、**MicroSoft Store** が開いたら、**手順3** から順番に作業を進めてください。microsoft store アプリが開かずにコマンドプロンプトの表示が変わったら **手順4** から作業を進めてください。あなたの環境にはすでに python がインストールされています。
+  If the microsoft store app does not open and the command prompt changes, start with **step 4**. You already have python installed in your environment.
 
 3. **python をインストールする**
   <br>
