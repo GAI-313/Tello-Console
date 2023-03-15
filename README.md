@@ -1,6 +1,6 @@
 # Tello-Console 7.0.2
 
-English version is **[here]()**
+English version is **[here](https://github.com/GAI-313/Tello-Console/blob/eng/README.md)**
 
 # 現在工事中！！！
 不定期に更新します。ご了承ください。<br>
