@@ -1,4 +1,7 @@
 # Tello-Console 7.0.2
+
+English version is **[here]()**
+
 # 現在工事中！！！
 不定期に更新します。ご了承ください。<br>
 
