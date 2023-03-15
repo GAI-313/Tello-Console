@@ -1,7 +1,11 @@
 from modules.tello import console
 
-drone = console(langage="us")
+drone = console(language="jp", recv=False)
 
-drone.takeoff()
-drone.forward(100)
-drone.land()
+while True:
+    print(drone.get_imu(),
+            drone.get_tof(),
+            drone.get_height(),
+            drone.get_battery(),
+            drone.get_flighttime(),
+            drone.get_speed())
