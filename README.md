@@ -9,7 +9,6 @@ This library provides a wrapper class, **tello.py**, based on the [TelloSDK](htt
  - **[Introduction](#intro)**<br>　A brief description and introduction to Tello-Console is summarized here.
  - **[How to install Tello-Console](#install)**<br>　This section explains how to install Tello-Console.
     - **[Execute Tello-Console](#taskdo)**<br>　This section explains how to run Tello-Console, **you must have Tello-Console installed before reading this.**
-    - **[Tello-Console がどのディレクトリでも実行できるようにする](#directory_setting)**<br>　Tello-Console をどのディレクトリからでも実行できるようにします。
  - **[Update](#update)**<br>　Explains how to update Tello-ConsoleExplains how to update Tello-ConsoleExplains how to update Tello-Console
  - **[Education](#educatoin)**<br>　This section provides information on how to program in Python and how to use the Tello-Console in a simplified manner.
     - **[How to use Tello-Console (for experienced users)](#howto)**<br>　If you want to handle Tello-Console now, please refer to this page.
@@ -83,47 +82,47 @@ allows access not only to Tello's forward-facing camera, but also to the vision 
 
   If the microsoft store app does not open and the command prompt changes, start with **step 4**. You already have python installed in your environment.
 
-3. **python をインストールする**
+3. **Install python**
   <br>
 
-  　**MicroSoft Store** が開いたら、**インストール** をクリックして、表示されている **python** をインストールします。
+  　When the **MicroSoft Store** opens, click **Install** and install the **python** listed.
   <center>
   <img src='https://i.imgur.com/NF2hJqH.jpg' height=400>
   </center>
   <br>
 
-  **インストールボタン** が、**スタートピンに固定** に表示が変わったらインストールは完了です。コマンドプロンプトに戻り、もう一度 **python** コマンドを実行してください。
+  The installation is complete when the **Install Button** changes to **Fixed to Start Pin**. Return to the command prompt and run the **python** command again.
 
-4. **確認**
+4. **Check**
   <br>
 
-  　python を実行すると、以下のように表示が切り替わります。このように末尾が ```>``` から ```>>>``` に変わったら **無事 Python のインストールは成功です！**
+  　When you run python, the display will change as follows. When the end changes from ```>``` to ```>>``, **You have successfully installed Python! **
 
   <center>
   <img src='https://i.imgur.com/bXEUUGR.jpg'>
   </center>
   <br>
 
-  ```quit()``` を実行して Python 実行モードを終了します。
+  Execute ```quit()``` to exit Python run mode.
 
   <center>
   <img src='https://i.imgur.com/mDn1daw.jpg'>
   </center>
   <br>
 
-5. **必要なパッケージをインストールする**
+5. **Install the necessary packages**
   <br>
 
-  　以下のコマンドを **1行づつコピペして** 実行します。
+  　Copy and paste the following commands **one line at a time** and execute them.
   ```bash
   pip3 install opencv-python
   pip3 install pytk
   ```
 
-6. Tello-Console をインストールするには、**git**  をインストールする必要があります。
+6.  To install Tello-Console, you must install **git**.
   <br>
 
-  　以下のリンクから、**Git for Windows** をダウンロードします。以下のサイトにある **Download** をクリックします。
+  　Download **Git for Windows** from the following link Click **Download** at the following site
 
   - https://gitforwindows.org
 
@@ -133,7 +132,7 @@ allows access not only to Tello's forward-facing camera, but also to the vision 
   </center>
   <br>
 
-  　ダウンロードフォルダにダウンロードされたインストーラがあります。これを実行します。
+  　You will find the downloaded installer in the downloads folder. Run this.
 
   <br>
   <center>
@@ -141,7 +140,7 @@ allows access not only to Tello's forward-facing camera, but also to the vision 
   </center>
   <br>
 
-  　インストールウィザードの **"Next"** を、インストール進捗バーが表示されるまでひたすらクリックしてください。
+  　Dutifully click **"Next "** on the installation wizard until the installation progress bar appears.
 
   <br>
   <center>
