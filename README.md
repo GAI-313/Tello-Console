@@ -599,9 +599,17 @@ drone.land() # land メソッドを実行し、ドローンを着陸させる
 
 <a id='cmd_b'></a>
 ## 設定コマンド
+- **[reboot コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/reboot.md)**
+- **[wait コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/wait.md)**
 
 <a id='cmd_c'></a>
 ## 取得コマンド
+- **[get_flighttime コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/get_flighttime.md)**
+- **[get_height コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/get_height.md)**
+- **[get_tof コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/get_tof.md)**
+- **[get_imu コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/get_imu.md)**
+- **[get_speed コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/get_speed.md)**
+- **[get_battery コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/get_battery.md)**
 ---
 現在作成中
 
