@@ -185,12 +185,12 @@ English version is **[here](https://github.com/GAI-313/Tello-Console/blob/eng/RE
 
    1. **Git for Bash を開く**<br>
 
-     git for bash とは、先ほど説明した **コマンドプロンプトみたいなウィンドウ** のことです。
+      git for bash とは、先ほど説明した **コマンドプロンプトみたいなウィンドウ** のことです。
      
-     <center>
-     <img src='https://i.imgur.com/IobUWSP.jpg' height=300>     
-     </center>
-     <br>
+<center>
+<img src='https://i.imgur.com/IobUWSP.jpg' height=300>     
+</center>
+<br>
 
  　もし、上記のウィンドウが表示されていない場合は、**検索バー** で **"git"** と入力して候補に出てきた **"Git Bash"** を実行してください。<br>  
       　
