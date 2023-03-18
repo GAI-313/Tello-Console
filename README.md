@@ -1,4 +1,7 @@
-# Tello-Console 7.0.0
+# Tello-Console 7.0.2
+
+English version is **[here](https://github.com/GAI-313/Tello-Console/blob/eng/README.md)**
+
 # 現在工事中！！！
 不定期に更新します。ご了承ください。<br>
 
@@ -10,12 +13,12 @@
 
  - **[紹介](#intro)**<br>　Tello-Console に関する簡単な説明と紹介をまとめています。
  - **[Tello-Console をインストールする方法](#install)**<br>　Tello-Console をインストールする方法を解説します。
-   - **[Tello-Console を実行してみる](#taskdo)**<br>　Tello-Console を実行する方法を解説します、これを読む前に**Tello-Console をインストールしている必要があります。**
-   - **[Tello-Console がどのディレクトリでも実行できるようにする](#directory_setting)**<br>　Tello-Console をどのディレクトリからでも実行できるようにします。
+    - **[Tello-Console を実行してみる](#taskdo)**<br>　Tello-Console を実行する方法を解説します、これを読む前に**Tello-Console をインストールしている必要があります。**
  - **[アップデート](#update)**<br>　Tello-Console をアップデートする方法を解説します
  - **[エデュケーション](#educatoin)**<br>　Pythonの でプログラミングをする方法や、Tello-Console の簡易的な使用方法をまとめています。
-   - **[Tello-Console を使う方法（経験者向けの内容です）](#howto)**<br>　Tello-Console を今すぐ扱いたい方はこちらを参考にしてください。
-   - **[スタディサポート](#study_support)**<br>　Tello-Console を使うまえに１から Python を勉強してみたい方はこちらを参照してください。Tello-Console をつかってドローンをプログラミングするまでの道のりを記述しています。
+    - **[Tello-Console を使う方法（経験者向けの内容です）](#howto)**<br>　Tello-Console を今すぐ扱いたい方はこちらを参考にしてください。
+    - **[スタディサポート](#study_support)**<br>　Tello-Console を使うまえに１から Python を勉強してみたい方はこちらを参照してください。Tello-Console をつかってドローンをプログラミングするまでの道のりを記述しています。
+    - **[サンプルコードチュートリアル](#samplecode_tutorial)**
 - **[メソッド（Tello-Console コマンド一覧）](#commandlist)**<br>　Tello-Console に用意されているメソッド（コマンド）の一覧です。
 - **[リリースノート](#releasenote)**<br>　tello-Console のアップデート情報をまとめています。こちらからアップデートされた Tello-Console の追加機能、変更内容などの更新状況を確認できます。
 
@@ -375,118 +378,6 @@ Tips:ドローンとPCとのWi-Fi接続を確認してください！
 <br>
 
 を参照してください。
-  
-<a id="directory_setting"></a>
-## Tello-Console がどのディレクトリでも実行できるようにする
-　Tello-Cnsole は、
-**Tello-Console ディレクトリにある modules ディレクトリ内にある tello.py**
-が本体です。このプログラムを呼び出すことで Tello-Console を利用できるようになるのですが、今のままだと **Tello-Console ディレクトリ内にある python 実行ファイル（拡張子が .py のやつ）しか tello.py を読み込むことができません。**
-<br>
-
-　好きなディレクトリから Tello-Console を実行できるように、一手間加えてみましょう。この操作は
-**Windows と macOS、Ubuntu で操作方法が異なります。**
-<br>
-<br>
-
->**警告：**<br>
->　**この作業は難易度が少々高いです。以下の解説が理解できない場合はお勧めしません。作業に失敗すると少々面倒な>ことになります。**
-
-以下のも記事から各 OS ごとのガイドまでジャンプできます。
-
-- **[WIndows でTello-Console がどのディレクトリでも実行できるようにする](#path_windows)**
-- **[macOS、Ubuntu でTello-Console がどのディレクトリでも実行できるようにする](#path_)**
-
-<a id="path_windows"></a>
-### WIndows でTello-Console がどのディレクトリでも実行できるようにする
-
-1. 検索バーに **"環境変数"** と入力します。　
-2. 検索結果脳候補に **"コントロールパネルのシステム環境変数を編集"** が表示されます。これを実行します。
-3. **"環境変数(N)"** をクリックします
-  <br>
-  <img src='https://i.imgur.com/s2XZogN.jpg'>
-  <br>
-
-4. **"ユーザー環境変数(U)"** の **新規(N)** をクリックします。
-  <br>
-  <img src='https://i.imgur.com/DSPpN9i.jpg'>
-  <br>
-
-5. 新しいユーザー変数で、**変数名を "PYTHONPATH"** にします。
-  <br>
-  <img src='https://i.imgur.com/FkYLIrS.jpg'>
-  <br>
-
-6. **ディレクトリの参照** をクリックします。
-7. **ユーザー名** フォルダをクリックして、その中にある **Tello-Console** から、**modules** ディレクトリを指定します。フォルダー(F)が、**"modules"** になっていることを確認してください。確認したら **"OK"** をクリックします。
-<br>
-<img src='https://i.imgur.com/YHCgMTl.jpg'>
-<img src='https://i.imgur.com/GUbEWac.jpg'>
-<br>
-
-8. 以下のようになっていることを確認して 
-**"OK"** をクリックします。
-  <br>
-  <img src='https://i.imgur.com/4Q45Fpt.jpg'>
-  <br>
-
-  > モザイクの部分はあなたのユーザー名です。
-9. システムのプロパティに戻ったら **"OK"** をクリックします。
-
-これで設定は完了です。
-
-> **注意！**
-  <br>
-
-  　お使いの環境によって、以上の設定をしても **PYTHONPATH が反映されない問題が生じています。** 現在調査中です。
-
----
-現在作成中
-
-<a id="path_"></a>
-### macOS、Ubuntu でTello-Console がどのディレクトリでも実行できるようにする
-　macOS と、Ubuntu では、この操作は同じです。
-
-1. **Tello-Console の絶対パスを取得する**<br>　以下のコマンドを順番に実行してください。
-  ```bash
-  cd ~/Tello-COnsole/modules/
-  pwd
-  ```
-  　すると、以下のように **ルートディレクトリから Tello-Console の modules ディレクトリまでの絶対パス**が返されます。以下がその例です。
-  ```bash
-  $ pwd
-  /Users/USERNAME/Tello-console/modules
-  ```
-  　**USERNAME** はお使いの PC にログインしているユーザーの名前が入ります。**この返された1行をコピペしてください。**
-
-2. **PYTHONPATH 環境変数に modules ディレクトリを追加する**<br>　まず、以下のコマンドをコピペしてください。**まだエンターキーを押して実行しないでください！**
-  ```bash
-  export PYTHONPATH="
-  ```
-  　次に、**先ほどコピーした modules ディレクトリまでの絶対パスを貼り付けます。**
-
-  > 下のコマンドは例です。これをこのままコピペしないでください。
-
-  ```bash
-  export PYTHONPATH="/Users/USERNAME/Tello-console/modules
-  ```
-  　貼り付けたら、最後に **" （ダブルクォーテーション）** を入力して、以下のような状態になったら
-  **エンターキーを押して実行してください**
-
-  > 下のコマンドは例です。これをこのままコピペしないでください。
-
-  ```bash
-  export PYTHONPATH="/Users/USERNAME/Tello-console/modules"
-  ```
-
-　これで Tello-Console がどのディレクトリからでもアクセスできるようになりました。確認として、以下のコマンドを実行して、**Tello-Console のパスが表示されているかどうか確認しましょう**。
-```bash
-echo $PYTHONPATH
-```
-<center>
-<img src='https://i.imgur.com/khmsXng.png' height=200>
-</center>
-
-　応答に、**Tello-COnsole** が含まれていたら成功です。
 
 <a id="update"></a>
 # アップデート
@@ -552,6 +443,14 @@ drone.land() # land メソッドを実行し、ドローンを着陸させる
 
 - **[Python チュートリアルその1](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/python_tutorial_1.md#python-チュートリアルその1)**
 
+<a id="samplecode_tutorial"></a>
+## サンプルコードチュートリアル
+　Tello-Console にデフォルトでダウンロードされているサンプルコードについて解説します。各サンプルコードの内容から、Tello-Console コマンドの使用方法を学ことができます。
+
+- **[sample_boot.py]()**
+- **[sample_flight1.py]()**
+- **[sample_flight2.py]()**
+
 ---
 現在作成中
 
@@ -616,6 +515,13 @@ drone.land() # land メソッドを実行し、ドローンを着陸させる
 
 <a id="releasenote"></a>
 # リリースノート
+## Tello-Console Ver.7.0.2
+　いくつかのバグを修正しました。（3／16）
+
+- get コマンドから取得されるデータから None が返される問題を修正しました。
+- 全体の動作を軽量化させました。
+- 通信プロトコルを最適化しました。
+
 ## Tello-Console Ver.7.0.0
 　TelloSDK 3.0 に対応した各コマンドを追加しました。特徴的な真コマンドは以下の通りです。
 
