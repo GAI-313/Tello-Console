@@ -187,6 +187,7 @@ English version is **[here](https://github.com/GAI-313/Tello-Console/blob/eng/RE
    1. **Git for Bash を開く**<br>
 
      git for bash とは、先ほど説明した **コマンドプロンプトみたいなウィンドウ** のことです。
+     
      <center>
      <img src='https://i.imgur.com/IobUWSP.jpg' height=300>     
      </center>
@@ -201,6 +202,7 @@ English version is **[here](https://github.com/GAI-313/Tello-Console/blob/eng/RE
    <img src='https://i.imgur.com/UgwW41M.jpg' height=300>
    </center>
    <br>
+   
    ```
    cd ~ && git clone https://github.com/GAI-313/Tello-Console.git
    ```
