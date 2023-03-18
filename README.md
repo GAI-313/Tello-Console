@@ -97,8 +97,7 @@
 
   **インストールボタン** が、**スタートピンに固定** に表示が変わったらインストールは完了です。コマンドプロンプトに戻り、もう一度 **python** コマンドを実行してください。
 
-4. **確認**
-  <br>
+4. **確認**<br>
 
   　python を実行すると、以下のように表示が切り替わります。このように末尾が ```>``` から ```>>>``` に変わったら **無事 Python のインストールは成功です！**
 
@@ -183,6 +182,7 @@
    1. **Git for Bash を開く**<br>
 
      git for bash とは、先ほど説明した **コマンドプロンプトみたいなウィンドウ** のことです。
+     
      <center>
      <img src='https://i.imgur.com/IobUWSP.jpg' height=300>     
      </center>
@@ -197,6 +197,7 @@
    <img src='https://i.imgur.com/UgwW41M.jpg' height=300>
    </center>
    <br>
+   
    ```
    cd ~ && git clone https://github.com/GAI-313/Tello-Console.git
    ```
