@@ -486,46 +486,46 @@ drone.land() # land メソッドを実行し、ドローンを着陸させる
 ## コントロールコマンド
 
 ### 離陸関連コマンド
-- **[takeoff コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/takeoff.md)**
-- **[motor_start コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/motor_start.md)**
+- **[takeoff コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/takeoff.md)**
+- **[motor_start コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/motor_start.md)**
 
 ### 着陸、モーター関連コマンド
-- **[land コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/land.md)**
-- **[motor_stop コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/motor_stop.md)**
+- **[land コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/land.md)**
+- **[motor_stop コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/motor_stop.md)**
 
 ### 安全、緊急停止コマンド
-- **[emergency コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/emergency.md)**
-- **[stop コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/stop.md)**
+- **[emergency コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/emergency.md)**
+- **[stop コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/stop.md)**
 
 ### 簡易操作コマンド
-- **[up コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/up.md)**
-- **[down コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/down.md)**
-- **[forward コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/forward.md)**
-- **[back コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/back.md)**
-- **[left コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/left.md)**
-- **[right コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/right.md)**
-- **[cw コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/cw.md)**
-- **[ccw コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/ccw.md)**
-- **[flip コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/flip.md)**
+- **[up コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/up.md)**
+- **[down コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/down.md)**
+- **[forward コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/forward.md)**
+- **[back コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/back.md)**
+- **[left コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/left.md)**
+- **[right コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/right.md)**
+- **[cw コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/cw.md)**
+- **[ccw コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/ccw.md)**
+- **[flip コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/flip.md)**
 
 ### 高度操作コマンド
-- **[rc コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/rc.md)**
-- **[go コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/go.md)**
-- **[curve コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/curve.md)**
+- **[rc コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/rc.md)**
+- **[go コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/go.md)**
+- **[curve コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/curve.md)**
 
 <a id='cmd_b'></a>
 ## 設定コマンド
-- **[reboot コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/reboot.md)**
-- **[wait コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/wait.md)**
+- **[reboot コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/reboot.md)**
+- **[wait コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/wait.md)**
 
 <a id='cmd_c'></a>
 ## 取得コマンド
-- **[get_flighttime コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/get_flighttime.md)**
-- **[get_height コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/get_height.md)**
-- **[get_tof コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/get_tof.md)**
-- **[get_imu コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/get_imu.md)**
-- **[get_speed コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/get_speed.md)**
-- **[get_battery コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/get_battery.md)**
+- **[get_flighttime コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/get_flighttime.md)**
+- **[get_height コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/get_height.md)**
+- **[get_tof コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/get_tof.md)**
+- **[get_imu コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/get_imu.md)**
+- **[get_speed コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/get_speed.md)**
+- **[get_battery コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/get_battery.md)**
 ---
 現在作成中
 
