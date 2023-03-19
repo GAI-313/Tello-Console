@@ -17,7 +17,7 @@ English version is **[here](https://github.com/GAI-313/Tello-Console/blob/eng/RE
  - **[アップデート](#update)**<br>　Tello-Console をアップデートする方法を解説します
  - **[エデュケーション](#educatoin)**<br>　Pythonの でプログラミングをする方法や、Tello-Console の簡易的な使用方法をまとめています。
     - **[スタディサポート](#study_support)**<br>　Tello-Console を使うまえに１から Python を勉強してみたい方はこちらを参照してください。Tello-Console をつかってドローンをプログラミングするまでの道のりを記述しています。
-    - **[TELLO EDU ユーザーガイド]()**
+    - **[TELLO EDU ユーザーガイド](#user_guide)**
     - **[サンプルコードチュートリアル](#samplecode_tutorial)**
     - **[Tello-Console を使う方法（経験者向けの内容です）](#howto)**<br>　Tello-Console を今すぐ扱いたい方はこちらを参考にしてください。
 - **[メソッド（Tello-Console コマンド一覧）](#commandlist)**<br>　Tello-Console に用意されているメソッド（コマンド）の一覧です。
