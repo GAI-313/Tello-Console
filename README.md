@@ -456,7 +456,7 @@ from modules.tello import console
 
 drone = console()
 ```
-　console クラスに用意された各メソッドが **ドローンを操作するためのコマンド** として機能します。例えば、Tello を離陸、着陸させるなら、このように書けば実装できます。詳しい情報は **[メソッド、コマンド一覧]()** または VScode からサマリーを参照してください。
+　console クラスに用意された各メソッドが **ドローンを操作するためのコマンド** として機能します。例えば、Tello を離陸、着陸させるなら、このように書けば実装できます。詳しい情報は **[メソッド、コマンド一覧](#commandlist)** または VScode からサマリーを参照してください。
 ```python3
 from modules.tello import console
 
