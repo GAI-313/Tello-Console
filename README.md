@@ -178,37 +178,27 @@ English version is **[here](https://github.com/GAI-313/Tello-Console/blob/eng/RE
   ```
 
   > **コマンドプロンプトで git コマンドが認識されない場合**<br>
-
-        上記の git コマンドを実行したとき、以下のようなエラーが表示された場合、**以下の手順** に沿って Tello-Console をインストールしてください。
-        　
+        上記の git コマンドを実行したとき、以下のようなエラーが表示された場合、**以下の手順** に沿って Tello-Console をインストールしてください。<br>       　
     <center>
     <img src='https://i.imgur.com/PEJ8Xjh.jpg'>
     </center>
     <br>
-
     1. **Git for Bash を開く**<br>
-
-        git for bash とは、先ほど説明した **コマンドプロンプトみたいなウィンドウ** のことです。
-         
+        git for bash とは、先ほど説明した **コマンドプロンプトみたいなウィンドウ** のことです。<br>
         <center>
         <img src='https://i.imgur.com/IobUWSP.jpg' height=300>     
         </center>
         <br>
-
-         もし、上記のウィンドウが表示されていない場合は、**検索バー** で **"git"** と入力して候補に出てきた **"Git Bash"** を実行してください。<br>  
-          　
+         もし、上記のウィンドウが表示されていない場合は、**検索バー** で **"git"** と入力して候補に出てきた **"Git Bash"** を実行してください。<br>
     2. **コマンドを実行**<br>
-
-        　以下のコマンドを **１行ずつコピペ実行してください。** Git Bash は、**ショートカットキー Control + V** が利用できません。右クリックして **Paste** をクリックしてください。
+        　以下のコマンドを **１行ずつコピペ実行してください。** Git Bash は、**ショートカットキー Control + V** が利用できません。右クリックして **Paste** をクリックしてください。<br>
         <center>
         <img src='https://i.imgur.com/UgwW41M.jpg' height=300>
         </center>
-        <br>
-         
         ```
         cd ~ && git clone https://github.com/GAI-313/Tello-Console.git
         ```
-
+        
 これで **WindowsにTello-Console のインストールする作業は完了です！！**
 
 > **ヒント**
@@ -356,10 +346,11 @@ python sample_boot.py
 ```
 
 >**SyntaxError が出た場合**<br>　Python3 をインストールした方は、実行コマンド ```python``` を、```python3``` で実行してください。
-  ```bash
-  python3 sample_boot.py
-  ```
-　すると、以下のようなテキストが表示されたら **無事 Tello-Console が実行されたことを表しています。**<br>
+```bash
+python3 sample_boot.py
+```
+
+すると、以下のようなテキストが表示されたら **無事 Tello-Console が実行されたことを表しています。**<br>
 
 実行結果↓
 ```bash
@@ -455,7 +446,7 @@ Tips:ドローンとPCとのWi-Fi接続を確認してください！
 現在作成中
 <a id="howto"></a>
 ## Tello-Console を使う方法（経験者向けの内容です）
-　Tello-Console の本体は、```Tello-Console/modukes``` ディレクトリにある **tello.py の中にある console クラス** です。これを呼び出すことで使用することができます。<br>
+　Tello-Console の本体は、```Tello-Console/modules``` ディレクトリにある **tello.py の中にある console クラス** です。これを呼び出すことで使用することができます。<br>
 
 　console クラスを使用するには、**必ず tello-Console ディレクトリ内でプログラムを記述してください。** （PYTHONPATH を使い環境に反映させる方法を模索中です。）
 ```python3
@@ -477,7 +468,7 @@ drone.takeoff() # takeoff メソッドを実行し、ドローンを離陸させ
 
 drone.land() # land メソッドを実行し、ドローンを着陸させる
 ```
-　Tello-Concolse コマンド（メソッド）については、
+　Tello-Console コマンド（メソッド）については、
 **[メソッド（Tello-Console コマンド一覧）](#commandlist)**
 を参照してください。
 <a id="commandlist"></a>
@@ -488,7 +479,7 @@ drone.land() # land メソッドを実行し、ドローンを着陸させる
 <a id="releasenote"></a>
 # リリースノート
 ## Tello-Console Ver.7.0.2
-　チュートリアルの作成、修正を行いました（3／20）
+　チュートリアルの作成、修正を行いました（3／20）<br>
 　いくつかのバグを修正しました。（3／16）
 
 - get コマンドから取得されるデータから None が返される問題を修正しました。
