@@ -87,7 +87,7 @@ English version is **[here](https://github.com/GAI-313/Tello-Console/blob/eng/RE
   </center>
   <br>
 
-  実行して、**MicroSoft Store** が開いたら、**手順3** から順番に作業を進めてください。microsoft store アプリが開かずにコマンドプロンプトの表示が変わったら **手順4** から作業を進めてください。あなたの環境にはすでに python がインストールされています。
+  実行して、**Microsoft Store** が開いたら、**手順3** から順番に作業を進めてください。microsoft store アプリが開かずにコマンドプロンプトの表示が変わったら **手順4** から作業を進めてください。あなたの環境にはすでに python がインストールされています。
 
 3. **python をインストールする**
   <br>
@@ -332,7 +332,7 @@ English version is **[here](https://github.com/GAI-313/Tello-Console/blob/eng/RE
 
 <a id="taskdo"></a>
 ## Tello-Console を実行してみる
-　インストール作業が無事終了すると、**モームディレクトリ（ユーザーネームの名前のフォルダ）** に Tello-COnsole **ディレクトリ（フォルダのこと）** がダウンロードされています。**Tello-Console ディレクトリに移動して、sample_boot.py サンプルプログラムを実行して正常に Tello-Console が実行されるか試してみましょう**。
+　インストール作業が無事終了すると、**モームディレクトリ（ユーザーネームの名前のフォルダ）** に Tello-Console **ディレクトリ（フォルダのこと）** がダウンロードされています。**Tello-Console ディレクトリに移動して、sample_boot.py サンプルプログラムを実行して正常に Tello-Console が実行されるか試してみましょう**。
 <br>
 
 　以下の操作は **Windows、macOS、Ubuntu 共に同じだ行です。**
