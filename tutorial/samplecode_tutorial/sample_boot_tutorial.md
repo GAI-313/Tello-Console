@@ -21,9 +21,7 @@
 3. **sample_boot.py を VScode で開く**<br>
 
 　以下のコマンドを入力して、sampleboot.py を VScode から開きます。
-　
-    ```bash
-    code sample_boot.py
-    ```
-
+```bash
+code sample_boot.py
+```
 これで VScode から sample_boot.py を参照することができます。

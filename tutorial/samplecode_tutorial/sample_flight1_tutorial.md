@@ -21,9 +21,7 @@
 3. **sample_flight1.py を VScode で開く**<br>
 
 　以下のコマンドを入力して、sampleflight1.py を VScode から開きます。
-
-    ```bash
-    code sample_flight1.py
-    ```
-
+```bash
+code sample_flight1.py
+```
 これで VScode から sample_flight1.py を参照することができます。
