@@ -1,4 +1,4 @@
-# Tello-Console 7.0.2
+# Tello-Console 7.0.2x
 
 English version is **[here](https://github.com/GAI-313/Tello-Console/blob/eng/README.md)**
 
@@ -74,8 +74,7 @@ English version is **[here](https://github.com/GAI-313/Tello-Console/blob/eng/RE
   <img src='https://i.imgur.com/s8JJNEA.png' height=400>
   </center>
 
-2. **python コマンドを入力する**
-  <br>
+2. **python コマンドを入力する**<br>
 
   　黒いウィンドウが表示されたら、そこに **python** と入力してください。
   <center>
@@ -90,8 +89,7 @@ English version is **[here](https://github.com/GAI-313/Tello-Console/blob/eng/RE
 
   実行して、**Microsoft Store** が開いたら、**手順3** から順番に作業を進めてください。Microsoft Store アプリが開かずにコマンドプロンプトの表示が変わったら **[手順4](#winp4)** から作業を進めてください。あなたの環境にはすでに python がインストールされています。
 
-3. **python をインストールする**
-  <br>
+3. **python をインストールする**<br>
 
   　**MicroSoft Store** が開いたら、**インストール** をクリックして、表示されている **python** をインストールします。
   <center>
