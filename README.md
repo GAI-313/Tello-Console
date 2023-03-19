@@ -428,7 +428,7 @@ Tips:ドローンとPCとのWi-Fi接続を確認してください！
 
 <a id="user-guide"></a>
 ## TELLO EDU ユーザーガイド
-　[こちら]() ぶ TELLO EDU の基本多岐な使用方法をまとめています。
+　[こちら](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/basic_tutorial/how2use_telloedu.md#tello-edu-ユーザーガイド) から TELLO EDU の基本多岐な使用方法をまとめています。
 <a id="samplecode_tutorial"></a>
 ## サンプルコードチュートリアル
 　Tello-Console にデフォルトでダウンロードされているサンプルコードについて解説します。各サンプルコードの内容から、Tello-Console コマンドの使用方法を学ことができます。
