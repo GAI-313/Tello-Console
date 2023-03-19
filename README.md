@@ -409,7 +409,7 @@ Tips:ドローンとPCとのWi-Fi接続を確認してください！
   <br>
   <img src='https://i.imgur.com/DSPpN9i.jpg'>
   <br>
-
+z
 5. 新しいユーザー変数で、**変数名を "PYTHONPATH"** にします。
   <br>
   <img src='https://i.imgur.com/FkYLIrS.jpg'>
