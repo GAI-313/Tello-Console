@@ -67,7 +67,8 @@ English version is **[here](https://github.com/GAI-313/Tello-Console/blob/eng/RE
 
   　検索バーに **cmd** と入力して、**コマンドプロンプト** を開きます。
 
-  > コマンドプロンプトについて詳しく知りたい場合は、**[コマンドプロンプト　コマンドガイド]()** を参照してください。
+  > ~~コマンドプロンプトについて詳しく知りたい場合は、**[コマンドプロンプト　コマンドガイド]()** を参照してください。~~
+    現在作成中。
 
   <center>
   <img src='https://i.imgur.com/s8JJNEA.png' height=400>
@@ -87,7 +88,7 @@ English version is **[here](https://github.com/GAI-313/Tello-Console/blob/eng/RE
   </center>
   <br>
 
-  実行して、**Microsoft Store** が開いたら、**手順3** から順番に作業を進めてください。microsoft store アプリが開かずにコマンドプロンプトの表示が変わったら **手順4** から作業を進めてください。あなたの環境にはすでに python がインストールされています。
+  実行して、**Microsoft Store** が開いたら、**手順3** から順番に作業を進めてください。Microsoft Store アプリが開かずにコマンドプロンプトの表示が変わったら **[手順4](#winp4)** から作業を進めてください。あなたの環境にはすでに python がインストールされています。
 
 3. **python をインストールする**
   <br>
@@ -100,6 +101,7 @@ English version is **[here](https://github.com/GAI-313/Tello-Console/blob/eng/RE
 
   **インストールボタン** が、**スタートピンに固定** に表示が変わったらインストールは完了です。コマンドプロンプトに戻り、もう一度 **python** コマンドを実行してください。
 
+<a id='winp4'></a>
 4. **確認**
   <br>
 
@@ -123,11 +125,12 @@ English version is **[here](https://github.com/GAI-313/Tello-Console/blob/eng/RE
   　以下のコマンドを **1行づつコピペして** 実行します。
   ```bash
   pip3 install opencv-python
-  pip3 install pytk
   ```
 
 6. Tello-Console をインストールするには、**git**  をインストールする必要があります。
   <br>
+
+  　Tello Console は、Git というプログラムを共有できる場所からインストールする必要があります。そのためにここで git をセットアップを行います。<br>
 
   　以下のリンクから、**Git for Windows** をダウンロードします。以下のサイトにある **Download** をクリックします。
 
@@ -165,7 +168,7 @@ English version is **[here](https://github.com/GAI-313/Tello-Console/blob/eng/RE
 
   もう一つ黒い **コマンドプロンプトみたいなウィンドウ** が表示されたら完了です。
 
-7. **Tello-COnsole をダウンロードする**
+7. **Tello-Console をダウンロードする**
   <br>
 
   　コマンドプロンプトに戻り、以下のコマンドを **1行づつコピペして** 実行します。
@@ -176,45 +179,44 @@ English version is **[here](https://github.com/GAI-313/Tello-Console/blob/eng/RE
 
   > **コマンドプロンプトで git コマンドが認識されない場合**<br>
 
-   上記の git コマンドを実行したとき、以下のようなエラーが表示された場合、**以下の手順** に沿って Tello-Console をインストールしてください。
-    　
-   <center>
-   <img src='https://i.imgur.com/PEJ8Xjh.jpg'>
-   </center>
-   <br>
+        上記の git コマンドを実行したとき、以下のようなエラーが表示された場合、**以下の手順** に沿って Tello-Console をインストールしてください。
+        　
+    <center>
+    <img src='https://i.imgur.com/PEJ8Xjh.jpg'>
+    </center>
+    <br>
 
-   1. **Git for Bash を開く**<br>
+    1. **Git for Bash を開く**<br>
 
-      git for bash とは、先ほど説明した **コマンドプロンプトみたいなウィンドウ** のことです。
-     
-<center>
-<img src='https://i.imgur.com/IobUWSP.jpg' height=300>     
-</center>
-<br>
+        git for bash とは、先ほど説明した **コマンドプロンプトみたいなウィンドウ** のことです。
+         
+        <center>
+        <img src='https://i.imgur.com/IobUWSP.jpg' height=300>     
+        </center>
+        <br>
 
- 　もし、上記のウィンドウが表示されていない場合は、**検索バー** で **"git"** と入力して候補に出てきた **"Git Bash"** を実行してください。<br>  
-      　
-   2. **コマンドを実行**<br>
+         もし、上記のウィンドウが表示されていない場合は、**検索バー** で **"git"** と入力して候補に出てきた **"Git Bash"** を実行してください。<br>  
+          　
+    2. **コマンドを実行**<br>
 
-   以下のコマンドを **１行ずつコピペ実行してください。** Git Bash は、**ショートカットキー Control + V** が利用できません。右クリックして **Paste** をクリックしてください。
-   <center>
-   <img src='https://i.imgur.com/UgwW41M.jpg' height=300>
-   </center>
-   <br>
-   
-   ```
-   cd ~ && git clone https://github.com/GAI-313/Tello-Console.git
-   ```
+        　以下のコマンドを **１行ずつコピペ実行してください。** Git Bash は、**ショートカットキー Control + V** が利用できません。右クリックして **Paste** をクリックしてください。
+        <center>
+        <img src='https://i.imgur.com/UgwW41M.jpg' height=300>
+        </center>
+        <br>
+         
+        ```
+        cd ~ && git clone https://github.com/GAI-313/Tello-Console.git
+        ```
 
 これで **WindowsにTello-Console のインストールする作業は完了です！！**
 
 > **ヒント**
-  <br>
-  　Tello-Console ディレクトリをエクスプローラ上でクイックアクセスに登録しておくことで、素早くアクセスすることができるようになります。
+    <br>
+    　Tello-Console ディレクトリをエクスプローラ上でクイックアクセスに登録しておくことで、素早くアクセスすることができるようになります。
 
-  <br>
 
-**[Tello-Console を実行してみる](#taskdo)**
+**[Tello-Console を実行してみる に進む](#taskdo)**
 
 <a id="install_mac"></a>
 ## macOS に Tello-Console を導入する方法
@@ -227,9 +229,10 @@ English version is **[here](https://github.com/GAI-313/Tello-Console/blob/eng/RE
 
 > **ターミナルの外観設定をしていない方へ**<br>
 
-　**[ターミナルの外観を最適化する](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/for_mac/terminal_setting_tutorial.md#ターミナルの外観を最適化する)** を参照し、ターミナルの外観を設定してください。Tello-Console の実行に支障が出ます。
+    　**[ターミナルの外観を最適化する](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/for_mac/terminal_setting_tutorial.md#ターミナルの外観を最適化する)** を参照し、ターミナルの外観を設定してください。Tello-Console を実行する際の表示に問題が発生します。（今後対策予定）
 
 4. 以下のコマンドを**コピペ**してコマンドを実行してください。コマンドの実行は **エンターキー**を押すだけです。
+    <a id='mac_checkpyv'></a>
   ```bash
   python -V
   ```
@@ -281,7 +284,9 @@ English version is **[here](https://github.com/GAI-313/Tello-Console/blob/eng/RE
 
   　コマンドが実行されると、途中ターミナルに **Press RETURN to continue or any other key to abort** という表示が出てきます。そしたら **エンターキーを押してください**。
 
-7. **この作業は Python のバージョンが 3.x.x の方は実行しないでください**<br>　以下のコマンドを**コピペして実行**してください。すると **Python 3.8.x がインストールされます。**
+7. **この作業は Python のバージョンが 3.x.x の方は実行しないでください**<br>　以下のコマンドを**コピペして実行**してください。すると **Python 3.8.x がインストールされます。**<br>
+    > **[お使いの Mac の Pytrhon のバージョンを調べる方法](#mac_checkpyv)**
+    
   ```bash
   brew install python@3.8
   ```
@@ -297,15 +302,14 @@ English version is **[here](https://github.com/GAI-313/Tello-Console/blob/eng/RE
   curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
   python3 get-pip.py
   pip3 install opencv-python
-  pip3 install pytk
   cd ~ && git clone https://github.com/GAI-313/Tello-Console.git
   ```
 
 　これで **macOS に Tello-Console** の導入は完了です。<br>
 
-　Tello-Console を使用してプログラムを作成するには、VScode がお勧めです。こちらで VScode のインストール方法を案内しています。
+　Tello-Console を使用してプログラムを作成するには、VScode がお勧めです。こちらで VScode のインストール方法を案内しています。（初心者向け）
 
-　- [macOS に VScode をインストールする方法](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/visual_studio_tutorial/install_and_setup_guide.md#mac-に-vscode-をインストールする方法)
+　- **[macOS に VScode をインストールする方法](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/visual_studio_tutorial/install_and_setup_guide.md#mac-に-vscode-をインストールする方法)**
 
 **[Tello-Console を実行してみる](#taskdo)** に移動する。
 
@@ -313,29 +317,33 @@ English version is **[here](https://github.com/GAI-313/Tello-Console/blob/eng/RE
 ## Ubuntu（Linux） に Tello-Console を導入する方法
 　Ubuntu に Tello-Console をインストールする方法を解説します。紹介する導入方法は、**Ubuntu 20.04 LTS** で検証した導入方法となります。それ以前、以降の Ubuntu では、若干操作方法が異なる場合があります。
 
+> 報告<br>
+    来月（2023/4）に ChromeOS に Tello-Console をインストールする方法をこのセクションに追記予定です。
+
 1. Control キーと ALT キーと T キーを押して **端末（ここではターミナルと呼ぶことにする）** を開きます。
-2. ターミナルに、以下のコマンドを **1行づつコピペして** コマンドを実行します。コマンドの実行は **エンターキー**を押すだけです**。実行すると、**はじめにパスワードの入力が求められます。** ログイン時のパスワードを入力してエンターキーを押してください。
+2. ターミナルに、以下のコマンドを **1行づつコピペして** コマンドを実行します。コマンドの実行は **エンターキー** を押すだけです。実行すると、**はじめにパスワードの入力が求められます。** ログイン時のパスワードを入力してエンターキーを押してください。
 
   ```bash
   sudo apt update
   suto apt install -y python3-pip3 git
   pip3 install opencv-python3
-  pip3 install pytk
   cd ~ && git clone https://github.com/GAI-313/Tello-Console.git
   ```
 
 　これで **Ubuntu に Tello-Console** の導入は完了です。
 
-**これで Tello-Console** のインストールは完了です。本クラスを簡単に使用できるよう、使用するエディタは **VScode** を推奨しております。
-**[こちら](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/visual_studio_tutorial/install_and_setup_guide.md#visual-studio-インストールガイド)** 
-のセクションで VScode のダウンロードガイドを案内しております。
+**これで Tello-Console** のインストールは完了です。<br>
+
+　Tello-Console を使用してプログラムを作成するには、VScode がお勧めです。こちらで VScode のインストール方法を案内しています。（初心者向け）
+
+　- **[macOS に VScode をインストールする方法](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/visual_studio_tutorial/install_and_setup_guide.md#ubu)**
 
 <a id="taskdo"></a>
 ## Tello-Console を実行してみる
-　インストール作業が無事終了すると、**モームディレクトリ（ユーザーネームの名前のフォルダ）** に Tello-Console **ディレクトリ（フォルダのこと）** がダウンロードされています。**Tello-Console ディレクトリに移動して、sample_boot.py サンプルプログラムを実行して正常に Tello-Console が実行されるか試してみましょう**。
+　インストール作業が無事終了すると、**ホームディレクトリ（ユーザーネームの名前のフォルダ）** に Tello-Console **ディレクトリ（フォルダのこと）** がダウンロードされています。**Tello-Console ディレクトリに移動して、sample_boot.py サンプルプログラムを実行して正常に Tello-Console が実行されるか試してみましょう**。
 <br>
 
-　以下の操作は **Windows、macOS、Ubuntu 共に同じだ行です。**
+　以下の操作は **Windows、macOS、Ubuntu 共に同じです。**
 
 1. **Tello-Console ディレクトリに移動する**<br>　以下のコマンドをコピペして、Tello-Console ディレクトリに移動します。
 ```bash
@@ -346,13 +354,14 @@ cd Tello-Console
 ```bash
 python sample_boot.py
 ```
-　すると、以下のようなテキストが表示されたら **無事 Tello-Console が実行されたことを表しています。**
 
 >**SyntaxError が出た場合**<br>　Python3 をインストールした方は、実行コマンド ```python``` を、```python3``` で実行してください。
   ```bash
   python3 sample_boot.py
   ```
+　すると、以下のようなテキストが表示されたら **無事 Tello-Console が実行されたことを表しています。**<br>
 
+実行結果↓
 ```bash
 WELCOME CONSOLE ! TELLO-CONSOLE V7.0.0
 コマンド<command>を送信しました…
@@ -375,7 +384,7 @@ Tips:ドローンとPCとのWi-Fi接続を確認してください！
 この問題を解決するには、
 <br>
 
-**[コマンドプロンプトで Tello-Console のシンタックスハイライトを有効にする](https://github.com/GAI-313/Tello-Console/blob/windows/tutorial/windows/cmd_tutorial.md#%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%83%97%E3%83%AD%E3%83%B3%E3%83%97%E3%83%88%E3%81%A7-tello-console-%E3%81%AE%E3%82%B7%E3%83%B3%E3%82%BF%E3%83%83%E3%82%AF%E3%82%B9%E3%83%8F%E3%82%A4%E3%83%A9%E3%82%A4%E3%83%88%E3%82%92%E6%9C%89%E5%8A%B9%E3%81%AB%E3%81%99%E3%82%8B)**
+**[コマンドプロンプトで Tello-Console のシンタックスハイライトを有効にする](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/windows/cmd_tutorial.md#コマンドプロンプトで-tello-console-のシンタックスハイライトを有効にする)**
 <br>
 
 を参照してください。
@@ -408,23 +417,57 @@ Tips:ドローンとPCとのWi-Fi接続を確認してください！
 
 <a id="education"></a>
 # エデュケーション
-　ここでは、Tello-Console の使用方法や、プログラミングをするのにあたり必要なスキルを学べるカリキュラムを用意しています。（現在作成中）
+　ここでは、Tello-Console の使用方法や、プログラミングをするのにあたり必要なスキルを学べるカリキュラムを用意しています。以下の目次からあなたのスキルに合った学習を進めることができます。（現在作成中）
 
+- **Python 初心者**
+    現在作成中
+- **python 経験者（基本的な構文を理解している）**
+    現在作成中
+- **python 経験者（関数、クラスを理解し、オブジェクト指向のプログラムを作成できる）**
+    現在作成中
+- **とにかくドローンをプログラムしたい方には**
+    現在作成中
+- **画像処理を専門に学びたい方**
+    現在作成中
+<a id="study_support"></a>
+## スタディサポート
+　Tello-Console は、ドローンを使ってプログラミングの楽しさ、面白さを知ってもらうことを目的に作られました。以下の記事一覧を散走することで、**Python、CUI コマンド、Tello-Console の使用方法、画像処理**に関する知識を習得できます。（現在作成中）
+
+- **[Python チュートリアルその1](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/python_tutorial_1.md#python-チュートリアルその1)**
+
+<a id="samplecode_tutorial"></a>
+## サンプルコードチュートリアル
+　Tello-Console にデフォルトでダウンロードされているサンプルコードについて解説します。各サンプルコードの内容から、Tello-Console コマンドの使用方法を学ことができます。
+
+- **[sample_boot.py]()**<br>
+　Tello-Console を使うための基本
+- **[sample_flight1.py]()**<br>
+　Tello-Console を使い、Tello を離着陸させる方法
+- **[sample_flight2.py]()**<br>
+　簡易操作コマンドの使用方法
+- **[sample_get_status1.py]()**<br>
+　Tello から飛行データを取得する
+- **[sample_video1.py]()**<br>
+　Tello のカメラにアクセスする方法
+- **[sample_video2.py]()**<br>
+　Tello のカメラにアクセスし、キーボードでドローンを操作する方法
+---
+現在作成中
 <a id="howto"></a>
 ## Tello-Console を使う方法（経験者向けの内容です）
 　Tello-Console の本体は、```Tello-Console/modukes``` ディレクトリにある **tello.py の中にある console クラス** です。これを呼び出すことで使用することができます。<br>
 
-　**[PYTHONPATH に modules ディレクトリを登録した場合](#directory_setting)**、新規 python ファイルに、以下のような import 文を記述することで、tello.py の中にある **console** を使用できます。
+　console クラスを使用するには、**必ず tello-Console ディレクトリ内でプログラムを記述してください。** （PYTHONPATH を使い環境に反映させる方法を模索中です。）
 ```python3
 from modules.tello import console
 ```
-　console クラスを、任意の変数に格納することでインスタンス化（活性化）し、インスたん化された時点で console クラスのドローンへの接続準備およびドローンに対する診断を行います。
+　console クラスを、任意の変数に格納することでインスタンス化（活性化）し、インスタンス化された時点で console クラスのドローンへの接続準備およびドローンに対する診断を行います。
 ```python3
 from modules.tello import console
 
 drone = console()
 ```
-　console クラスに用意された各メソッドが **ドローンを操作するためのコマンド** として機能します。例えば、Tello を離陸、着陸させるなら、このように書けば実装できます。
+　console クラスに用意された各メソッドが **ドローンを操作するためのコマンド** として機能します。例えば、Tello を離陸、着陸させるなら、このように書けば実装できます。詳しい情報は **[メソッド、コマンド一覧]()** または VScode からサマリーを参照してください。
 ```python3
 from modules.tello import console
 
@@ -437,24 +480,6 @@ drone.land() # land メソッドを実行し、ドローンを着陸させる
 　Tello-Concolse コマンド（メソッド）については、
 **[メソッド（Tello-Console コマンド一覧）](#commandlist)**
 を参照してください。
-
-<a id="study_support"></a>
-## スタディサポート
-　Tello-Console は、ドローンを使ってプログラミングの楽しさ、面白さを知ってもらうことを目的に作られました。以下の記事一覧を散走することで、**Python、CUI コマンド、Tello-Console の使用方法、画像処理**に関する知識を習得できます。
-
-- **[Python チュートリアルその1](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/python_tutorial_1.md#python-チュートリアルその1)**
-
-<a id="samplecode_tutorial"></a>
-## サンプルコードチュートリアル
-　Tello-Console にデフォルトでダウンロードされているサンプルコードについて解説します。各サンプルコードの内容から、Tello-Console コマンドの使用方法を学ことができます。
-
-- **[sample_boot.py]()**
-- **[sample_flight1.py]()**
-- **[sample_flight2.py]()**
-
----
-現在作成中
-
 <a id="commandlist"></a>
 # メソッド（Tello-Console コマンド一覧）
 ---
@@ -463,6 +488,7 @@ drone.land() # land メソッドを実行し、ドローンを着陸させる
 <a id="releasenote"></a>
 # リリースノート
 ## Tello-Console Ver.7.0.2
+　チュートリアルの作成、修正を行いました（3／20）
 　いくつかのバグを修正しました。（3／16）
 
 - get コマンドから取得されるデータから None が返される問題を修正しました。

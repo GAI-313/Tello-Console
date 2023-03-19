@@ -8,7 +8,7 @@
     <br>
     VScode をインストールしていない場合、
     <br>
-    **[VScode をインストールする](https://github.com/GAI-313/Tello-Console/blob/windows/tutorial/visual_studio_tutorial/install_and_setup_guide.md#visual-studio-%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B)**
+    **[VScode をインストールする](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/visual_studio_tutorial/install_and_setup_guide.md#windows-に-vscode-をインストールする方法)**
     <br>
     を参照して、VScode をインストールしてください。
 2. **Tello-Console の tello.py を開く**

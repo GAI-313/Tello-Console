@@ -10,11 +10,17 @@
 <a id='win'></a>
 ## Windows に VScode をインストールする方法
 **[Visual Studio Code の環境設定を行う に進む](#setting)**
+- **https://code.visualstudio.com/download**
+ から **VisualStudio Code Windows 向け** をダウンロードします。
+- エクスプローラーを開いて、ダウンロードされた VScode.exe を実行します。
+- インストーラーウィザードの手順に従ってインストール作業を行なってください。（基本 Next と OK をクリックするだけで大丈夫です。）
+<br>
+**[Visual Studio Code の環境設定を行う に進む](#setting)**
 
 <a id='mac'></a>
 ## mac に VScode をインストールする方法
-- **[Visual Studio Code をインストールする](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/visual_studio_tutorial/install_and_setup_guide.md#mac-に-vscode-をインストールする方法)**
- から VisualStudio Code をダウンロードします。
+- **https://code.visualstudio.com/download**
+ から **VisualStudio Code macOS 向け** をダウンロードします。
 - Finder のダウンロードフォルダに、VScode がダウンロードされています。これを **"アプリケーションフォルダ"** に移動します。
 - Launchpad から、VScode を開きます。または Spotlight 検索で **"code"** と検索します。
 
@@ -24,6 +30,24 @@
 
 <a id='ubu'></a>
 ## Ubuntu（Linux） に VScode をインストールする方法
+- **https://code.visualstudio.com/download**
+ から **VisualStudio Code Linux > Ubuntu 向け** をダウンロードします。
+- ターミナルを開き、以下の手順に沿って作業を進めてください。
+    1. **Downloads** ディレクトリに移動する
+        ```bash
+        cd ~/Downloads
+        ```
+    2. 以下のコマンドを入力する
+        ```bash
+        sudo apt -y install ./code
+        ```
+    3. タブキーを押す
+    4. 自動でテキストが入力されたら成功です。エンターキーを押してコマンドを実行します。
+        ```bash
+        sudo apt -y install ./code-xxx-xxxx.deb
+        ```
+　正常にインストールが完了すると、アプリケーション一覧に VScode が表示されています。<br>
+　
 **[Visual Studio Code の環境設定を行う に進む](#setting)**
 
 <a id='setting'></a>
