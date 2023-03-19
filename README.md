@@ -176,6 +176,7 @@ English version is **[here](https://github.com/GAI-313/Tello-Console/blob/eng/RE
   ```
 
   > **コマンドプロンプトで git コマンドが認識されない場合**<br>
+<<<<<<< HEAD
         上記の git コマンドを実行したとき、以下のようなエラーが表示された場合、**以下の手順** に沿って Tello-Console をインストールしてください。<br>       　
     <center>
     <img src='https://i.imgur.com/PEJ8Xjh.jpg'>
@@ -196,7 +197,7 @@ English version is **[here](https://github.com/GAI-313/Tello-Console/blob/eng/RE
         ```
         cd ~ && git clone https://github.com/GAI-313/Tello-Console.git
         ```
-        
+
 これで **WindowsにTello-Console のインストールする作業は完了です！！**
 
 > **ヒント**
@@ -471,6 +472,60 @@ drone.land() # land メソッドを実行し、ドローンを着陸させる
 を参照してください。
 <a id="commandlist"></a>
 # メソッド（Tello-Console コマンド一覧）
+
+　ここでは、Tello-Console が提供するコマンドを一覧で表示します。コマンド名をクリックすると、該当コマンドの詳細が表示されます。
+
+- **[コントロールコマンド](#cmd_a)**<br>
+　ドローンを操作するのに使用するコマンド群です。
+- **[設定コマンド](#cmd_b)**<br>
+　ドローンの設定を変更するのに使用するコマンド群です。
+- **[取得コマンド](#cmd_c)**<br>
+　ドローンからの情報を取得するのに使用するコマンド群です。
+
+<a id='cmd_a'></a>
+## コントロールコマンド
+
+### 離陸関連コマンド
+- **[takeoff コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/takeoff.md)**
+- **[motor_start コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/motor_start.md)**
+
+### 着陸、モーター関連コマンド
+- **[land コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/land.md)**
+- **[motor_stop コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/motor_stop.md)**
+
+### 安全、緊急停止コマンド
+- **[emergency コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/emergency.md)**
+- **[stop コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/stop.md)**
+
+### 簡易操作コマンド
+- **[up コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/up.md)**
+- **[down コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/down.md)**
+- **[forward コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/forward.md)**
+- **[back コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/back.md)**
+- **[left コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/left.md)**
+- **[right コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/right.md)**
+- **[cw コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/cw.md)**
+- **[ccw コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/ccw.md)**
+- **[flip コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/flip.md)**
+
+### 高度操作コマンド
+- **[rc コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/rc.md)**
+- **[go コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/go.md)**
+- **[curve コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/curve.md)**
+
+<a id='cmd_b'></a>
+## 設定コマンド
+- **[reboot コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/reboot.md)**
+- **[wait コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/wait.md)**
+
+<a id='cmd_c'></a>
+## 取得コマンド
+- **[get_flighttime コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/get_flighttime.md)**
+- **[get_height コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/get_height.md)**
+- **[get_tof コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/get_tof.md)**
+- **[get_imu コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/get_imu.md)**
+- **[get_speed コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/get_speed.md)**
+- **[get_battery コマンド](https://github.com/GAI-313/Tello-Console/blob/command/tutorial/command_list/get_battery.md)**
 ---
 現在作成中
 
