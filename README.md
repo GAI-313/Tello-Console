@@ -28,14 +28,14 @@ English version is **[here](https://github.com/GAI-313/Tello-Console/blob/eng/RE
 
 　Tello-Console は DJI Ryze Tech Tello-EDU 向けの Python プログラムツールです。このライブラリを実装することで、ドローン操作メソッド（ドローンを操作するためのプログラム関数）をコマンド感覚で使用でき、Python をこれから始める人でもすぐにドローンを使ったプログラムの実装が可能になります。ベースとした SDK は 
 [TelloSDK](https://dl.djicdn.com/downloads/RoboMaster+TT/Tello_SDK_3.0_User_Guide_en.pdf)
- で、これらに追加機能を多く搭載し最適化したのがこの Tello-Console です。
+ で、これらに追加機能を多く搭載し最適化したものが Tello-Console です。
 <br>
 
 **主な特徴**
 
-- **わかりやすいステータス表示**<br>　ドローンに対してどんなコマンドを送信したか、ドローンからどのような応答が来たのか、どのようなエラーが発生したのか、そのエラーの解決方法はあるのか、、などの状況を表示してくれるので、自己解決が容易にできます。また、Tello-Console と Tello 間の通信状況の表示を無効にすることもできます。
+- **わかりやすいステータス表示**<br>　ドローンに対してどんなコマンドを送信したか、ドローンからどのような応答が来たのか、どのようなエラーが発生したのか、そのエラーの解決方法はあるのか、などの状況を表示してくれるので、自己解決が容易にできます。また、Tello-Console と Tello 間の通信状況の表示を無効にすることもできます。
 - **自動着陸問題を回避できる**<br>　Tello は SDK モード（プログラムによってドローンを操作できるモード）の時、15秒間何もコマンドが送信されないと自動で着陸します。この問題は本ライブラリではデフォルトで無効になっているため、ドローンを継続して飛行させることができることで柔軟なプログラムを構築できます。
-- **カメラへのアクセスが容易**<br>　Tello のカメラへアクセスするには、OpenCV を使用して、frame 変数を取得するだけで使用できます。また、
+- **カメラへのアクセスが容易**<br>　Tello のカメラへアクセスするには、OpenCV を使用して、frame 変数を取得するだけで使用できます。<br>　また、
 [TelloSDK 3.0](https://dl.djicdn.com/downloads/RoboMaster+TT/Tello_SDK_3.0_User_Guide_en.pdf) 
 によって Tello の前方カメラのみでなく、機体下部のビジョンカメラへのアクセスも可能です。
 - **豊富なコマンド**<br>　TelloSDK3.0 をサポートしているため、豊富なコマンドをサポートしているため、柔軟なタスクを組むことができます。
@@ -305,7 +305,7 @@ English version is **[here](https://github.com/GAI-313/Tello-Console/blob/eng/RE
 
 <a id="install_ubuntu"></a>
 ## Ubuntu（Linux） に Tello-Console を導入する方法
-　Ubuntu に Tello-Console をインストールする方法を解説します。紹介する導入方法は、**Ubuntu 20.04 LTS** で検証した導入方法となります。それ以前、以降の Ubuntu では、若干操作方法が異なる場合があります。
+　Ubuntu に Tello-Console をインストールする方法を解説します。紹介する導入方法は、**Ubuntu 20.04 LTS** で検証した導入方法となります。それ以前、以降の Ubuntu では若干、操作方法が異なる場合があります。
 
 > 報告<br>
     来月（2023/4）に ChromeOS に Tello-Console をインストールする方法をこのセクションに追記予定です。
@@ -536,7 +536,7 @@ drone.land() # land メソッドを実行し、ドローンを着陸させる
 <a id="releasenote"></a>
 # リリースノート
 ## Tello-Console Ver.7.0.2
-　チュートリアルの作成、修正を行いました（3／20）<br>
+　チュートリアルの作成、修正を行いました。（3／20）<br>
 　いくつかのバグを修正しました。（3／16）
 
 - get コマンドから取得されるデータから None が返される問題を修正しました。
