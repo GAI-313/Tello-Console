@@ -194,6 +194,7 @@ English version is **[here](https://github.com/GAI-313/Tello-Console/blob/eng/RE
         <center>
         <img src='https://i.imgur.com/UgwW41M.jpg' height=300>
         </center>
+        <br>
         ```
         cd ~ && git clone https://github.com/GAI-313/Tello-Console.git
         ```
@@ -217,8 +218,7 @@ English version is **[here](https://github.com/GAI-313/Tello-Console/blob/eng/RE
 3. 候補として出てきた **"ターミナル.app"** を起動します。
 
 > **ターミナルの外観設定をしていない方へ**<br>
-
-    　**[ターミナルの外観を最適化する](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/for_mac/terminal_setting_tutorial.md#ターミナルの外観を最適化する)** を参照し、ターミナルの外観を設定してください。Tello-Console を実行する際の表示に問題が発生します。（今後対策予定）
+> **[ターミナルの外観を最適化する](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/for_mac/terminal_setting_tutorial.md#ターミナルの外観を最適化する)** を参照し、ターミナルの外観を設定してください。Tello-Console を実行する際の表示に問題が発生します。（今後対策予定）
 
 4. 以下のコマンドを**コピペ**してコマンドを実行してください。コマンドの実行は **エンターキー**を押すだけです。
     <a id='mac_checkpyv'></a>
