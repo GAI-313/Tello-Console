@@ -24,10 +24,10 @@ drone.ccw(90)
 
 ## 関連コマンド
 
-- [back コマンド]()
-- [forward コマンド]()
-- [down コマンド]()
-- [left コマンド]()
-- [right コマンド]()
-- [cw コマンド]()
-- [flip コマンド]()
+- [back コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/back.md)
+- [forward コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/forward.md)
+- [down コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/down.md)
+- [left コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/left.md)
+- [right コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/right.md)
+- [cw コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/cw.md)
+- [flip コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/flip.md)

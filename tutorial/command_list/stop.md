@@ -30,6 +30,5 @@ except KeyboardInterrupt:
 - 安全にドローンを停止させたい場合は、stop コマンドの後に **[land コマンド]()** で着陸させると良いでしょう。
 
 ## 関連コマンド
-
-- [land コマンド]()
-- [emergency コマンド]()
+- [land コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/land.md)
+- [emergency コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/emergency.md)

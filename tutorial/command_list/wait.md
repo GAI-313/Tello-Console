@@ -16,4 +16,4 @@ drone.land()
 ```
 
 ## 関連コマンド
-- [speed コマンド]()
+- [speed コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/speed.md)

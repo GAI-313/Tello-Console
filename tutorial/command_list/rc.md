@@ -23,8 +23,5 @@
 - ラダー：機体の旋回
 
 ## 関連コマンド
-
-- [throwfly コマンド]()
-- [motor_start コマンド]()
-- [motor_stop コマンド]()
-- [stop コマンド]()
+- [go コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/go.md)
+- [curve コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/curve.md)

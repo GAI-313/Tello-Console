@@ -17,5 +17,4 @@ drone.reboot()
 - 再起動後は、もう一度ドローンとの接続を行なってください。
 
 ## 関連コマンド
-
-- [emergency コマンド]()
+- [emergency コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/reboot.md)

@@ -18,13 +18,10 @@ drone = console()
 drone.land()
 ```
 
-## land コマンドの関連コマンド
+## 関連コマンド
+- [takeoff コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/takeoff.md)
+- [emergency コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/emergency.md)
+- [stop コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/stop.md)
+- [motor_stop コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/motor_stop.md)
+- [motor_start コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/motor_start.md)
 
-- [takeoff コマンド]()
-- [emergency コマンド]()
-- [rc コマンド]()
-- [stop コマンド]()
-
-## 類似のコマンド
-
-- [motor_stop コマンド]()

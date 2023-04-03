@@ -26,9 +26,8 @@ drone.land()
 　ミリ単位での飛行時間は取得できません。当コマンドで取得できる値は int 型です。
 
 ## 関連コマンド
-
-- [get_battery コマンド]()
-- [get_tof コマンド]()
-- [get_imu コマンド]()
-- [get_height コマンド]()
-- [get_speed コマンド]()
+- [get_battery コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/get_battery.md)
+- [get_tof コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/get_tof.md)
+- [get_imu コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/get_imu.md)
+- [get_height コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/get_height.md)
+- [get_speed コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/get_speed.md)

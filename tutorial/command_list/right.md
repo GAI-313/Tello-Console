@@ -23,12 +23,11 @@ drone.right(40)
 - このコマンドは **[takeoff コマンド]()** などのドローンを離陸させた後で使用しないとエラーが発生します。
 
 ## 関連コマンド
-
-- [forward コマンド]()
-- [up コマンド]()
-- [down コマンド]()
-- [back コマンド]()
-- [left コマンド]()
-- [ccw コマンド]()
-- [cw コマンド]()
-- [flip コマンド]()
+- [forward コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/forward.md)
+- [up コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/up.md)
+- [down コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/down.md)
+- [back コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/back.md)
+- [left コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/left.md)
+- [ccw コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/ccw.md)
+- [cw コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/cw.md)
+- [flip コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/flip.md)

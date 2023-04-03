@@ -20,6 +20,7 @@ drone.stop() # rc コマンド出力を停止
 - **[motor_stop コマンド]()** でモーターを止めることができます。
 
 # 関連コマンド
-
-- [motor_stop コマンド]()
-- [rc コマンド]()
+- [motor_stop コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/motor_stop.md)
+- [land コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/land.md)
+- [takeoff コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/takeff.md)
+- [rc コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/rc.md)

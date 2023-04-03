@@ -20,15 +20,14 @@ drone.takeoff() # ドローンを離陸させる
 drone.left(40)
 ```
 
-- このコマンドは **[takeoff コマンド]()** などのドローンを離陸させた後で使用しないとエラーが発生します。
+- このコマンドは **[takeoff コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/takeoff.md)** などのドローンを離陸させた後で使用しないとエラーが発生します。
 
 ## 関連コマンド
-
-- [forward コマンド]()
-- [up コマンド]()
-- [down コマンド]()
-- [back コマンド]()
-- [right コマンド]()
-- [ccw コマンド]()
-- [cw コマンド]()
-- [flip コマンド]()
+- [forward コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/forward.md)
+- [up コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/up.md)
+- [down コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/down.md)
+- [back コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/back.md)
+- [right コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/right.md)
+- [ccw コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/ccw.md)
+- [cw コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/cw.md)
+- [flip コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/flip.md)

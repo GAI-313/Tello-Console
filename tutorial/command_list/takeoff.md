@@ -15,12 +15,7 @@ drone = console()
 drone.takeoff()
 ```
 
-## takeoff コマンドの関連コマンド
-
-- [land コマンド]()
-- [emergency コマンド]()
-- 
-
-## 類似のコマンド
-
-- [motor_start コマンド]()
+## 関連コマンド
+- [forward コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/forward.md)
+- [land コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/takeoff.md)
+- [emergency コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/emergency.md)

@@ -19,4 +19,5 @@ drone.land()
 ```
 
 ## 関連コマンド
-- [wait コマンド]()
+- [wait コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/wait.md)
+- [stop コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/stop.md)

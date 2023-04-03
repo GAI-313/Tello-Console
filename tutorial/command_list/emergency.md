@@ -28,5 +28,5 @@ except KeyboardInterrupt:
 - 緊急対策用にこのコマンドを使用してください。常用するとドローンが破損する恐れがあります。
 
 ## emergency コマンドの関連コマンド
-
-- [reboot コマンド]()
+- [reboot コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/reboot.md)
+- [stop コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/stop.md)

@@ -48,11 +48,5 @@ drone.land()
 
 ## 関連コマンド
 
-- [back コマンド]()
-- [forward コマンド]()
-- [down コマンド]()
-- [left コマンド]()
-- [right コマンド]()
-- [ccw コマンド]()
-- [cw コマンド]()
-- [flip コマンド]()
+- [rc コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/rc.md)
+- [curve コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/curve.md)

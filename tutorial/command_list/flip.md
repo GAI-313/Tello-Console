@@ -39,10 +39,10 @@ drone.flip("l")
 
 ## 関連コマンド
 
-- [back コマンド]()
-- [up コマンド]()
-- [down コマンド]()
-- [left コマンド]()
-- [right コマンド]()
-- [ccw コマンド]()
-- [cw コマンド]()
+- [back コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/back.md)
+- [up コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/up.md)
+- [down コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/down.md)
+- [left コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/left.md)
+- [right コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/right.md)
+- [ccw コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/ccw.md)
+- [cw コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/xw.md)

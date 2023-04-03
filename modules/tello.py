@@ -42,11 +42,11 @@ class console:
             language (str, optional): エラー、警告、ヒントの言語設定を設定します。デフォルトは"jp"。
             jp: 日本語
             us: 英語
-            TaskKill (bool, optional): エラーによりプログラムを終了させるか、終了させずにレスポンスのみを返すようにするかを指定します。
+            TaskKill (bool, optional): この引数は使用しないでください。現在停止中です。
             True: （デフォルト）エラーを検知したときにプログラムを終了します。
             False: エラーを検知したときプログラムからのレスポンスを渡します。
         """
-        SYS_VER = '7.0.2'
+        SYS_VER = '7.1.0'
         print('\x1b[32m'+"WELCOME CONSOLE ! TELLO-CONSOLE V%s"%(SYS_VER)+'\x1b[0m') # このモジュールのバージョンを最初に表示します。
 
         # 必要な変数の初期値を設定
@@ -56,33 +56,33 @@ class console:
         self.recv_output_frag = recv # ターミナルに出力結果を表示させるかどうかを苦伐するフラグ
         self.flight_frag = False # ドローンが離陸したら立ち上がるフラグ
         self.flight_timeout_frag = False # 飛行中コマンド送信なしの中13秒経過すると立ち上がるフラグ
-        self.vision_frag = False
-        self.killer_frag = False
+        self.vision_frag = False # VPS カメラの画角を反転させるフラグ
+        self.killer_frag = False # 各スレッドメソッドを停止（キル）するフラグ。試験用
         self.cap = None # ドローンからのキャプチャデータを格納する変数
         self.frame = None #キャプチャデータを読み込んだ際のデータを格納する変数
         self.error_msg = None # メインプログラムにこのクラス内で発生したエラーを返すための変数
         self.result_deliver = None
-        self.MAIN_MSG ='None'
+        self.MAIN_MSG ='None' # Console のステータスをメッセージとして格納する変数。
         self.drone_state = 'None'
         self.current_time = time.time() # 現在の経過時刻を取得
         self.current_time_fun = self.current_time
         self.pre_time = self.current_time # 現在時刻を補完する変数
         self.lang = language # レスポンス時の使用言語
         self.battery_level = 0 # バッテリー情報を記録する変数
-        self.taskkill = TaskKill
-        self.test_count = 0
-        self.backup = [0,0,0,0,0,0]
+        # self.taskkill = TaskKill
+        self.allow_loop = False # ビデオスレッドのループフラグ
+        self.backup = [0,0,0,0,0,0] # 各ドローンパラメータをバックアップするリスト。Noneデータエラーを回避する。
         
         # tello との接続を確立させる
         self.local_ip = ''
         self.local_port = 8889
-        self.local_video_port = 11111
+        self.local_vidoeo_port = 11111
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        self.MAIN_MSG = '接続を開始'
+        self.MAIN_MSG = 'START CONNECTION'
         self.socket.bind((self.local_ip, self.local_port)) # ここでドローンとの接続を行う
 
         # _recv_thread の並列実行のためのセットアップ
-        self.MAIN_MSG = 'recv thread を起動'
+        self.MAIN_MSG = 'LAUNCH RECV THREAD'
         self.recv_thread = threading.Thread(target=self._recv_thread)
         self.recv_thread.daemon = True
         self.recv_thread.start()
@@ -95,37 +95,32 @@ class console:
         self.tello_video_address = 'udp://@0.0.0.0:11111'
 
         # 'command'というコマンドを送信してドローンをSDKモードにする
-        self.MAIN_MSG = '接続コマンドを送信します'
+        self.MAIN_MSG = 'SEND COMMAND CMD'
         self.send_cmd('command', True, setup=True)
 
         # バッテリー残量チェック
         self.battery_check()
 
-        # 'streamon'コマンドでビデオ通信用ポートを解放する
-        self.send_cmd('streamon', setup=True)
+        ## 'streamon'コマンドでビデオ通信用ポートを解放する
+        # self.send_cmd('streamon', setup=True)
 
         # SDK バージョンを確認
         self.sdk_check()
 
-        # ビデオ受信メソッド _recv_video_thread を並列実行させる
-        self.recv_video_thread = threading.Thread(target=self._recv_video_thread)
-        self.recv_video_thread.daemon = True
-        self.recv_video_thread.start()
+        ## ビデオ受信メソッド _recv_video_thread を並列実行させる
+        #self.recv_video_thread = threading.Thread(target=self._recv_video_thread)
+        #self.recv_video_thread.daemon = True
+        #self.recv_video_thread.start()
 
         # タイムアウトスレッドを構築
         self.timeout_thread = threading.Thread(target=self._timeout_thread)
         self.timeout_thread.daemon = True
         self.timeout_thread.start()
 
-        while True:
-            if self.frame is not None:
-                if self.lang == "jp":
-                    print('\x1b[32m'+"セットアップ完了！"+'\x1b[0m')
-                    self.MAIN_MSG = '準備完了'
-                else:
-                    print('\x1b[32m'+"SET UP IS DONE"+'\x1b[0m')
-                time.sleep(1)
-                break
+        # READY TO GO
+        self.MAIN_MSG = 'READY TO GO'
+
+        
     
     def battery_check(self):
         """システムチェック：ドローンのバッテリーチェックを行います。
@@ -149,6 +144,7 @@ class console:
                         sys.exit()
                     else:
                         self.error_msg = 'Low Battery Warning'
+                        self.MAIN_MSG = 'CRITICAL LAW BATTERY'
                         self.thread_closer()
                         
                 elif battery < 50:
@@ -156,11 +152,14 @@ class console:
                         print('\x1b[33m'+"注意: バッテリー残量が 50% 以下です。flip コマンドは無効になります。"+'\x1b[0m') # flip コマンドが使えなくなることを警鐘
                     else:
                         print('\x1b[33m'+"WARNING: BATTERY LEVEL IS LESS 50%. CAN'T USE FLIP CMD!"+'\x1b[0m') # flip コマンドが使えなくなることを警鐘
+
+                    self.MAIN_MSG = 'LAW BATTERY WARNING'
                 
                 if self.lang == "jp":
                     print('\x1b[37m'+'現在のバッテリー残量：%d'%(battery)+'\x1b[0m')
                 else:
                     print('\x1b[37m'+'Current battery : %d'%(battery)+'\x1b[0m')
+                self.MAIN_MSG = 'BATERY IS OK'
                 time.sleep(3)
                 self.battery_level = battery
                 break
@@ -177,15 +176,19 @@ class console:
         sdk = self.send_cmd("sdk?", setup=True)
         while True:
             if sdk == "None response":
+                self.MAIN_MSG = 'RESENDING IN SDK CHECK'
                 sdk = self.send_cmd("sdk?")
             else:
                 if int(sdk) < 30:
+                    self.MAIN_MSG = 'SDK WARNING'
                     if self.lang == "jp":
                         print('\x1b[33m'+"警告!:downvision コマンドは使用できません。"+'\x1b[0m')
                         print('\x1b[33m'+"ヒント:お使いのドローンのファームウェアを更新してください。"+'\x1b[0m')
                     else:
                         print('\x1b[33m'+"WARNING!: THIS VERSION IS CAN'T USE DOWNVISION CMD !"+'\x1b[0m')
                         print('\x1b[33m'+"TIPS!: YOU SHOULD BE UPDATE THIS AIRCRAFT'S FW"+'\x1b[0m')
+                else:
+                    self.MAIN_MSG = 'SDK IS OK'
                 break
 
     def __del__(self):
@@ -358,13 +361,14 @@ class console:
             self.cap.open(self.tello_video_address)
         
         time.sleep(0.5)
-        while True :
+        while self.allow_loop == True :
             if self.killer_frag is True:
                 print('Break')
                 break
             try:
                 ret, frame = self.cap.read() # cap から取り込まれたデータを frame に格納する
 
+                # VPS カメラを取得したら画像を90度反転させる
                 if self.vision_frag == True:
                     frame = cv2.rotate(frame, cv2.ROTATE_90_CLOCKWISE)
                 else:
@@ -1101,6 +1105,22 @@ class console:
                 self.error_msg = 'Task Erorr'
                 self.thread_closer()
 
+    def set_wifi(self, ssid, password):
+        try:
+            if ssid is None or password is None:
+                print('コマンドエラー。引数が足りません。このこのコマンドはスキップします。')
+            else:
+                response = self.send_cmd('wifi %s %s'%(ssid, password))
+                sys.exit()
+        except:
+            import traceback
+            traceback.print_exc()
+            if self.taskkill is True:
+                sys.exit()
+            else:
+                self.error_msg = 'Task Erorr'
+                self.thread_closer()
+
     def downvision(self, angle):
         """カメラを切り替えます。（下方カメラへのアクセスを有効にします）
 
@@ -1114,9 +1134,9 @@ class console:
         """
         try:
             if angle == 1:
-                self.vision_frag = True
+                self.vision_frag = True # カメラ画角を90度反転させるフラグを立てる
             else:
-                self.vision_frag = False
+                self.vision_frag = False # カメラ画角を90度反転させるフラグを下げる
             
             return self.send_cmd('downvision {}'.format(angle))
 
@@ -1146,7 +1166,26 @@ class console:
         try:
             if video == 1:
                 response = self.send_cmd('streamon')
+                ### ビデオデータを取得するスレッドの起動
+                # ビデオ受信メソッド _recv_video_thread を並列実行させる
+                self.recv_video_thread = threading.Thread(target=self._recv_video_thread)
+                self.recv_video_thread.daemon = True
+                self.allow_loop = True
+                self.recv_video_thread.start()
+
+                while True:
+                    if self.frame is not None:
+                        if self.lang == "jp":
+                            print('\x1b[32m'+"セットアップ完了！"+'\x1b[0m')
+                            self.MAIN_MSG = '準備完了'
+                        else:
+                            print('\x1b[32m'+"SET UP IS DONE"+'\x1b[0m')
+                        time.sleep(1)
+                        break
             elif video == 0:
+                ### ビデオデータスレッドを停止
+                self.allow_loop = False
+                self.recv_video_thread.join()
                 response = self.send_cmd('streamoff')
             
             return response

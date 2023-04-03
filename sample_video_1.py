@@ -8,6 +8,7 @@ from modules.tello import console # modules ディレクトリ内の tello.py �
 import cv2 # 画像を扱うので open cv をインポートする
 
 drone = console() # console クラスを任意の変数に格納して console のインスタンスを生成する
+drone.stream(1)
 
 while True:
     frame = drone.frame # クラス内にある frame 変数を持ってくる。この変数にドローンのカメラデータが入っている。
@@ -22,6 +23,7 @@ while True:
         break
 
 cv2.destroyAllWindows()
+drone.stream(0)
 
 '''
 このプログラムはドローンから前方のカメラデータを取得して、ウィンドウ状にリアルタイムで表示します。

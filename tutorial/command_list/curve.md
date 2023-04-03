@@ -56,14 +56,5 @@
     $$
 
 ## 関連コマンド
-
-- [forward コマンド]()
-- [back コマンド]()
-- [up コマンド]()
-- [down コマンド]()
-- [left コマンド]()
-- [right コマンド]()
-- [ccw コマンド]()
-- [cw コマンド]()
-- [flip コマンド]()
-- [go コマンド]()
+- [go コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/go.md)
+- [rc コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/rc.md)
