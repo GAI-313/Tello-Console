@@ -191,13 +191,12 @@ English version is **[here](https://github.com/GAI-313/Tello-Console/blob/eng/RE
          もし、上記のウィンドウが表示されていない場合は、**検索バー** で **"git"** と入力して候補に出てきた **"Git Bash"** を実行してください。<br>
     2. **コマンドを実行**<br>
         　以下のコマンドを **１行ずつコピペ実行してください。** Git Bash は、**ショートカットキー Control + V** が利用できません。右クリックして **Paste** をクリックしてください。<br>
-        <center>
-        <img src='https://i.imgur.com/UgwW41M.jpg' height=300>
-        </center>
-        <br>
         ```
         cd ~ && git clone https://github.com/GAI-313/Tello-Console.git
         ```
+        <center>
+        <img src='https://i.imgur.com/UgwW41M.jpg' height=300>
+        </center>
 
 これで **WindowsにTello-Console のインストールする作業は完了です！！**
 
