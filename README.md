@@ -63,29 +63,28 @@ English version is **[here](https://github.com/GAI-313/Tello-Console/blob/eng/RE
 
 > 現在 WIndows では Tello からのカメラビューアクセスに遅延が発生する問題を抱えています。現在調査中ですが、可能であれば Linux での運用を強くお勧めします。
 
-1. **コマンドプロンプトを開く**<br>
-  　検索バーに **cmd** と入力して、**コマンドプロンプト** を開きます。
-    > ~~コマンドプロンプトについて詳しく知りたい場合は、**[コマンドプロンプト　コマンドガイド]()** を参照してください。現在作成中。
+### 1.コマンドプロンプトを開く
+　検索バーに **cmd** と入力して、**コマンドプロンプト** を開きます。
+> ~~コマンドプロンプトについて詳しく知りたい場合は、**[コマンドプロンプト　コマンドガイド]()** を参照してください。現在作成中。
 
-  <center>
-  <img src='https://i.imgur.com/s8JJNEA.png' height=400>
-  </center>
+<center>
+<img src='https://i.imgur.com/s8JJNEA.png' height=400>
+</center>
 
-2. **python コマンドを入力する**<br>
-  　黒いウィンドウが表示されたら、そこに **python** と入力してください。
-  <center>
-  <img src='https://i.imgur.com/naM8CLc.jpg' height=400>
-  </center>
+### 2.python コマンドを入力する
+　黒いウィンドウが表示されたら、そこに **python** と入力してください。
+<center>
+<img src='https://i.imgur.com/naM8CLc.jpg' height=400>
+</center>
 　入力したら、エンターキーを押して入力されたコマンドを実行します。
-  <center>
-  <img src='https://i.imgur.com/NieH4D8.jpg' height=200>
-  </center>
-  <br>
+<center>
+<img src='https://i.imgur.com/NieH4D8.jpg' height=200>
+</center>
+<br>
 
-  実行して、**Microsoft Store** が開いたら、**手順3** から順番に作業を進めてください。Microsoft Store アプリが開かずにコマンドプロンプトの表示が変わったら **[手順4](#winp4)** から作業を進めてください。あなたの環境にはすでに python がインストールされています。
+実行して、**Microsoft Store** が開いたら、**手順3** から順番に作業を進めてください。Microsoft Store アプリが開かずにコマンドプロンプトの表示が変わったら **[手順4](#winp4)** から作業を進めてください。あなたの環境にはすでに python がインストールされています。
 
-3. **python をインストールする**<br>
-
+### 3.python をインストールする
   　**MicroSoft Store** が開いたら、**インストール** をクリックして、表示されている **python** をインストールします。
   <center>
   <img src='https://i.imgur.com/NF2hJqH.jpg' height=400>
@@ -95,9 +94,7 @@ English version is **[here](https://github.com/GAI-313/Tello-Console/blob/eng/RE
   **インストールボタン** が、**スタートピンに固定** に表示が変わったらインストールは完了です。コマンドプロンプトに戻り、もう一度 **python** コマンドを実行してください。
 
 <a id='winp4'></a>
-4. **確認**
-  <br>
-
+### 4.確認
   　python を実行すると、以下のように表示が切り替わります。このように末尾が ```>``` から ```>>>``` に変わったら **無事 Python のインストールは成功です！**
 
   <center>
@@ -112,85 +109,79 @@ English version is **[here](https://github.com/GAI-313/Tello-Console/blob/eng/RE
   </center>
   <br>
 
-5. **必要なパッケージをインストールする**
-  <br>
-
+### 5.必要なパッケージをインストールする
   　以下のコマンドを **1行づつコピペして** 実行します。
-  ```bash
-  pip3 install opencv-python
-  ```
+```bash
+pip3 install opencv-python
+```
 
-6. Tello-Console をインストールするには、**git**  をインストールする必要があります。
-  <br>
+### 6.Tello-Console をインストールする
+　Tello Console は、Git というプログラムを共有できる場所からインストールする必要があります。そのためにここで git をセットアップを行います。<br>
 
-  　Tello Console は、Git というプログラムを共有できる場所からインストールする必要があります。そのためにここで git をセットアップを行います。<br>
+　以下のリンクから、**Git for Windows** をダウンロードします。以下のサイトにある **Download** をクリックします。
 
-  　以下のリンクから、**Git for Windows** をダウンロードします。以下のサイトにある **Download** をクリックします。
+- https://gitforwindows.org
 
-  - https://gitforwindows.org
+<br>
+<center>
+<img src='https://i.imgur.com/NEutaG8.jpg' height=400>
+</center>
+<br>
 
-  <br>
+　ダウンロードフォルダにダウンロードされたインストーラがあります。これを実行します。
+
+<br>
+<center>
+<img src='https://i.imgur.com/vBbu7VT.jpg' height=400>
+</center>
+<br>
+
+　インストールウィザードの **"Next"** を、インストール進捗バーが表示されるまでひたすらクリックしてください。
+
+<br>
+<center>
+<img src='https://i.imgur.com/qWd7LG6.jpg' height=400>
+</center>
+<br>
+
+　インストール進捗バーが表示されて、これが消えたら、下のようなウィンドウが表示されます。このウィンドウにある **"Launch Git Bash"** にチェックを入れてください。
+
+<br>
+<center>
+<img src='https://i.imgur.com/MKm5S1q.jpg' height=400>
+</center>
+<br>
+
+もう一つ黒い **コマンドプロンプトみたいなウィンドウ** が表示されたら完了です。
+
+### 7.Tello-Console をダウンロードする
+　コマンドプロンプトに戻り、以下のコマンドを **1行づつコピペして** 実行します。
+```Bash
+cd %homepath%
+git clone https://github.com/GAI-313/Tello-Console.git
+```
+
+> **コマンドプロンプトで git コマンドが認識されない場合**<br>
+        上記の git コマンドを実行したとき、以下のようなエラーが表示された場合、**以下の手順** に沿って Tello-Console をインストールしてください。<br>       　
   <center>
-  <img src='https://i.imgur.com/NEutaG8.jpg' height=400>
+  <img src='https://i.imgur.com/PEJ8Xjh.jpg'>
   </center>
   <br>
-
-  　ダウンロードフォルダにダウンロードされたインストーラがあります。これを実行します。
-
-  <br>
-  <center>
-  <img src='https://i.imgur.com/vBbu7VT.jpg' height=400>
-  </center>
-  <br>
-
-  　インストールウィザードの **"Next"** を、インストール進捗バーが表示されるまでひたすらクリックしてください。
-
-  <br>
-  <center>
-  <img src='https://i.imgur.com/qWd7LG6.jpg' height=400>
-  </center>
-  <br>
-
-  　インストール進捗バーが表示されて、これが消えたら、下のようなウィンドウが表示されます。このウィンドウにある **"Launch Git Bash"** にチェックを入れてください。
-
-  <br>
-  <center>
-  <img src='https://i.imgur.com/MKm5S1q.jpg' height=400>
-  </center>
-  <br>
-
-  もう一つ黒い **コマンドプロンプトみたいなウィンドウ** が表示されたら完了です。
-
-7. **Tello-Console をダウンロードする**
-  <br>
-
-  　コマンドプロンプトに戻り、以下のコマンドを **1行づつコピペして** 実行します。
-  ```Bash
-  cd %homepath%
-  git clone https://github.com/GAI-313/Tello-Console.git
-  ```
-
-  > **コマンドプロンプトで git コマンドが認識されない場合**<br>
-          上記の git コマンドを実行したとき、以下のようなエラーが表示された場合、**以下の手順** に沿って Tello-Console をインストールしてください。<br>       　
-    <center>
-    <img src='https://i.imgur.com/PEJ8Xjh.jpg'>
-    </center>
-    <br>
-    1. **Git for Bash を開く**<br>
-        git for bash とは、先ほど説明した **コマンドプロンプトみたいなウィンドウ** のことです。<br>
-        <center>
-        <img src='https://i.imgur.com/IobUWSP.jpg' height=300>     
-        </center>
-        <br>
-         もし、上記のウィンドウが表示されていない場合は、**検索バー** で **"git"** と入力して候補に出てきた **"Git Bash"** を実行してください。<br>
-    2. **コマンドを実行**<br>
-        　以下のコマンドを **１行ずつコピペ実行してください。** Git Bash は、**ショートカットキー Control + V** が利用できません。右クリックして **Paste** をクリックしてください。<br>
-        ```
-        cd ~ && git clone https://github.com/GAI-313/Tello-Console.git
-        ```
-        <center>
-        <img src='https://i.imgur.com/UgwW41M.jpg' height=300>
-        </center>
+  1. **Git for Bash を開く**<br>
+      git for bash とは、先ほど説明した **コマンドプロンプトみたいなウィンドウ** のことです。<br>
+      <center>
+      <img src='https://i.imgur.com/IobUWSP.jpg' height=300>     
+      </center>
+      <br>
+        もし、上記のウィンドウが表示されていない場合は、**検索バー** で **"git"** と入力して候補に出てきた **"Git Bash"** を実行してください。<br>
+  2. **コマンドを実行**<br>
+      　以下のコマンドを **１行ずつコピペ実行してください。** Git Bash は、**ショートカットキー Control + V** が利用できません。右クリックして **Paste** をクリックしてください。<br>
+      ```
+      cd ~ && git clone https://github.com/GAI-313/Tello-Console.git
+      ```
+      <center>
+      <img src='https://i.imgur.com/UgwW41M.jpg' height=300>
+      </center>
 
 これで **WindowsにTello-Console のインストールする作業は完了です！！**
 
