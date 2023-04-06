@@ -13,7 +13,7 @@ English version is **[here](https://github.com/GAI-313/Tello-Console/blob/eng/RE
 
  - **[紹介](#intro)**<br>　Tello-Console に関する簡単な説明と紹介をまとめています。
  - **[Tello-Console をインストールする方法](#install)**<br>　Tello-Console をインストールする方法を解説します。
-    - **[Tello-Console を実行してみる](#taskdo)**<br>　Tello-Console を実行する方法を解説します、これを読む前に**Tello-Console をインストールしている必要があります。**
+  - **[Tello-Console を実行してみる](#taskdo)**<br>　Tello-Console を実行する方法を解説します、これを読む前に**Tello-Console をインストールしている必要があります。**
  - **[アップデート](#update)**<br>　Tello-Console をアップデートする方法を解説します
  - **[エデュケーション](#educatoin)**<br>　Pythonの でプログラミングをする方法や、Tello-Console の簡易的な使用方法をまとめています。
     - **[スタディサポート](#study_support)**<br>　Tello-Console を使う前に１から Python を勉強してみたい方はこちらを参照してください。Tello-Console をつかってドローンをプログラミングするまでの道のりを記述しています。
@@ -63,26 +63,20 @@ English version is **[here](https://github.com/GAI-313/Tello-Console/blob/eng/RE
 
 > 現在 WIndows では Tello からのカメラビューアクセスに遅延が発生する問題を抱えています。現在調査中ですが、可能であれば Linux での運用を強くお勧めします。
 
-1. **コマンドプロンプトを開く**
-  <br>
-
+1. **コマンドプロンプトを開く**<br>
   　検索バーに **cmd** と入力して、**コマンドプロンプト** を開きます。
-
-  > ~~コマンドプロンプトについて詳しく知りたい場合は、**[コマンドプロンプト　コマンドガイド]()** を参照してください。~~
-    現在作成中。
+    > ~~コマンドプロンプトについて詳しく知りたい場合は、**[コマンドプロンプト　コマンドガイド]()** を参照してください。現在作成中。
 
   <center>
   <img src='https://i.imgur.com/s8JJNEA.png' height=400>
   </center>
 
 2. **python コマンドを入力する**<br>
-
   　黒いウィンドウが表示されたら、そこに **python** と入力してください。
   <center>
   <img src='https://i.imgur.com/naM8CLc.jpg' height=400>
   </center>
-
-  　入力したら、エンターキーを押して入力されたコマンドを実行します。
+　入力したら、エンターキーを押して入力されたコマンドを実行します。
   <center>
   <img src='https://i.imgur.com/NieH4D8.jpg' height=200>
   </center>
