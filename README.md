@@ -197,6 +197,7 @@ git clone https://github.com/GAI-313/Tello-Console.git
 
 　macOS に Tello-Console をインストールする方法を解説します。紹介する導入方法は、**macOS Monterey（12.0）** で検証した導入方法となります。それ以前、以降の macOS では、若干操作方法が異なる場合があります。
 
+### 1.ターミナルを開く
 1. Command キーとSpace キーを押して SpotLight 検索を開きます。
 2. Spotlight 検索欄内に **"ターミナル"** と入力します。
 3. 候補として出てきた **"ターミナル.app"** を起動します。
@@ -204,82 +205,119 @@ git clone https://github.com/GAI-313/Tello-Console.git
 > **ターミナルの外観設定をしていない方へ**<br>
 > **[ターミナルの外観を最適化する](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/for_mac/terminal_setting_tutorial.md#ターミナルの外観を最適化する)** を参照し、ターミナルの外観を設定してください。Tello-Console を実行する際の表示に問題が発生します。（今後対策予定）
 
-4. 以下のコマンドを**コピペ**してコマンドを実行してください。コマンドの実行は **エンターキー**を押すだけです。
+### 2.Pythonのセットアップ
+　macOS はバージョンまたはお使いの環境によって Python の環境も異なります。ここではあなたが使用している Mac に標準インストールされている Python のチェックと Python のセットアップ方法を紹介します。
+
+1. 以下のコマンドを**コピペ**してコマンドを実行してください。コマンドの実行は **エンターキー**を押すだけです。
     <a id='mac_checkpyv'></a>
   ```bash
   python -V
   ```
-  　すると、**Mac に標準インストールされている Python のバージョンが返されます**。
-  <br>
+    　このコマンドは、Mac に標準でインストールされている Python のバージョンを確認するコマンドです。この時、**お使いの Mac の環境によって応答してくるテキストが異なります。**
+    以下の項目に該当した場合、項目をクリックしてセットアップを行ってください。
+    - **zsh: command not found: python** または **bash: command not found: python** と返された場合
+    - **python 2.x.x** と返された場合
+    - **python 3.x.x** と返された場合
 
-  　この時、Python のバージョンが 3.x.x であれば 
-  　**[手順 8](#mac=8)
-  　 までスキップしてください。** （手順5, 手順6 も実行しても構いません。）
-  <br>
+### A.zsh: command not found: python** または **bash: command not found: python と返された場合
+　このテキストが表示された場合、```python``` というコマンドが使用できない状態を表しています。```python3``` コマンドが使用できるか確認してみましょう。以下のコマンドをターミナルで実行してください。
+```bash
+python3 -V
+```
+```python 3.x.x``` という応答がされたら、お使いの Mac では python3 コマンドが有効であることを表しています。以下のコマンドをターミナルで実行して、python コマンドでも python3 コマンドを実行できるようにします。<br>
+　まずは現在のシェル環境を変更します。以下のコマンドをターミナルで実行してください。
+```bash
+chsh -s /bin/bash
+```
+次に、**Command + Q** でターミナルを終了し、再度ターミナルを開いてください。<br>
+　再度ターミナルが開いたら、以下のコマンドを実行してください。このコマンドは ```python``` というコマンドで ```python3``` コマンドを実行できるようエイリアスを作成するコマンドです。
+```bash
+echo "alias python='python3'" >> ~/.bash_profile
+```
+同様に以下のコマンドも実行してください。
+```bash
+echo "alias pip='pip3'" >> ~/.bash_profile
+```
+　これで python の設定は完了です。```python -V``` コマンドを実行して python3 のバージョンが表示されることを確認してください。
+```bash
+python -V
+```
+　これで Tello-Console をインストールする準備が整いました。
+### B.python 2.x.x と返された場合
+　このテキストが返されたら、現在お使いの Mac にインストールされている Python のバージョンが python2 系列であることを示しています。Tello-Console は **Python2 環境では実行できません。** ここではお使いの Mac に Python3 をインストールする方法を紹介します。<br>
+　以下のコマンドを実行して、**コマンドライン・デベロッパ・ツール** のインストールを行います。
+```bash
+gcc
+```
+　すると、画面上に以下のようなポップアップが表示されるので、**インストール** をクリックしたのちに **同意** をクリックしてください。
+<center>
+<img src='https://i.imgur.com/91TaW55.png' height=300>
+</center>
 
-  　Python のバージョンが **2.x.x** の場合、以下の **[手順5](#mac_5)** から順番に行ってください。<br>
+> Mac が電源に繋がれていないと電源に接続するように促されます。インストール作業には少々時間がかかるため、電源に接続することを推奨します。
 
-<a id="mac_5"></a>
-5. **この作業は Python のバージョンが 3.x.x の方でも実行して構いません**<br>　ターミナル上に、以下のコマンドを実行してください。
-  ```bash
-  gcc
-  ```
-  　そしたら、**"コマンドライン・デペロッッパツール のインストールを実行するか"** を要求されるので、**インストールをクリックしてインストールを実行してください。**
+インストールが完了したら、以下のコマンドを実行してシェルの環境を変更します。
+```bash
+chsh -s /bin/bash
+```
+次に、**Command + Q** でターミナルを終了し、再度ターミナルを開いてください。<br>
+　再度ターミナルが開いたら、以下のコマンドを実行してください。
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+```
+　このコマンドを実行すると、途中 **パスワードの入力が求められます。** パスワードを入力した後に、**RETURN キーを押すように要求される** ので、要求されたらエンターキーを押してください。<br>
+　正常にコマンドのプロセスが終了したら、以下のコマンドを実行して、**Python 3** をインストールします。
+```bash
+brew install python@3.8
+```
+　Python 3 のインストールが完了したら、以下のコマンドを実行してください。このコマンドを実行することで Mac 内に点在する Python 3 関連のパッケージを統一します。
+```bash
+ln -s /usr/local/opt/python@3.8/bin/python3.8 /usr/local/bin/python3.8
+```
+　以下のコマンドを実行して、Python 3 系列がインストオールされているか確認してください。
+```bash
+python -V
+```
+　もし、返されたテキストが ```python 2.x.x``` である場合、以下の手順に沿ってください。
+1. 以下のコマンドを実行してください。このコマンドは ```python``` というコマンドで ```python3``` コマンドを実行できるようエイリアスを作成するコマンドです。
+    ```bash
+    echo "alias python='python3'" >> ~/.bash_profile
+    ```
+2. 同様に以下のコマンドも実行してください。
+```bash
+echo "alias pip='pip3'" >> ~/.bash_profile
+```
 
-  <center>
-  <img src='https://i.imgur.com/91TaW55.png' height=300>
+　これで python コマンドで python3 コマンドを実行できるようになりました。<br>
+　返されたテキストが ```python 3.x.x``` である場合、Python のセットアップは完了です。これで Tello-Console をインストールする準備が整いました。
+　
+### C.python 3.x.x と返された場合 
+　Python のセットアップは必要ありませんが、以下のコマンドを実行して、シェルの環境を変更してください。
+```bash
+chsh -s /bin/bash
+```
+次に、**Command + Q** でターミナルを終了し、再度ターミナルを開いてください。<br>
+　これで Tello-Console をインストールする準備が整いました。
 
-  **インストールをクリック**
-
-  <img src='https://i.imgur.com/Nxt6LLN.png' height=300>
-
-  **同意をクリック**
-
-  <img src='https://i.imgur.com/IadpJgt.png' height=300>
-
-  **お使いの Mac が電源と接続されていない場合、このような警告が出ます。環境によって時間がかかるため電源に接続した状態で実行することをおすすめします。**
-  </center>
-
-6.  **この作業は Python のバージョンが 3.x.x の方でも実行して構いません**<br>　以下のコマンドを**コピペして実行**してください。
-  ```bash
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-  ```
-
-  <center>
-  <img src='https://i.imgur.com/aUccos8.png' height=300>
-  </center>
-
-  **途中パスワードの入力が求められます。パソコンにログインする際のパスワードを入力してください**<br>
-
-  <center>
-  <img src='https://i.imgur.com/LGgZf84.png' height=500>
-  </center>
-
-  　コマンドが実行されると、途中ターミナルに **Press RETURN to continue or any other key to abort** という表示が出てきます。そしたら **エンターキーを押してください**。
-
-7. **この作業は Python のバージョンが 3.x.x の方は実行しないでください**<br>　以下のコマンドを**コピペして実行**してください。すると **Python 3.8.x がインストールされます。**<br>
-    > **[お使いの Mac の Pytrhon のバージョンを調べる方法](#mac_checkpyv)**
-    
-  ```bash
-  brew install python@3.8
-  ```
-  そしたら次に以下のコマンドを実行してください。
-  ```bash
-  ln -s /usr/local/opt/python@3.8/bin/python3.8 /usr/local/bin/python3.8
-  ```
-  これで **Python 3.x.x のインストールは完了** です。
-
-<a id="mac_8"></a>
-8. ターミナルに、以下のコマンドを **1行づつコピペして** コマンドを実行します。
-  ```bash
-  curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-  python3 get-pip.py
-  pip3 install opencv-python
-  cd ~ && git clone https://github.com/GAI-313/Tello-Console.git
-  ```
-
+### 3. Tello-Console をインストールする
+　次に Tello-Console をインストールします。Tello-Console をインストールするには、事前にいくつかのライブラリをインストールする必要があります。以下の手順に沿ってインストール作業を行なってください。<br>
+　ターミナルを開き、以下のコマンドを実行して pip をインストールするための python スクリプトをインストールします。
+```bash
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+```
+すると、このコマンドを実行したフォルダ内に ```get-pip.py``` という python スクリプトがインストールされます。以下のコマンドでこのスクリプトを実行します。
+```bash
+python3 get-pip.py
+```
+これでお使いの Mac で pip を使って python のパッケージをインストールできるようになりました。以下のコマンドを使って画像処理を扱うのに必要となる openCV をインストオールします。
+```
+pip3 install opencv-python
+```
+　最後に、Git を使って Tello-Console をインストールします。Git コマンドを使うことで、GitHub にある Tello-Console を Mac に持ってくることができます。以下のコマンドを実行してください。
+```
+cd ~ && git clone https://github.com/GAI-313/Tello-Console.git
+```
 　これで **macOS に Tello-Console** の導入は完了です。<br>
-
 　Tello-Console を使用してプログラムを作成するには、VScode がお勧めです。こちらで VScode のインストール方法を案内しています。（初心者向け）
 
 　- **[macOS に VScode をインストールする方法](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/visual_studio_tutorial/install_and_setup_guide.md#mac-に-vscode-をインストールする方法)**
@@ -289,9 +327,6 @@ git clone https://github.com/GAI-313/Tello-Console.git
 <a id="install_ubuntu"></a>
 ## Ubuntu（Linux） に Tello-Console を導入する方法
 　Ubuntu に Tello-Console をインストールする方法を解説します。紹介する導入方法は、**Ubuntu 20.04 LTS** で検証した導入方法となります。それ以前、以降の Ubuntu では若干、操作方法が異なる場合があります。
-
-> 報告<br>
-    来月（2023/4）に ChromeOS に Tello-Console をインストールする方法をこのセクションに追記予定です。
 
 1. Control キーと ALT キーと T キーを押して **端末（ここではターミナルと呼ぶことにする）** を開きます。
 2. ターミナルに、以下のコマンドを **1行づつコピペして** コマンドを実行します。コマンドの実行は **エンターキー** を押すだけです。実行すると、**はじめにパスワードの入力が求められます。** ログイン時のパスワードを入力してエンターキーを押してください。
