@@ -194,8 +194,6 @@ class console:
                 else:
                     print('send command <%s>...'%(cmd))
 
-            
-
             # 応答が来るまで待つ、しかし5秒経過したらタイムアウトする
             if None_response_cmd == True:
                 pass
@@ -1037,6 +1035,19 @@ class console:
             
             return response
         
+        except:
+            import traceback
+            traceback.print_exc()
+            sys.exit()
+
+    def set_ap(self, ssid, password):
+        try:
+            if ssid is None or password is None:
+                print("SSID、password が見つかりません。このコマンドは実行できません。")
+            else:
+                response = self.send_cmd("ap %s %s"%(ssid, password))
+                print("%s\nドローンをステーションモードに切り替えます。3秒後に再起動します！")
+                sys.exit()
         except:
             import traceback
             traceback.print_exc()
