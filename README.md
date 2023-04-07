@@ -206,20 +206,20 @@ git clone https://github.com/GAI-313/Tello-Console.git
 > **[ターミナルの外観を最適化する](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/for_mac/terminal_setting_tutorial.md#ターミナルの外観を最適化する)** を参照し、ターミナルの外観を設定してください。Tello-Console を実行する際の表示に問題が発生します。（今後対策予定）
 
 ### 2.Pythonのセットアップ
-　macOS はバージョンまたはお使いの環境によって Python の環境も異なります。ここではあなたが使用している Mac に標準インストールされている Python のチェックと Python のセットアップ方法を紹介します。
+　macOS はバージョンまたはお使いの環境によって Python の環境も異なります。ここではあなたが使用している Mac に標準インストールされている Python のチェックと Python のセットアップ方法を紹介します。<br>
 
-1. 以下のコマンドを**コピペ**してコマンドを実行してください。コマンドの実行は **エンターキー**を押すだけです。
-    <a id='mac_checkpyv'></a>
-  ```bash
-  python -V
-  ```
-    　このコマンドは、Mac に標準でインストールされている Python のバージョンを確認するコマンドです。この時、**お使いの Mac の環境によって応答してくるテキストが異なります。**
-    以下の項目に該当した場合、項目をクリックしてセットアップを行ってください。
-    - **zsh: command not found: python** または **bash: command not found: python** と返された場合
-    - **python 2.x.x** と返された場合
-    - **python 3.x.x** と返された場合
+以下のコマンドを**コピペ**してコマンドを実行してください。コマンドの実行は **エンターキー**を押すだけです。
+<a id='mac_checkpyv'></a>
+```bash
+python -V
+```
+　このコマンドは、Mac に標準でインストールされている Python のバージョンを確認するコマンドです。この時、**お使いの Mac の環境によって応答してくるテキストが異なります。**
+以下の項目に該当した場合、項目をクリックしてセットアップを行ってください。
+- **zsh: command not found: python** または **bash: command not found: python** と返された場合
+- **python 2.x.x** と返された場合
+- **python 3.x.x** と返された場合
 
-### A.zsh: command not found: python** または **bash: command not found: python と返された場合
+### A. zsh: command not found: python または bash: command not found: python と返された場合
 　このテキストが表示された場合、```python``` というコマンドが使用できない状態を表しています。```python3``` コマンドが使用できるか確認してみましょう。以下のコマンドをターミナルで実行してください。
 ```bash
 python3 -V
@@ -243,7 +243,7 @@ echo "alias pip='pip3'" >> ~/.bash_profile
 python -V
 ```
 　これで Tello-Console をインストールする準備が整いました。
-### B.python 2.x.x と返された場合
+### B. python 2.x.x と返された場合
 　このテキストが返されたら、現在お使いの Mac にインストールされている Python のバージョンが python2 系列であることを示しています。Tello-Console は **Python2 環境では実行できません。** ここではお使いの Mac に Python3 をインストールする方法を紹介します。<br>
 　以下のコマンドを実行して、**コマンドライン・デベロッパ・ツール** のインストールを行います。
 ```bash
@@ -284,14 +284,14 @@ python -V
     echo "alias python='python3'" >> ~/.bash_profile
     ```
 2. 同様に以下のコマンドも実行してください。
-```bash
-echo "alias pip='pip3'" >> ~/.bash_profile
-```
+    ```bash
+    echo "alias pip='pip3'" >> ~/.bash_profile
+    ```
 
 　これで python コマンドで python3 コマンドを実行できるようになりました。<br>
 　返されたテキストが ```python 3.x.x``` である場合、Python のセットアップは完了です。これで Tello-Console をインストールする準備が整いました。
 　
-### C.python 3.x.x と返された場合 
+### C. python 3.x.x と返された場合 
 　Python のセットアップは必要ありませんが、以下のコマンドを実行して、シェルの環境を変更してください。
 ```bash
 chsh -s /bin/bash
