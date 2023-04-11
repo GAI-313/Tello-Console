@@ -348,25 +348,41 @@ cd ~ && git clone https://github.com/GAI-313/Tello-Console.git
 
 <a id="taskdo"></a>
 ## Tello-Console を実行してみる
-　インストール作業が無事終了すると、**ホームディレクトリ（ユーザーネームの名前のフォルダ）** に Tello-Console **ディレクトリ（フォルダのこと）** がダウンロードされています。**Tello-Console ディレクトリに移動して、sample_boot.py サンプルプログラムを実行して正常に Tello-Console が実行されるか試してみましょう**。
-<br>
+　インストール作業が無事終了すると、**ホームディレクトリ（ユーザーネームの名前のフォルダ）** に Tello-Console **ディレクトリ（フォルダのこと）** がダウンロードされています。**Tello-Console ディレクトリに移動して、sample_boot.py サンプルプログラムを実行して正常に Tello-Console が実行されるか試してみましょう**。<br>
 
-　以下の操作は **Windows、macOS、Ubuntu 共に同じです。**
-
-1. **Tello-Console ディレクトリに移動する**<br>　以下のコマンドをコピペして、Tello-Console ディレクトリに移動します。
-```bash
-cd Tello-Console
-```
-
-2. **sample_boot.py を実行する**<br>　以下のコマンドをコピペして、sample_boot.py というサンプルプログラムを python で実行します。
+- Windows をお使いの方
+    1. コマンドプロンプトを開く
+    2. 以下のコマンドを **1行ずつ** 実行して Tello-Console ディレクトリへ移動する
+        ```bash
+        cd %homepath%
+        cd Tello-Console
+        ```
+- macOS、Linux ChromeOS をお使いの方
+    1. ターミナル（端末）を開く
+    2. 以下のコマンドを実行して Tello-Console ディレクトリへ移動する
+        ```bash
+        cd ~/Tello-Console
+        ```
+### sample_boot.py を実行する
+　Tello-Console ディレクトリ内には豊富なサンプルコードが用意されています。ここでは、正常に Tello-Console が機能するかどうか確認するためにサンプルコードの一つである **sample_boot.py** を実行してみましょう。<br>
+　```sample_boot.py``` を実行するには、コマンドプロンプトまたはターミナルで以下のコマンドを実行します。このコマンドは WIndows、macOS、Linux 共通です。
 ```bash
 python sample_boot.py
 ```
+> Linux を使用している方へ<br>
+　Linux を使用している方で、```python``` コマンドを実行すると、以下のようなエラーが発生する可能性があります。
+    ```bash
+    コマンド： 'python' が見つかりません。もしかして：
+　　command 'python3' from deb python3
+　　command 'python' from deb python-is-python3
+　　```
+　　または
+　　```bash
+　　Command 'python' not found, did you mean:
 
->**SyntaxError が出た場合**<br>　Python3 をインストールした方は、実行コマンド ```python``` を、```python3``` で実行してください。
-```bash
-python3 sample_boot.py
-```
+    command 'python3' from deb python3
+    command 'python' from deb python-is-python3
+    ```
 
 すると、以下のようなテキストが表示されたら **無事 Tello-Console が実行されたことを表しています。**<br>
 
