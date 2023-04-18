@@ -1,5 +1,9 @@
 # Tello-Console 7.1.0
 
+<center>
+<img src="https://i.imgur.com/zYsdoJo.jpg">
+</center>
+
 English version is **[here](https://github.com/GAI-313/Tello-Console/blob/eng/README.md)**
 
 # 現在工事中！！！
@@ -167,6 +171,7 @@ git clone https://github.com/GAI-313/Tello-Console.git
   <img src='https://i.imgur.com/PEJ8Xjh.jpg'>
   </center>
   <br>
+  
   1. **Git for Bash を開く**<br>
       git for bash とは、先ほど説明した **コマンドプロンプトみたいなウィンドウ** のことです。<br>
       <center>
@@ -174,6 +179,7 @@ git clone https://github.com/GAI-313/Tello-Console.git
       </center>
       <br>
         もし、上記のウィンドウが表示されていない場合は、**検索バー** で **"git"** と入力して候補に出てきた **"Git Bash"** を実行してください。<br>
+        
   2. **コマンドを実行**<br>
       　以下のコマンドを **１行ずつコピペ実行してください。** Git Bash は、**ショートカットキー Control + V** が利用できません。右クリックして **Paste** をクリックしてください。<br>
       ```
@@ -215,10 +221,11 @@ python -V
 ```
 　このコマンドは、Mac に標準でインストールされている Python のバージョンを確認するコマンドです。この時、**お使いの Mac の環境によって応答してくるテキストが異なります。**
 以下の項目に該当した場合、項目をクリックしてセットアップを行ってください。
-- **zsh: command not found: python** または **bash: command not found: python** と返された場合
-- **python 2.x.x** と返された場合
-- **python 3.x.x** と返された場合
+- [**zsh: command not found: python** または **bash: command not found: python** と返された場合](#pya)
+- [**python 2.x.x** と返された場合](#pyb)
+- [**python 3.x.x** と返された場合](#pyc)
 
+<a id="pya"></a>
 ### A. zsh: command not found: python または bash: command not found: python と返された場合
 　このテキストが表示された場合、```python``` というコマンドが使用できない状態を表しています。```python3``` コマンドが使用できるか確認してみましょう。以下のコマンドをターミナルで実行してください。
 ```bash
@@ -243,6 +250,8 @@ echo "alias pip='pip3'" >> ~/.bash_profile
 python -V
 ```
 　これで Tello-Console をインストールする準備が整いました。
+ 
+<a id="pyb"></a>
 ### B. python 2.x.x と返された場合
 　このテキストが返されたら、現在お使いの Mac にインストールされている Python のバージョンが python2 系列であることを示しています。Tello-Console は **Python2 環境では実行できません。** ここではお使いの Mac に Python3 をインストールする方法を紹介します。<br>
 　以下のコマンドを実行して、**コマンドライン・デベロッパ・ツール** のインストールを行います。
@@ -290,7 +299,8 @@ python -V
 
 　これで python コマンドで python3 コマンドを実行できるようになりました。<br>
 　返されたテキストが ```python 3.x.x``` である場合、Python のセットアップは完了です。これで Tello-Console をインストールする準備が整いました。
-　
+
+<a id="pyc"></a>
 ### C. python 3.x.x と返された場合 
 　Python のセットアップは必要ありませんが、以下のコマンドを実行して、シェルの環境を変更してください。
 ```bash
@@ -364,38 +374,47 @@ cd ~ && git clone https://github.com/GAI-313/Tello-Console.git
         cd ~/Tello-Console
         ```
 ### sample_boot.py を実行する
+　当セクション内の目次
+
+- [サンプルコードの実行](#sample_a)
+- [Linux で python に関するエラーが発生する場合](#sample_a)
+- [Windows のシンタックスハイライト設定](#sample_c)
+
+<a id="sample_a"></a>
 　Tello-Console ディレクトリ内には豊富なサンプルコードが用意されています。ここでは、正常に Tello-Console が機能するかどうか確認するためにサンプルコードの一つである **sample_boot.py** を実行してみましょう。<br>
 　```sample_boot.py``` を実行するには、コマンドプロンプトまたはターミナルで以下のコマンドを実行します。このコマンドは WIndows、macOS、Linux 共通です。
 ```bash
 python sample_boot.py
 ```
-> Linux を使用している方へ<br>
-　Linux を使用している方で、```python``` コマンドを実行すると、以下のようなエラーが発生する可能性があります。
-    ```bash
-    コマンド： 'python' が見つかりません。もしかして：
-　　command 'python3' from deb python3
-　　command 'python' from deb python-is-python3
-　　```
-　　または
-　　```bash
-　　Command 'python' not found, did you mean:
 
-    command 'python3' from deb python3
-    command 'python' from deb python-is-python3
-    ```
+<a id="sample_b"></a>
+> Linux を使用している方へ<br>
+> 　Linux を使用している方で、```python``` コマンドを実行すると、以下のようなエラーが発生する可能性があります。
+> ```bash
+> コマンド： 'python' が見つかりません。もしかして：
+> command 'python3' from deb python3
+> command 'python' from deb python-is-python3
+> ```
+> または
+> ```bash
+> command 'python' not found, did you mean:
+> 
+> command 'python3' from deb python3
+> command 'python' from deb python-is-python3
+> ```
+> この場合、python コマンドの代わりに python3 コマンドで python を実行してください。これらのエラーは python 2 系列の python が環境に存在しないことを表しています。
 
 すると、以下のようなテキストが表示されたら **無事 Tello-Console が実行されたことを表しています。**<br>
 
 実行結果↓
 ```bash
-WELCOME CONSOLE ! TELLO-CONSOLE V7.0.0
-コマンド<command>を送信しました…
+WELCOME CONSOLE ! TELLO-CONSOLE Vx.x.x
 タイムアウト!
-ドローンから応答<None response>を受信しました…
 エラー！ドローンとの通信に失敗しました！
 Tips:ドローンとPCとのWi-Fi接続を確認してください！
 ```
 
+<a id="sample_c"></a>
 #### Windows：コマンドプロンプトでテキストがカラー表示されない問題
 
 　上記のサンプルコードを実行すると、macOS、Ubuntu などでは、以下のように **テキストカラーが反映された状態** で表示されます。
