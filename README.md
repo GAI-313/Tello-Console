@@ -466,9 +466,9 @@ Tips:ドローンとPCとのWi-Fi接続を確認してください！
 
 > この作業は若干難しく、ファイルパスに関する知識が求められます。作業を進める際は気を付けて進んでください。
 
-- [Windows の場合]()
-- [macOS の場合]()
-- [Linux の場合]()
+- [Windows の場合](#pypath_win)
+- [macOS の場合](#pypath_mac)
+- [Linux の場合](#pypath_linux)
 
 <a id="pypath_win"></a>
 ## Windows の場合
@@ -494,11 +494,31 @@ Tips:ドローンとPCとのWi-Fi接続を確認してください！
 そしたら **"OK"** をクリックして、PYTHONPATH を追加してください。
 
 ### 3. 確認
+　コマンドプロンプトまたは VScode（Visual Studio）を使って tello ライブラリをインポートできるか確認してください。<br>
+　ここから少しややこしいのですが、今回の作業で **Tello-Console を呼び出す方法が変わります。** どういうことかというと、PYTHONPATH に tello.py を登録する前は、python に Tello-Console を呼び出す際以下のように記述しました。
+```python
+from modules.tello import console
+```
+　しかし、PYTHONPATH に登録したときは、modules ディレクトリ内にある tello.py を直接登録したことで、以下のように記述します。
+```python
+from tello import console
+```
+　このように、**modules を記述する必要がなくなります** 。```from modules...``` の記述方法が通用するのは **Tello-Console ディレクトリ内のみ** となりますので気をつけてください。<br>
+　話は戻りますが、**Tello-Console 以外のディレクトリ** で以下の作業を行なってください。
+
+1. コマンドプロンプトを開きます。
+2. ```python``` コマンドを入力してください。
+3. コマンドプロンプトの入力欄が ```>>>``` になったら、以下のコードを入力してください。
+    ```from tello import console```
+4. エンターキーを押してコードを実行します。この時、何もエラーが出なければ成功です。逆に以下のようなエラーが発生したら失敗です。
+    ```ImporttError```
 ### 2. 
 <a id="pypath_mac"></a>
 ## macOS の場合
+現在有効な手段を調査中
 <a id="pypath_linux"></a>
 ## Linux の場合
+現在有効な手順を調査中
 
 <a id="education"></a>
 # エデュケーション
