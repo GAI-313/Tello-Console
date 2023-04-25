@@ -122,7 +122,7 @@ SyntaxError: invalid syntax
 SyntaxError: EOL while scanning string literal
 >>> 
 ```
-** ダブルクォーテーションとシングルクォーテーションが混在している**
+**ダブルクォーテーションとシングルクォーテーションが混在している**
 ```python
 >>> print("Hello World')
   File "<stdin>", line 1
