@@ -515,7 +515,76 @@ from tello import console
 ### 2. 
 <a id="pypath_mac"></a>
 ## macOS の場合
-現在有効な手段を調査中
+　以下の手順に沿って作業を進めてください。
+### 1. modules ディレクトリに移動する
+　ターミナルを開き、以下のコマンドを実行してください。
+```bash
+cd ~/Tello-Console/modules
+pwd
+```
+　すると、下のような **modules ディレクトリまでのパス** が表示されます。
+
+> お使いの環境によって下のパスの表記が異なります。以下のパスはあくまで例です。
+
+```bash
+/usr/home/NAME/Telllo-Console/modules
+```
+その返されたパスをコピーしてください。
+
+### 2. 環境変数に書き加える
+　環境変数とはパソコンの環境を構成するのに必要な変数のことを言います。Python のライブラリのパスを補完する環境変数 ```PYTHONPATH``` に **Tello-Console の modules ディレクトリまでのパス** を記述します。<br>
+　以下のコマンドを書いてください。**<PATH>** の部分には **先ほどコピーした modules ディレクトリまでのパス** を記述します。そのまま書いて実行しないでください！
+```bash
+echo "export PYTHONPATH=$PYTHONPATH:<PATH>" >> ~/.bash_profile
+```
+　最後にターミナルを以下のコマンドを実行して再読み込みします。
+```bash
+source ~/.bash_profile
+```
+### 3. 確認
+　Python を使って確認しましょう。ターミナルを開き、現在いるディレクトリ（カレントディレクトリ）を変更します。
+```bash
+cd ~
+```
+　次に、Python をターミナル上で開きます。
+```
+python
+```
+　すると、このように Python コマンドラインがターミナル内で開きます。
+```bash
+Python 3.8.2 (default, Apr  8 2021, 23:19:18) 
+[Clang 12.0.5 (clang-1205.0.22.9)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> 
+```
+　ここに以下のコードを書いてください。
+```python
+from modules.tello import console
+```
+　上のコードを記述してエンターキーを押して実行してください。
+```
+>>> from modules .tello import console
+```
+　実行した時、何も表示されず次の入力欄が出たら成功です。
+```
+>>> from modules .tello import console
+>>>
+```
+　続いて、以下のコードを書いて実行すると、Tello-Console の接続シークエンスが実行されます。
+```python
+drone = console()
+```
+　これを実行すると以下のように、ドローンに接続されていないため、強制的に Python プロンプトが終了されます。
+```
+>>> drone = console()
+WELCOME CONSOLE ! TELLO-CONSOLE Vx.x.x
+タイムアウト!
+エラー！ドローンとの通信に失敗しました！
+Tips:ドローンとPCとのWi-Fi接続を確認してください！
+$
+```
+　これでどのディレクトリにいても Tello-Console が使用できるようになりました。<br>
+**[エデュケーションに進む](#education)
 <a id="pypath_linux"></a>
 ## Linux の場合
 現在有効な手順を調査中
