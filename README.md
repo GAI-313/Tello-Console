@@ -584,7 +584,7 @@ Tips:ドローンとPCとのWi-Fi接続を確認してください！
 $
 ```
 　これでどのディレクトリにいても Tello-Console が使用できるようになりました。<br>
-**[エデュケーションに進む](#education)
+**[エデュケーションに進む](#education)**
 <a id="pypath_linux"></a>
 ## Linux の場合
 現在有効な手順を調査中
