@@ -848,7 +848,7 @@ float()
 int_num = 1
 ```
 　整数型のデータを持つ変数
-$int_num$
+$\maths{int_num}$
 を宣言し、以下の式によって浮動小数点型に変換してみましょう。
 ```python
 float_num = float(int_num)
@@ -912,7 +912,7 @@ None
 > という体格指数があります。この指数は以下の公式で計算可能です。
 > ```math
 > BMI = weight \div height^2//
-> weight = 体重（kg）
+> weight = 体重（kg）//
 > height = 身長（m）
 > ```
 > 変数 weight、height、BMI を使って、あなたの BMI 指数を計算してみましょう。結果は以下のように出力してください。また、BMI の計算データは float とします。
