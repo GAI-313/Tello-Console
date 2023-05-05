@@ -19,6 +19,7 @@ English version is **[here](https://github.com/GAI-313/Tello-Console/blob/eng/RE
  - **[Tello-Console をインストールする方法](#install)**<br>　Tello-Console をインストールする方法を解説します。
   - **[Tello-Console を実行してみる](#taskdo)**<br>　Tello-Console を実行する方法を解説します、これを読む前に**Tello-Console をインストールしている必要があります。**
  - **[アップデート](#update)**<br>　Tello-Console をアップデートする方法を解説します
+ - **[Tello-Console をどのディレクトリからでも実行できるようにする](#pythonpath)**<br>　どの場所からでも Tello-Console を実行できるようにする方法を解説します。
  - **[エデュケーション](#educatoin)**<br>　Pythonの でプログラミングをする方法や、Tello-Console の簡易的な使用方法をまとめています。
     - **[スタディサポート](#study_support)**<br>　Tello-Console を使う前に１から Python を勉強してみたい方はこちらを参照してください。Tello-Console をつかってドローンをプログラミングするまでの道のりを記述しています。
     - **[TELLO EDU ユーザーガイド](#user-guide)**<br>　TELLO EDU 本体の使用方法を解説します。
@@ -458,7 +459,7 @@ Tips:ドローンとPCとのWi-Fi接続を確認してください！
   cd ~/Tello-Console
   git pull
   ```
-
+<a id="pythonpath"></a>
 # Tello-Console をどのディレクトリからでも実行できるようにする
 　Tello-Console を使うには、基本的に **Tello-Console ディレクトリ内でしか動作しません。** ですが、このセクションを参照することでどのディレクトリからでも tello-Console をつかったコーディングが可能になります。<br>
 
