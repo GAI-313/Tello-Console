@@ -94,11 +94,11 @@ tarou = 100
     TAROU = 100
     ```
 - 変数には、```_```などを使用できますが、演算子や ```!``` 、```?``` などは使うことができません。<br>
-    $tarou_weight$ という変数名は宣言可能です。
+    ```tarou_weight``` という変数名は宣言可能です。
     ```python
     tarou_weight = 100
     ```
-    $tarou-weight$ という変数名は宣言できません。
+    ```tarou-weight``` という変数名は宣言できません。
     ```python
     tarou-weight = 10
     ```
@@ -108,7 +108,7 @@ tarou = 100
       File "<stdin>", line 1
     SyntaxError: cannot assign to operator
     ```
-    変数 $taou-weight$ は、Python からみると $tarou$ から $weight$ という変数を引き算しているとみなされます。
+    変数 ```taou-weight``` は、Python からみると $tarou$ から $weight$ という変数を引き算しているとみなされます。
 
 - 予約語を含む変数は使用できません<br>
     予約語とは **Python のスクリプトコマンド名** を指します。例えば後ほど学びますが、繰り返し処理を行う ```while``` や、条件分岐に使う ```if``` などが **予約語** です。<br>
@@ -635,20 +635,20 @@ str()
 **括弧内に記述されたデータを str型に変換する**
 機能を持っています。詳しくみてみましょう。<br>
 　ここに、変数
-$int_num$
+```int_num```
 があります。
 ```python
 int_num = 100
 ```
 この変数
-$int_num$
+```int_num```
 は、見ての通り
 **整数型(int型)**
 です。<br>
 　新たな変数
-$str_num$
+```str_num```
 を用意し、変数
-$str_num$
+```str_num```
 を以下のように定義します。
 ```python
 str_num = str(int_num)
@@ -668,12 +668,12 @@ print(type(str_num), type(int_num))
 すると、結果が
 ```<class 'str'> <class 'int'>```
 と返されます。このように変数
-$str_num$
+```str_num```
 ないのデータが、
 ```str()```
 関数によって
 int型である
-$int_num$
+```int_num```
 が str型に変換されたことがわかります。<br>
 　この関数は、以下の特徴を持ちます。
 
@@ -739,19 +739,19 @@ int()
 　この関数は、括弧内に書かれたデータを
 **整数型(int型)**
 に変換する機能を持っています。例として、浮動小数点型のデータを持つ変数
-$float_num$
+```float_num```
 を int型で出力してみましょう。<br>
 　まずは変数
-$float_num$
+```float_num```
 を宣言します。
 ```python
 >>> float_num = 3.141592
 ```
 次に print関数をかき、print関数内にさらに int関数をかき、int関数内に変数
-$float_num$
+```float_num```
 を書きます。これを実行すると、
 **int型に変換された変数**
-$float_num$
+```float_num```
 **の結果が出力されます。**
 ```python
 >>> print(int(float_num))
@@ -854,7 +854,7 @@ $\maths{int_num}$
 float_num = float(int_num)
 ```
 今まで学んだスキルを活かして、新たに宣言された変数
-$float_num$
+```float_num```
 を出力して結果を見てみましょう。すると浮動小数点に変換されていることがわかります。<br>
 　この関数には、以下の特徴があります。
 
