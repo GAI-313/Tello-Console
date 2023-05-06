@@ -141,8 +141,9 @@ $b$
 $c$
 を用いて、**三平方の定理** を再現してみましょう。<br>
 　三平方の定理とは、簡単にいうと **直角三角形の底辺と高さがわかると、斜辺がの長さがわかる** というものです。例えば以下のような直角三角形があったとしましょう。
+ 
 <center>
-<img src="https://i.imgur.com/qN9bG0N.jpg">
+<img src="https://i.imgur.com/qN9bG0N.jpg" height=200>
 </center>
 
 　この三角形は、底辺の長さが
@@ -924,7 +925,7 @@ None
 > - 身長 height の単位は m です<br>
 >   単位は cm ではなく m です。例えばあなたの身長が 170cm の場合、height にかく値は 1.7 です。
 > - BMI の公式を Python で記述すると、このようになります。<br>
->   ```BMI = weight / height ** 2
+>   ```BMI = weight / height ** 2```
 
 <a id="5"></a>
 ## まとめ
