@@ -67,6 +67,8 @@ class console:
         self.battery_level = 0 # バッテリー情報を記録する変数
         self.allow_loop = False # ビデオスレッドのループフラグ
         self.backup = [0,0,0,0,0,0] # 各ドローンパラメータをバックアップするリスト。Noneデータエラーを回避する。
+
+        self.ret = False # カメラ受信フラグ
         
         # tello との接続を確立させる
         self.local_ip = ''
@@ -329,7 +331,7 @@ class console:
                 print('Break')
                 break
             try:
-                ret, frame = self.cap.read() # cap から取り込まれたデータを frame に格納する
+                self.ret, frame = self.cap.read() # cap から取り込まれたデータを frame に格納する
 
                 # VPS カメラを取得したら画像を90度反転させる
                 if self.vision_frag == True:
@@ -343,6 +345,7 @@ class console:
             except Exception:
                 import traceback
                 traceback.print_exc()
+                sys.exit()
 
     def _timeout_thread(self):
         """通信がタイムアウトするかどうかを監視するメソッドです。
@@ -989,7 +992,9 @@ class console:
                 self.vision_frag = True # カメラ画角を90度反転させるフラグを立てる
             else:
                 self.vision_frag = False # カメラ画角を90度反転させるフラグを下げる
-            
+
+            print("Changing ...")
+            time.sleep(2)
             return self.send_cmd('downvision {}'.format(angle))
 
         except:

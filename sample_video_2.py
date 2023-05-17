@@ -17,6 +17,7 @@ while True:
     frame = drone.frame # クラス内にある frame 変数を持ってくる。この変数にドローンのカメラデータが入っている。
 
     if frame is None or frame.size == 0: # カメラデータが破損している。または何もない場合は continue する。これを書かないとエラーが出てしまいます。
+        print("None...")
         continue
 
     key = cv2.waitKey(1) & 0xFF # これを書くことでカメラビューウィンドウ内で任意のキーボードを検知できる。これを書かないとウィンドウは生成されない。
