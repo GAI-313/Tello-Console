@@ -19,6 +19,7 @@ English version is **[here](https://github.com/GAI-313/Tello-Console/blob/eng/RE
  - **[Tello-Console をインストールする方法](#install)**<br>　Tello-Console をインストールする方法を解説します。
   - **[Tello-Console を実行してみる](#taskdo)**<br>　Tello-Console を実行する方法を解説します、これを読む前に**Tello-Console をインストールしている必要があります。**
  - **[アップデート](#update)**<br>　Tello-Console をアップデートする方法を解説します
+ - **[Tello-Console をどのディレクトリからでも実行できるようにする](#pythonpath)**<br>　どの場所からでも Tello-Console を実行できるようにする方法を解説します。
  - **[エデュケーション](#educatoin)**<br>　Pythonの でプログラミングをする方法や、Tello-Console の簡易的な使用方法をまとめています。
     - **[スタディサポート](#study_support)**<br>　Tello-Console を使う前に１から Python を勉強してみたい方はこちらを参照してください。Tello-Console をつかってドローンをプログラミングするまでの道のりを記述しています。
     - **[TELLO EDU ユーザーガイド](#user-guide)**<br>　TELLO EDU 本体の使用方法を解説します。
@@ -458,6 +459,136 @@ Tips:ドローンとPCとのWi-Fi接続を確認してください！
   cd ~/Tello-Console
   git pull
   ```
+<a id="pythonpath"></a>
+# Tello-Console をどのディレクトリからでも実行できるようにする
+　Tello-Console を使うには、基本的に **Tello-Console ディレクトリ内でしか動作しません。** ですが、このセクションを参照することでどのディレクトリからでも tello-Console をつかったコーディングが可能になります。<br>
+
+　OS によって設定方法が異なります。お使いの OS の項目をクリックして進んでください。
+
+> この作業は若干難しく、ファイルパスに関する知識が求められます。作業を進める際は気を付けて進んでください。
+
+- [Windows の場合](#pypath_win)
+- [macOS の場合](#pypath_mac)
+- [Linux の場合](#pypath_linux)
+
+<a id="pypath_win"></a>
+## Windows の場合
+### 1. システム環境変数の設定を開く
+　検索バーに ```env``` と入力して、上位に候補として出てきた **システム環境変数の設定** を開きます。<br>
+
+　次に、設定内の **環境変数(N)** をクリックします。<br>
+
+　**システム環境変数(S)** の綱目欄下にある **新規(N)** をクリックします。
+
+### 2. tello.py のパスを入力する
+　新しいシステム変数の変数名に、**PYTHONPATH** と書きます。すべて大文字です。<br>
+　つぎに、変数値に **Tello-Console の tello.py までのパス** を入力します。以下の手順に沿って tello.py を追加します。
+
+1. **ファイルの参照(D)...** をクリックします。
+2.  フォルダ一覧が表示されたら、あなたのユーザー名をクリックしてください。するとTello-Console が一覧にでてきます。
+3. Tello-Console の modules フォルダを指定して、 **"OK"** をクリックしてください。
+4. 変数値に以下のような文字列が追加されたことを確認してください。
+    ```
+    C:\Users\ユーザー名\Tello-Console\modules\tello.py
+    ```
+
+そしたら **"OK"** をクリックして、PYTHONPATH を追加してください。
+
+### 3. 確認
+　コマンドプロンプトまたは VScode（Visual Studio）を使って tello ライブラリをインポートできるか確認してください。<br>
+　ここから少しややこしいのですが、今回の作業で **Tello-Console を呼び出す方法が変わります。** どういうことかというと、PYTHONPATH に tello.py を登録する前は、python に Tello-Console を呼び出す際以下のように記述しました。
+```python
+from modules.tello import console
+```
+　しかし、PYTHONPATH に登録したときは、modules ディレクトリ内にある tello.py を直接登録したことで、以下のように記述します。
+```python
+from tello import console
+```
+　このように、**modules を記述する必要がなくなります** 。```from modules...``` の記述方法が通用するのは **Tello-Console ディレクトリ内のみ** となりますので気をつけてください。<br>
+　話は戻りますが、**Tello-Console 以外のディレクトリ** で以下の作業を行なってください。
+
+1. コマンドプロンプトを開きます。
+2. ```python``` コマンドを入力してください。
+3. コマンドプロンプトの入力欄が ```>>>``` になったら、以下のコードを入力してください。
+    ```from tello import console```
+4. エンターキーを押してコードを実行します。この時、何もエラーが出なければ成功です。逆に以下のようなエラーが発生したら失敗です。
+    ```ImporttError```
+### 2. 
+<a id="pypath_mac"></a>
+## macOS の場合
+　以下の手順に沿って作業を進めてください。
+### 1. modules ディレクトリに移動する
+　ターミナルを開き、以下のコマンドを実行してください。
+```bash
+cd ~/Tello-Console/modules
+pwd
+```
+　すると、下のような **modules ディレクトリまでのパス** が表示されます。
+
+> お使いの環境によって下のパスの表記が異なります。以下のパスはあくまで例です。
+
+```bash
+/usr/home/NAME/Telllo-Console/modules
+```
+その返されたパスをコピーしてください。
+
+### 2. 環境変数に書き加える
+　環境変数とはパソコンの環境を構成するのに必要な変数のことを言います。Python のライブラリのパスを補完する環境変数 ```PYTHONPATH``` に **Tello-Console の modules ディレクトリまでのパス** を記述します。<br>
+　以下のコマンドを書いてください。**<PATH>** の部分には **先ほどコピーした modules ディレクトリまでのパス** を記述します。そのまま書いて実行しないでください！
+```bash
+echo "export PYTHONPATH=$PYTHONPATH:<PATH>" >> ~/.bash_profile
+```
+　最後にターミナルを以下のコマンドを実行して再読み込みします。
+```bash
+source ~/.bash_profile
+```
+### 3. 確認
+　Python を使って確認しましょう。ターミナルを開き、現在いるディレクトリ（カレントディレクトリ）を変更します。
+```bash
+cd ~
+```
+　次に、Python をターミナル上で開きます。
+```
+python
+```
+　すると、このように Python コマンドラインがターミナル内で開きます。
+```bash
+Python 3.8.2 (default, Apr  8 2021, 23:19:18) 
+[Clang 12.0.5 (clang-1205.0.22.9)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> 
+```
+　ここに以下のコードを書いてください。
+```python
+from modules.tello import console
+```
+　上のコードを記述してエンターキーを押して実行してください。
+```
+>>> from modules .tello import console
+```
+　実行した時、何も表示されず次の入力欄が出たら成功です。
+```
+>>> from modules .tello import console
+>>>
+```
+　続いて、以下のコードを書いて実行すると、Tello-Console の接続シークエンスが実行されます。
+```python
+drone = console()
+```
+　これを実行すると以下のように、ドローンに接続されていないため、強制的に Python プロンプトが終了されます。
+```
+>>> drone = console()
+WELCOME CONSOLE ! TELLO-CONSOLE Vx.x.x
+タイムアウト!
+エラー！ドローンとの通信に失敗しました！
+Tips:ドローンとPCとのWi-Fi接続を確認してください！
+$
+```
+　これでどのディレクトリにいても Tello-Console が使用できるようになりました。<br>
+**[エデュケーションに進む](#education)**
+<a id="pypath_linux"></a>
+## Linux の場合
+現在有効な手順を調査中
 
 <a id="education"></a>
 # エデュケーション
