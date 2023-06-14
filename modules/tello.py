@@ -10,8 +10,10 @@ import sys          # プログラムを強制終了することを目的とす�
 import cv2          # ビデオデータ、画像処理をするモジュール
 import re           # 文字列から数字を取得するために使用するモジュール
 
+CAM_WAIT = False
+
 # Windows ユーザーの方は以下のプログラム上下にある"""を削除してください
-"""
+
 import ctypes
  
 ENABLE_PROCESSED_OUTPUT = 0x0001
@@ -22,7 +24,9 @@ MODE = ENABLE_PROCESSED_OUTPUT + ENABLE_WRAP_AT_EOL_OUTPUT + ENABLE_VIRTUAL_TERM
 kernel32 = ctypes.windll.kernel32
 handle = kernel32.GetStdHandle(-11)
 kernel32.SetConsoleMode(handle, MODE)
-"""
+
+CAM_WAIT = True
+
 # Windows ユーザーの方はこのテキストの上のプログラム上下にある """ を削除してください
 
 
@@ -1029,6 +1033,14 @@ class console:
                 print('ビデオデータを取得中…')
                 while self.frame is None:
                     continue
+                '''
+                if CAM_WAIT is True:
+                    current_time = time.time()
+                    print("Deley Solve. Please wait anout 30 sec ...")
+                    while time.time() - current_time < 30:
+                        continue
+                '''
+
                 print('ビデオデータを取得しました')
 
             elif video == 0:

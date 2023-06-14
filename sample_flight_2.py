@@ -16,11 +16,11 @@ drone.takeoff()
 drone.cw(90)        # 時計回りに旋回します。
 drone.ccw(90)       # 反時計回りに旋回します。
 
-drone.forward(50)   # 前進します。
-drone.back(50)      # 後進します。
+#drone.forward(50)   # 前進します。
+#drone.back(50)      # 後進します。
 
-drone.right(50)     # 右移動します。
-drone.left(50)      # 左移動します。
+#drone.right(50)     # 右移動します。
+#drone.left(50)      # 左移動します。
 
 drone.up(50)        # 上昇します。
 drone.down(50)      # 下降します。
