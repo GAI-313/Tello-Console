@@ -66,7 +66,16 @@ class console:
         self.lang = language # レスポンス時の使用言語
         self.battery_level = 0 # バッテリー情報を記録する変数
         self.allow_loop = False # ビデオスレッドのループフラグ
-        self.backup = [0,0,0,0,0,0] # 各ドローンパラメータをバックアップするリスト。Noneデータエラーを回避する。
+        self.backup = [0,0,0,0,0,0,0] # 各ドローンパラメータをバックアップするリスト。Noneデータエラーを回避する。
+        """
+        0 = flighttime
+        1 = tof
+        2 = height
+        3 = battery
+        4 = speed
+        5 = imu
+        6 = status
+        """
 
         self.ret = False # カメラ受信フラグ
         
@@ -762,7 +771,9 @@ class console:
             str: 実行結果
         """
         try:
-            return self.send_cmd("flip {}".format(dir))
+            response = self.send_cmd("flip {}".format(dir))
+            time.sleep(0.5)
+            return response
         
         except:
             import traceback
@@ -1214,6 +1225,28 @@ class console:
                 self.get_imu()
                 return self.backup[5]
 
+        except:
+            import traceback
+            traceback.print_exc()
+            sys.exit()
+
+    def get_status(self):
+        """ドローンの全てのステータつを取得します。
+
+        Returns:
+            list: []
+        """
+        try:
+            response = self.send_cmd('status?')
+            if "None" in response:
+                return response
+            else:
+                if self.lang == "jp":
+                    print("応答に問題がありました。再度試行します。")
+                else:
+                    print("RESPONSE ERROR SEND AGAIN")
+                self.get_status()
+                return self.backup[6]
         except:
             import traceback
             traceback.print_exc()
