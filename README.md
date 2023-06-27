@@ -659,6 +659,14 @@ drone.land() # land メソッドを実行し、ドローンを着陸させる
 
 <a id="releasenote"></a>
 # リリースノート
+## Tello-Console Ver 8.0.0
+
+- **flipコマンドの最適化**<br>
+    flipコマンドを連続して実行すると、最初のflipコマンドしか実行されない問題を解消しました。
+
+- **get_statusコマンドの追加**<br>
+- **set_ap、set_wifi コマンドの追加**<br>
+
 ## Tello-Console Ver.7.1.0
 　このバージョンではドキュメントの修正及び重要なプログラムの修正を含みます。<br>
 　以下の機能を修正しました。

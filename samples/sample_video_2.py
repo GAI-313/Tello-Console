@@ -1,7 +1,7 @@
 from modules.tello import console # modules ディレクトリ内の tello.py にある console クラスをインポートする
 import cv2 # 画像を扱うので open cv をインポートする
 
-drone = console() # console クラスを任意の変数に格納して console のインスタンスを生成する
+drone = console(tello_ip="192.168.184.16") # console クラスを任意の変数に格納して console のインスタンスを生成する
 drone.stream(1)
 
 while True:
@@ -38,6 +38,10 @@ while True:
         drone.up(20)
     elif key == ord('f'): # r キーを押すと下降
         drone.down(20)
+    elif key == ord('1'): # r キーを押すと上昇
+        drone.downvision(1)
+    elif key == ord('2'): # r キーを押すと下降
+        drone.downvision(0)
 
 cv2.destroyAllWindows()
 del drone

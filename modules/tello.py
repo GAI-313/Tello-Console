@@ -29,7 +29,7 @@ kernel32.SetConsoleMode(handle, MODE)
 # メインクラス
 class console:
 # このクラスが呼び出されたら最初に実行される init 関数
-    def __init__(self,recv=True, language="jp", setup=False):
+    def __init__(self,recv=True, language="jp", setup=False, tello_ip='192.168.10.1'):
         """Tello をコマンドで操作できるようにする Tello-Console のコアとなります。
 
         info:
@@ -80,7 +80,8 @@ class console:
         self.ret = False # カメラ受信フラグ
         
         # tello との接続を確立させる
-        self.local_ip = ''
+        #self.local_ip = ""
+        self.local_ip = ""
         self.local_port = 8889
         self.local_vidoeo_port = 11111
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -92,7 +93,7 @@ class console:
         self.recv_thread.start()
 
         # tello の ipアドレスと接続ポートを確認
-        self.tello_ip = '192.168.10.1'
+        self.tello_ip = tello_ip
         self.tello_port = 8889
         self.tello_address = (self.tello_ip, self.tello_port)
         self.tello_video_address = 'udp://@0.0.0.0:11111'
@@ -174,8 +175,8 @@ class console:
 
     def __del__(self):
         '''
-        このクラスが削除されると呼び出されるメソッド 'デストラクタ'。
-        ほとんど実行されることがないので質素である。
+        このクラスが削除されると呼び出されるメソッド 'デストラクタ' です。。
+        ほとんど実行されることがないので質素である。コマンドとして使用しないでください。
         '''
         print('done')
 
@@ -894,6 +895,14 @@ class console:
             sys.exit()
     
     def missionpad_detection(self, switch):
+        """ミッションパッドの認識をオンオフを設定します。
+
+        Args:
+            cm (int): ドローンの飛行速度（cm/s）を設定します。
+
+        Returns:
+            str: 実行結果
+        """
         try:
             if switch == 1:
                 cmd = "mon"
@@ -975,12 +984,51 @@ class console:
             traceback.print_exc()
             sys.exit()
 
-    def set_wifi(self, ssid, password):
+    """def set_wifi(self, ssid, password):
+        カメラビューの 画質 を取得します。
+
+        tips:
+            処理を軽減したい場合は、low に設定するといいでしょう。
+
+        Args:
+            fps (str): low、middle、high の3つのみ取得します。
+            low: 480p、high:720p
+
+        Returns:
+            str: 実行結果
+        
         try:
             if ssid is None or password is None:
                 print('コマンドエラー。引数が足りません。このこのコマンドはスキップします。')
             else:
                 response = self.send_cmd('wifi %s %s'%(ssid, password))
+                sys.exit()
+        except:
+            import traceback
+            traceback.print_exc()
+            sys.exit()
+    """
+
+    def set_ap(self, ssid, password):
+        """ドローンをステーションモードに切り替え、対象のアクセスポイントへ接続します。
+
+        tips:
+            接続先のパスワードがない場合は、 '' と入力してください。Noneは対応しません。
+            パスワードが間違っていてもstationモードへ移行します。注意してください。
+
+        Args:
+            ssid (str): 接続先Wi-FiのSSIDを入力します。
+            password (str): 接続先Wi-Fiのパスワードを入力します。
+
+        Returns:
+            str: 実行結果
+                OK = 3秒後にドローンは再起動し、対象のWi-Fiへ接続され、stationモードとなります。
+        """
+        try:
+            if ssid is None or password is None:
+                print('コマンドエラー。引数が足りません。このこのコマンドはスキップします。')
+            else:
+                response = self.send_cmd('ap %s %s'%(ssid, password))
                 sys.exit()
         except:
             import traceback
@@ -1051,19 +1099,6 @@ class console:
             
             return response
         
-        except:
-            import traceback
-            traceback.print_exc()
-            sys.exit()
-
-    def set_ap(self, ssid, password):
-        try:
-            if ssid is None or password is None:
-                print("SSID、password が見つかりません。このコマンドは実行できません。")
-            else:
-                response = self.send_cmd("ap %s %s"%(ssid, password))
-                print("%s\nドローンをステーションモードに切り替えます。3秒後に再起動します！")
-                sys.exit()
         except:
             import traceback
             traceback.print_exc()
