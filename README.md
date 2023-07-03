@@ -1,4 +1,4 @@
-# Tello-Console 7.1.0
+# Tello-Console 8.0.0
 
 <center>
 <img src="https://i.imgur.com/zYsdoJo.jpg">
@@ -20,10 +20,9 @@ English version is **[here](https://github.com/GAI-313/Tello-Console/blob/eng/RE
   - **[Tello-Console を実行してみる](#taskdo)**<br>　Tello-Console を実行する方法を解説します、これを読む前に**Tello-Console をインストールしている必要があります。**
  - **[アップデート](#update)**<br>　Tello-Console をアップデートする方法を解説します
  - **[Tello-Console をどのディレクトリからでも実行できるようにする](#pythonpath)**<br>　どの場所からでも Tello-Console を実行できるようにする方法を解説します。
- - **[エデュケーション](#educatoin)**<br>　Pythonの でプログラミングをする方法や、Tello-Console の簡易的な使用方法をまとめています。
-    - **[スタディサポート](#study_support)**<br>　Tello-Console を使う前に１から Python を勉強してみたい方はこちらを参照してください。Tello-Console をつかってドローンをプログラミングするまでの道のりを記述しています。
+ - **[チュートリアル](#tutorial)**<br>
     - **[TELLO EDU ユーザーガイド](#user-guide)**<br>　TELLO EDU 本体の使用方法を解説します。
-    - **[サンプルコードチュートリアル](#samplecode_tutorial)**
+    - **[サンプルコードチュートリアル](#samplecode_tutorial)**<br>　サンプルコードの解説
     - **[Tello-Console を使う方法（経験者向けの内容です）](#howto)**<br>　Tello-Console を今すぐ扱いたい方はこちらを参考にしてください。
 - **[メソッド（Tello-Console コマンド一覧）](#commandlist)**<br>　Tello-Console に用意されているメソッド（コマンド）の一覧です。
 - **[リリースノート](#releasenote)**<br>　tello-Console のアップデート情報をまとめています。こちらからアップデートされた Tello-Console の追加機能、変更内容などの更新状況を確認できます。
@@ -190,14 +189,19 @@ git clone https://github.com/GAI-313/Tello-Console.git
       <img src='https://i.imgur.com/UgwW41M.jpg' height=300>
       </center>
 
-これで **WindowsにTello-Console のインストールする作業は完了です！！**
-
 > **ヒント**
     <br>
     　Tello-Console ディレクトリをエクスプローラ上でクイックアクセスに登録しておくことで、素早くアクセスすることができるようになります。
 
 
-**[Tello-Console を実行してみる に進む](#taskdo)**
+　これで **Tello-Console のインストールと環境設定は完了です。** 次はプログラムを編集するエディタをインストールしましょう。Tello-Console では
+**VScode**
+を推奨しています。こちらで VScode のインストール方法を案内しています。（初心者向け）
+
+　- **[Windows に VScode をインストールする方法](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/visual_studio_tutorial/install_and_setup_guide.md#win)**
+
+VScodeのインストールが完了したら、
+**[Tello-Console を実行してみる](#taskdo)** に移動してサンプルコードが正常に動作するか確認してください。
 
 <a id="install_mac"></a>
 ## macOS に Tello-Console を導入する方法
@@ -336,15 +340,14 @@ cd ~ && git clone https://github.com/GAI-313/Tello-Console.git
 echo "export PYTHONPATH=$HOME/Tello-console/modules/:$PYTHONPATH" >> ~/.bash_profile
 source ~/.bash_profile
 ```
-　これで Tello-Console のインストールと環境設定は完了です。もしプログラムを書く
-**テキストエディタ**
-をお持ちでない場合、
+　これで Tello-Console のインストールと環境設定は完了です。次はプログラムを編集するエディタをインストールしましょう。Tello-Console では
 **VScode**
-がお勧めです。こちらで VScode のインストール方法を案内しています。（初心者向け）
+を推奨しています。こちらで VScode のインストール方法を案内しています。（初心者向け）
 
 　- **[macOS に VScode をインストールする方法](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/visual_studio_tutorial/install_and_setup_guide.md#mac-に-vscode-をインストールする方法)**
 
-**[Tello-Console を実行してみる](#taskdo)** に移動する。
+VScodeのインストールが完了したら、
+**[Tello-Console を実行してみる](#taskdo)** に移動してサンプルコードが正常に動作するか確認してください。
 
 <a id="install_ubuntu"></a>
 ## Ubuntu（Linux） に Tello-Console を導入する方法
@@ -360,13 +363,11 @@ source ~/.bash_profile
   cd ~ && git clone https://github.com/GAI-313/Tello-Console.git
   ```
 
-　これで **Ubuntu に Tello-Console** の導入は完了です。
+　これで Tello-Console のインストールと環境設定は完了です。次はプログラムを編集するエディタをインストールしましょう。Tello-Console では
+**VScode**
+を推奨しています。こちらで VScode のインストール方法を案内しています。（初心者向け）
 
-**これで Tello-Console** のインストールは完了です。<br>
-
-　Tello-Console を使用してプログラムを作成するには、VScode がお勧めです。こちらで VScode のインストール方法を案内しています。（初心者向け）
-
-　- **[macOS に VScode をインストールする方法](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/visual_studio_tutorial/install_and_setup_guide.md#ubu)**
+　- **[Ubuntu に VScode をインストールする方法](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/visual_studio_tutorial/install_and_setup_guide.md#ubu)**
 
 <a id="taskdo"></a>
 ## Tello-Console を実行してみる
@@ -529,75 +530,13 @@ from tello import console
 ## Linux の場合
 現在有効な手順を調査中
 
-<a id="education"></a>
-# エデュケーション
-　ここでは、Tello-Console の使用方法や、プログラミングをするのにあたり必要なスキルを学べるカリキュラムを用意しています。以下の目次からあなたのスキルに合った学習を進めることができます。（現在作成中）
+<a id="tutorial"></a>
 
-- **Python 初心者**
-    現在作成中
-- **python 経験者（基本的な構文を理解している）**
-    現在作成中
-- **python 経験者（関数、クラスを理解し、オブジェクト指向のプログラムを作成できる）**
-    現在作成中
-- **とにかくドローンをプログラムしたい方には**
-    現在作成中
-- **画像処理を専門に学びたい方**
-    現在作成中
-<a id="study_support"></a>
-## スタディサポート
-　Tello-Console は、ドローンを使ってプログラミングの楽しさ、面白さを知ってもらうことを目的に作られました。以下の記事一覧を散走することで、**Python、CUI コマンド、Tello-Console の使用方法、画像処理**に関する知識を習得できます。（現在作成中）
+# チュートリアル
 
-- **[Python チュートリアルその1 Python を始めよう](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/python_tutorial_1-1.md)**
-- **[Python チュートリアルその2 四則演算 ](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/python_tutorial_2.md)**
+## TELLO に接続する
+　
 
-<a id="user-guide"></a>
-## TELLO EDU ユーザーガイド
-　[こちら](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/basic_tutorial/how2use_telloedu.md#tello-edu-ユーザーガイド) から TELLO EDU の基本的な使用方法をまとめています。
-<a id="samplecode_tutorial"></a>
-## サンプルコードチュートリアル
-　Tello-Console にデフォルトでダウンロードされているサンプルコードについて解説します。各サンプルコードの内容から、Tello-Console コマンドの使用方法を学ことができます。
-
-- **[sample_boot.py]()**<br>
-　Tello-Console を使うための基本
-- **[sample_flight1.py]()**<br>
-　Tello-Console を使い、Tello を離着陸させる方法
-- **[sample_flight2.py]()**<br>
-　簡易操作コマンドの使用方法
-- **[sample_get_status1.py]()**<br>
-　Tello から飛行データを取得する
-- **[sample_video1.py]()**<br>
-　Tello のカメラにアクセスする方法
-- **[sample_video2.py]()**<br>
-　Tello のカメラにアクセスし、キーボードでドローンを操作する方法
----
-現在作成中
-<a id="howto"></a>
-## Tello-Console を使う方法（経験者向けの内容です）
-　Tello-Console の本体は、```Tello-Console/modules``` ディレクトリにある **tello.py の中にある console クラス** です。これを呼び出すことで使用することができます。<br>
-
-　console クラスを使用するには、**必ず tello-Console ディレクトリ内でプログラムを記述してください。** （PYTHONPATH を使い環境に反映させる方法を模索中です。）
-```python3
-from modules.tello import console
-```
-　console クラスを、任意の変数に格納することでインスタンス化（活性化）し、インスタンス化された時点で console クラスのドローンへの接続準備およびドローンに対する診断を行います。
-```python3
-from modules.tello import console
-
-drone = console()
-```
-　console クラスに用意された各メソッドが **ドローンを操作するためのコマンド** として機能します。例えば、Tello を離陸、着陸させるなら、このように書けば実装できます。詳しい情報は **[メソッド、コマンド一覧](#commandlist)** または VScode からサマリーを参照してください。
-```python3
-from modules.tello import console
-
-drone = console() # インスタンス化。ここで 変数 drone が console クラスと同等となる
-
-drone.takeoff() # takeoff メソッドを実行し、ドローンを離陸させる
-
-drone.land() # land メソッドを実行し、ドローンを着陸させる
-```
-　Tello-Console コマンド（メソッド）については、
-**[メソッド（Tello-Console コマンド一覧）](#commandlist)**
-を参照してください。
 <a id="commandlist"></a>
 # メソッド（Tello-Console コマンド一覧）
 
@@ -643,17 +582,32 @@ drone.land() # land メソッドを実行し、ドローンを着陸させる
 
 <a id='cmd_b'></a>
 ## 設定コマンド
+### 一般、操作設定
 - **[reboot コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/reboot.md)**
 - **[wait コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/wait.md)**
+- **[speed コマンド]()**
+### カメラ、認識設定
+- **[stream コマンド]()**
+- **[downvision コマンド]()**
+- **[missionpad_detection コマンド]()**
+- **[set_fps コマンド]()**
+- **[set_bitlate コマンド]()**
+- **[set_resolution コマンド]()**
+### 通信設定
+- **[set_wifi コマンド]()**
+- **[set_ap コマンド]()**
 
 <a id='cmd_c'></a>
 ## 取得コマンド
+### 各種センサーデータの取得
 - **[get_flighttime コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/get_flighttime.md)**
 - **[get_height コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/get_height.md)**
 - **[get_tof コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/get_tof.md)**
 - **[get_imu コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/get_imu.md)**
 - **[get_speed コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/get_speed.md)**
 - **[get_battery コマンド](https://github.com/GAI-313/Tello-Console/blob/master/tutorial/command_list/get_battery.md)**
+- **[get_status コマンド]()**
+### 物体認識情報
 ---
 現在作成中
 
