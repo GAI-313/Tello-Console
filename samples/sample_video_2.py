@@ -1,7 +1,8 @@
-from modules.tello import console # modules ディレクトリ内の tello.py にある console クラスをインポートする
+#from modules.tello import console # modules ディレクトリ内の tello.py にある console クラスをインポートする
+from tello import console # modules ディレクトリ内の tello.py にある console クラスをインポートする
 import cv2 # 画像を扱うので open cv をインポートする
 
-drone = console(tello_ip="192.168.184.16") # console クラスを任意の変数に格納して console のインスタンスを生成する
+drone = console(tello_ip="192.168.201.76") # console クラスを任意の変数に格納して console のインスタンスを生成する
 drone.stream(1)
 
 while True:

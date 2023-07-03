@@ -25,11 +25,14 @@ kernel32.SetConsoleMode(handle, MODE)
 """
 # Windows ユーザーの方はこのテキストの上のプログラム上下にある """ を削除してください
 
-
+"""
+Note
+kill フラグでエラー時に終了するかしないかを選択する。
+"""
 # メインクラス
 class console:
 # このクラスが呼び出されたら最初に実行される init 関数
-    def __init__(self,recv=True, language="jp", setup=False, tello_ip='192.168.10.1'):
+    def __init__(self,recv=True, language="jp", setup=False, tello_ip='192.168.10.1', kill=True):
         """Tello をコマンドで操作できるようにする Tello-Console のコアとなります。
 
         info:
@@ -344,10 +347,10 @@ class console:
                 self.ret, frame = self.cap.read() # cap から取り込まれたデータを frame に格納する
 
                 # VPS カメラを取得したら画像を90度反転させる
-                if self.vision_frag == True:
-                    frame = cv2.rotate(frame, cv2.ROTATE_90_CLOCKWISE)
-                else:
-                    frame = frame
+                #if self.vision_frag == True:
+                #    frame = cv2.rotate(frame, cv2.ROTATE_90_CLOCKWISE)
+                #else:
+                #    frame = frame
 
                 self.frame = frame
             except KeyboardInterrupt:
@@ -984,7 +987,8 @@ class console:
             traceback.print_exc()
             sys.exit()
 
-    """def set_wifi(self, ssid, password):
+    def set_wifi(self, ssid, password):
+        """
         カメラビューの 画質 を取得します。
 
         tips:
@@ -996,7 +1000,7 @@ class console:
 
         Returns:
             str: 実行結果
-        
+        """
         try:
             if ssid is None or password is None:
                 print('コマンドエラー。引数が足りません。このこのコマンドはスキップします。')
@@ -1007,7 +1011,6 @@ class console:
             import traceback
             traceback.print_exc()
             sys.exit()
-    """
 
     def set_ap(self, ssid, password):
         """ドローンをステーションモードに切り替え、対象のアクセスポイントへ接続します。
