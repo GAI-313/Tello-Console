@@ -1,0 +1,28 @@
+version: "3"
+services:
+  tello:
+    container_name: tello
+    image: tello:dev
+    privileged: true
+    build:
+      context: .
+      args:
+        - USER_NAME=${USER_NAME}
+        - GROUP_NAME=${GROUP_NAME}
+        - UID=${UID}
+        - GID=${GID}
+    environment:
+      - DISPLAY=${DISPLAY}
+      - ROS_DISTRO=humble
+    volumes:
+       - /tmp/.X11-unix:/tmp/.X11-unix
+       - $HOME/.Xauthority/:/root/.Xauthority
+       #- $SHARED_DIR_TELLO:/tello_ws/src
+       - /dev:/dev
+    devices:
+       - /dev:/dev
+    ipc: host
+    network_mode: host
+    tty: true
+    stdin_open: true
+    user: "${UID}:${GID}"

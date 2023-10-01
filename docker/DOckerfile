@@ -1,0 +1,51 @@
+FROM ubuntu:22.04
+
+SHELL ["/bin/bash", "-c"]
+ARG DEBIAN_FRONTEND=noninteractive
+
+# Timezone, Launguage設定
+RUN apt update \
+  && apt install -y --no-install-recommends \
+     locales \
+     software-properties-common tzdata \
+  && locale-gen ja_JP ja_JP.UTF-8  \
+  && update-locale LC_ALL=ja_JP.UTF-8 LANG=ja_JP.UTF-8 \
+  && add-apt-repository universe
+
+# Locale
+ENV LANG ja_JP.UTF-8
+ENV TZ=Asia/Tokyo
+
+RUN apt update; apt install -y \
+    python3-pip \
+    git wget curl unzip \
+    libgl1-mesa-dev
+
+RUN pip install opencv-python
+
+# Add user and group
+ARG UID
+ARG GID
+ARG USER_NAME
+ARG GROUP_NAME
+ARG PASSWORD
+
+RUN groupadd -g ${GID} ${GROUP_NAME} && \
+    useradd -m -s /bin/bash -u ${UID} -g ${GID} -G sudo ${USER_NAME} && \
+    echo "${USER_NAME} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+
+# nano setting
+COPY assets/nanorc /root/.nanorc
+COPY assets/nanorc /home/$USER_NAME/.nanorc
+
+# install Tello-Console
+RUN cd /home/$USER_NAME/; \
+    git clone https://github.com/GAI-313/Tello-Console.git
+
+# ps1
+RUN echo "PS1='\[\033[44;97m\]TELLO_CONSOLE\[\033[0m\]:\[\033[32m\]\u\[\033[0m\]@\[\033[1;33m\]\w\[\033[0m\]$ '" >> /home/${USER_NAME}/.bashrc
+COPY assets/setup.sh /tmp/setup.sh
+RUN chmod +x /tmp/setup.sh
+
+WORKDIR /home/${USER_NAME}
+ENTRYPOINT ["/tmp/setup.sh"]
