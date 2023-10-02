@@ -854,6 +854,7 @@ class console:
         try:
             if sec == None:
                 res = "You forget argument in wait method! drone is not wait!"
+                sec = 0
             else:
                 res = "Drone is wait: %d sec"%(sec)
             time.sleep(sec)
