@@ -842,7 +842,7 @@ class console:
             sys.exit()
 
 # ドローンの設定を変更するメソッド群
-    def wait(self, sec):
+    def wait(self, sec=None):
         """任意の時間（秒）ドローンを待機させます。飛行中の場合任意の時間（秒）ホバリングします。
 
         Args:
@@ -852,7 +852,10 @@ class console:
             なし
         """
         try:
-            res = "Drone is wait: %d sec"%(sec)
+            if sec == None:
+                res = "You forget argument in wait method! drone is not wait!"
+            else:
+                res = "Drone is wait: %d sec"%(sec)
             time.sleep(sec)
             print(res)
         
