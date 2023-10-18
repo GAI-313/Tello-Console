@@ -809,10 +809,10 @@ class console:
             elif z > -20 and z < 0:
                 z = -20
             
-            if s < 10:
-                s = 10
-            if s > 100:
-                s = 100
+            if speed < 10:
+                speed = 10
+            if speed > 100:
+                speed = 100
             
             response = self.send_cmd("go %d %d %d %d"%(x,y,z,speed))
             return response
@@ -835,6 +835,115 @@ class console:
         """
         try:
             response = self.send_cmd("curve %d %d %d %d %d %d %d"%(x1,y1,z1,x2,y2,z2,speed))
+            return response
+        except:
+            import traceback
+            traceback.print_exc()
+            sys.exit()
+
+    # ミッションパッドコマンド
+    def missionpad_go(self, x,y,z,speed,id):
+        """ドローンを任意の方向へ任意の速度で移動させます。旋回はできません。
+
+        Args:
+            x (int): 前後移動する距離（cm）を設定します。負の値を入力すると後方へ移動します。範囲：-500 ~ 500（-20 ~ 20 の範囲は入力できません）
+            y (int): 上下移動する距離（cm）を設定します。負の値を入力すると下降します。範囲：-500 ~ 500（-20 ~ 20 の範囲は入力できません）
+            z (int): 左右移動する距離（cm）を設定します。負の値を入力すると右移動します。範囲：-500 ~ 500（-20 ~ 20 の範囲は入力できません）
+            s (int): このコマンドによって移動する機体の速度（cm/s）を設定します。範囲：0 ~ 100
+            id (int):
+
+        Returns:
+            str: 実行結果
+        """
+        try:        
+            if x > 500:
+                x = 500
+            elif x < -500:
+                x = 500
+            elif x < 20 and x > 0:
+                x = 20
+            elif x > -20 and x < 0:
+                x = -20
+            
+            if y > 500:
+                y = 500
+            elif y < -500:
+                y = 500
+            elif y < 20 and y > 0:
+                y = 20
+            elif y > -20 and y < 0:
+                y = -20
+            
+            if z > 500:
+                z = 500
+            elif z < -500:
+                z = 500
+            elif z < 20 and z > 0:
+                z = 20
+            elif z > -20 and z < 0:
+                z = -20
+            
+            if speed < 10:
+                speed = 10
+            if speed > 100:
+                speed = 100
+            
+            response = self.send_cmd("go %d %d %d %d m%d"%(x,y,z,speed,id))
+            return response
+        except:
+            import traceback
+            traceback.print_exc()
+            sys.exit()
+    
+    def missionpad_jump(self, x, y, z, speed, yaw, id1, id2):
+        """_summary_
+
+        Args:
+            x (_type_): _description_
+            y (_type_): _description_
+            z (_type_): _description_
+            speed (_type_): _description_
+            yaw (_type_): _description_
+            id1 (_type_): _description_
+            id2 (_type_): _description_
+
+        Returns:
+            _type_: _description_
+        """
+        try:        
+            if x > 500:
+                x = 500
+            elif x < -500:
+                x = 500
+            elif x < 20 and x > 0:
+                x = 20
+            elif x > -20 and x < 0:
+                x = -20
+            
+            if y > 500:
+                y = 500
+            elif y < -500:
+                y = 500
+            elif y < 20 and y > 0:
+                y = 20
+            elif y > -20 and y < 0:
+                y = -20
+            
+            if z > 500:
+                z = 500
+            elif z < -500:
+                z = 500
+            elif z < 20 and z > 0:
+                z = 20
+            elif z > -20 and z < 0:
+                z = -20
+            
+            if speed < 10:
+                speed = 10
+            if speed > 100:
+                speed = 100
+            
+            response = self.send_cmd("go %d %d %d %d %d m%d m%d"%(x,y,z,speed,yaw,id1,id2))
             return response
         except:
             import traceback
@@ -893,6 +1002,14 @@ class console:
             elif switch == 0:
                 cmd = "moff"
             return self.send_cmd(cmd)
+        except:
+            import traceback
+            traceback.print_exc()
+            sys.exit()
+
+    def missionpad_detection_setting(self, set):
+        try:
+            return self.send_cmd("mdirection %d"%(set))
         except:
             import traceback
             traceback.print_exc()
@@ -997,6 +1114,7 @@ class console:
             else:
                 self.vision_frag = False # カメラ画角を90度反転させるフラグを下げる
 
+            #cv2.destroyAllWindows()
             print("Changing ...")
             time.sleep(2)
             return self.send_cmd('downvision {}'.format(angle))

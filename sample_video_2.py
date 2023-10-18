@@ -27,6 +27,10 @@ while True:
         drone.land()
         break
 
+    elif key == ord('1'): # 1 キーを押すと下方カメラに切り替える
+        drone.downvision(1)
+    elif key == ord('2'): # 2 キーを押すと前方カメラに切り替える
+        drone.downvision(0)
     elif key == ord('t'): # t キーを押すと離陸
         drone.takeoff()
     elif key == ord('l'): # l キーを押すと着陸
